@@ -1114,6 +1114,178 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize recent searches display
     renderRecentSearches();
+
+    // --- Viewing History Feature ---
+    const spotlightHistory = document.getElementById('spotlight-history');
+    const spotlightHistoryList = document.getElementById('spotlight-history-list');
+    const spotlightClearHistory = document.getElementById('spotlight-clear-history');
+    const spotlightPromotions = document.getElementById('spotlight-promotions');
+
+    let viewingHistory = JSON.parse(localStorage.getItem('spotlight-viewing-history') || '[]');
+
+    function saveToHistory(property) {
+        // Remove if already exists to avoid duplicates
+        viewingHistory = viewingHistory.filter(item => item.id !== property.id);
+
+        // Add to the beginning with timestamp
+        viewingHistory.unshift({
+            id: property.id,
+            title: property.title,
+            location: property.location,
+            type: property.type,
+            price: property.price,
+            timestamp: Date.now()
+        });
+
+        // Keep only last 10 items
+        viewingHistory = viewingHistory.slice(0, 10);
+        localStorage.setItem('spotlight-viewing-history', JSON.stringify(viewingHistory));
+        renderHistory();
+    }
+
+    function getTimeAgo(timestamp) {
+        const seconds = Math.floor((Date.now() - timestamp) / 1000);
+
+        if (seconds < 60) return 'Just now';
+        if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+        if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
+        if (seconds < 604800) return `${Math.floor(seconds / 86400)}d ago`;
+        return new Date(timestamp).toLocaleDateString();
+    }
+
+    function renderHistory() {
+        if (!spotlightHistoryList) return;
+
+        if (viewingHistory.length === 0) {
+            spotlightHistoryList.innerHTML = `
+                <div style="text-align: center; padding: var(--space-8) var(--space-4); color: var(--color-gray-400);">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: var(--space-3); opacity: 0.5;">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <p style="font-size: var(--font-size-sm); margin: 0;">No viewing history yet</p>
+                </div>
+            `;
+            return;
+        }
+
+        spotlightHistoryList.innerHTML = viewingHistory.map(item => `
+            <div class="spotlight-history-item" data-property-id="${item.id}">
+                <div class="spotlight-history-item__icon">
+                    ${getPropertyIcon(item.type)}
+                </div>
+                <div class="spotlight-history-item__content">
+                    <h4 class="spotlight-history-item__title">${item.title}</h4>
+                    <div class="spotlight-history-item__meta">
+                        <span class="spotlight-history-item__time">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            ${getTimeAgo(item.timestamp)}
+                        </span>
+                        <span>•</span>
+                        <span>${item.location}</span>
+                    </div>
+                </div>
+                <button class="spotlight-history-item__remove" data-property-id="${item.id}" aria-label="Remove from history">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        `).join('');
+    }
+
+    function removeFromHistory(propertyId) {
+        viewingHistory = viewingHistory.filter(item => item.id !== propertyId);
+        localStorage.setItem('spotlight-viewing-history', JSON.stringify(viewingHistory));
+        renderHistory();
+    }
+
+    function clearHistory() {
+        viewingHistory = [];
+        localStorage.removeItem('spotlight-viewing-history');
+        renderHistory();
+    }
+
+    // Update selectResult to save to history
+    const originalSelectResult = selectResult;
+    selectResult = function(index) {
+        if (index >= 0 && index < searchResults.length) {
+            saveToHistory(searchResults[index]);
+        }
+        originalSelectResult(index);
+    };
+
+    // History item clicks
+    spotlightHistoryList?.addEventListener('click', (e) => {
+        const historyItem = e.target.closest('.spotlight-history-item');
+        const removeButton = e.target.closest('.spotlight-history-item__remove');
+
+        if (removeButton) {
+            e.stopPropagation();
+            const propertyId = parseInt(removeButton.dataset.propertyId);
+            removeFromHistory(propertyId);
+        } else if (historyItem) {
+            const propertyId = parseInt(historyItem.dataset.propertyId);
+            const property = properties.find(p => p.id === propertyId);
+            if (property) {
+                const index = properties.indexOf(property);
+                selectResult(index);
+            }
+        }
+    });
+
+    // Clear history button
+    spotlightClearHistory?.addEventListener('click', clearHistory);
+
+    // Promotions card clicks
+    document.querySelectorAll('.spotlight-promo-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Copy promo code to clipboard if it has one
+            const codeElement = card.querySelector('.spotlight-promo-card__code');
+            if (codeElement && codeElement.textContent.includes('CODE:')) {
+                const code = codeElement.textContent.replace('CODE:', '').trim();
+                navigator.clipboard.writeText(code).then(() => {
+                    // Show a brief feedback
+                    const originalText = codeElement.textContent;
+                    codeElement.textContent = '✓ Copied!';
+                    codeElement.style.background = 'rgba(16, 185, 129, 0.15)';
+                    codeElement.style.color = '#065f46';
+                    setTimeout(() => {
+                        codeElement.textContent = originalText;
+                        codeElement.style.background = '';
+                        codeElement.style.color = '';
+                    }, 1500);
+                });
+            }
+        });
+    });
+
+    // Update showDefaultState to include new sections
+    const originalShowDefaultState = showDefaultState;
+    showDefaultState = function() {
+        originalShowDefaultState();
+
+        // Always show promotions and history in default state
+        if (spotlightPromotions) spotlightPromotions.style.display = 'block';
+        if (spotlightHistory) spotlightHistory.style.display = 'block';
+    };
+
+    // Update showResults to hide promotions and history during search
+    const originalShowResults = showResults;
+    showResults = function() {
+        originalShowResults();
+
+        // Hide promotions and history when showing search results
+        if (spotlightPromotions) spotlightPromotions.style.display = 'none';
+        if (spotlightHistory) spotlightHistory.style.display = 'none';
+    };
+
+    // Initialize history display
+    renderHistory();
 })();
 
 // Listing analytics modal integration

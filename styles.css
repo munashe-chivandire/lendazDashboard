@@ -20,7 +20,7 @@
   --color-warning-light: #fbbf24;
   --color-error: #ef4444;
   --color-error-light: #f87171;
-  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  --font-family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -3619,7 +3619,6 @@ img {
   bottom: 0;
   z-index: 0;
   background: radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.12) 0%, transparent 55%), radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 52%), radial-gradient(circle at 40% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 48%), radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.09) 0%, transparent 50%), radial-gradient(circle at 15% 85%, rgba(168, 85, 247, 0.06) 0%, transparent 45%), radial-gradient(circle at 70% 10%, rgba(34, 197, 94, 0.07) 0%, transparent 52%), linear-gradient(180deg, rgba(37, 99, 235, 0.06) 0%, rgba(255, 255, 255, 0) 40%);
-  animation: meshGradient 20s ease-in-out infinite;
 }
 .main > * {
   position: relative;
@@ -3637,33 +3636,6 @@ img {
   }
 }
 
-@keyframes meshGradient {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    filter: blur(0px);
-    background: radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.12) 0%, transparent 55%), radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 52%), radial-gradient(circle at 40% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 48%), radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.09) 0%, transparent 50%), radial-gradient(circle at 15% 85%, rgba(168, 85, 247, 0.06) 0%, transparent 45%), radial-gradient(circle at 70% 10%, rgba(34, 197, 94, 0.07) 0%, transparent 52%), linear-gradient(180deg, rgba(37, 99, 235, 0.06) 0%, rgba(255, 255, 255, 0) 40%);
-  }
-  20% {
-    transform: scale(1.04) rotate(1.5deg);
-    filter: blur(1px);
-    background: radial-gradient(circle at 25% 60%, rgba(37, 99, 235, 0.14) 0%, transparent 60%), radial-gradient(circle at 75% 30%, rgba(16, 185, 129, 0.12) 0%, transparent 48%), radial-gradient(circle at 50% 70%, rgba(245, 158, 11, 0.1) 0%, transparent 55%), radial-gradient(circle at 85% 85%, rgba(59, 130, 246, 0.11) 0%, transparent 52%), radial-gradient(circle at 10% 90%, rgba(168, 85, 247, 0.08) 0%, transparent 50%), radial-gradient(circle at 75% 5%, rgba(34, 197, 94, 0.09) 0%, transparent 54%), linear-gradient(180deg, rgba(37, 99, 235, 0.08) 0%, rgba(255, 255, 255, 0) 35%);
-  }
-  40% {
-    transform: scale(1.02) rotate(-1deg);
-    filter: blur(0.8px);
-    background: radial-gradient(circle at 30% 40%, rgba(37, 99, 235, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(16, 185, 129, 0.14) 0%, transparent 58%), radial-gradient(circle at 60% 20%, rgba(245, 158, 11, 0.12) 0%, transparent 50%), radial-gradient(circle at 95% 70%, rgba(59, 130, 246, 0.08) 0%, transparent 48%), radial-gradient(circle at 5% 75%, rgba(168, 85, 247, 0.1) 0%, transparent 52%), radial-gradient(circle at 85% 15%, rgba(34, 197, 94, 0.11) 0%, transparent 56%), linear-gradient(180deg, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 0) 45%);
-  }
-  60% {
-    transform: scale(1.06) rotate(2deg);
-    filter: blur(1.2px);
-    background: radial-gradient(circle at 15% 30%, rgba(37, 99, 235, 0.16) 0%, transparent 62%), radial-gradient(circle at 85% 40%, rgba(16, 185, 129, 0.08) 0%, transparent 50%), radial-gradient(circle at 35% 90%, rgba(245, 158, 11, 0.14) 0%, transparent 58%), radial-gradient(circle at 80% 60%, rgba(59, 130, 246, 0.12) 0%, transparent 54%), radial-gradient(circle at 20% 70%, rgba(168, 85, 247, 0.09) 0%, transparent 48%), radial-gradient(circle at 90% 25%, rgba(34, 197, 94, 0.06) 0%, transparent 50%), linear-gradient(180deg, rgba(37, 99, 235, 0.07) 0%, rgba(255, 255, 255, 0) 42%);
-  }
-  80% {
-    transform: scale(1.03) rotate(-0.5deg);
-    filter: blur(0.6px);
-    background: radial-gradient(circle at 35% 65%, rgba(37, 99, 235, 0.11) 0%, transparent 53%), radial-gradient(circle at 65% 25%, rgba(16, 185, 129, 0.13) 0%, transparent 56%), radial-gradient(circle at 45% 15%, rgba(245, 158, 11, 0.09) 0%, transparent 50%), radial-gradient(circle at 75% 95%, rgba(59, 130, 246, 0.1) 0%, transparent 52%), radial-gradient(circle at 25% 10%, rgba(168, 85, 247, 0.07) 0%, transparent 46%), radial-gradient(circle at 95% 35%, rgba(34, 197, 94, 0.08) 0%, transparent 48%), linear-gradient(180deg, rgba(37, 99, 235, 0.06) 0%, rgba(255, 255, 255, 0) 38%);
-  }
-}
 .topbar {
   display: flex;
   align-items: center;

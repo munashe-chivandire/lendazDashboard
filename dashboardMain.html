@@ -1,0 +1,2851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lendaz Owner Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar" aria-label="Primary" data-collapsed="false">
+            <div class="sidebar__header">
+                <div class="sidebar__logo">
+                    <img src="assets/logo.png" alt="Lendaz" class="sidebar__logo-image" />
+                    <span class="sidebar__badge">Owners</span>
+                </div>
+                <button class="sidebar__toggle" id="sidebar-toggle" aria-label="Toggle sidebar" aria-expanded="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <nav class="sidebar__nav">
+                <a href="#analytics" class="sidebar__link sidebar__link--active" data-target="analytics" aria-controls="analytics" data-tooltip="Overview">
+                    <span class="iconWrapper">
+                        <svg class="dashSideBarIcon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_209_55)">
+                        <path d="M1.49996 -0.113281H6.6137C7.55546 -0.113281 8.31825 0.828479 8.31825 1.59126V5.34137C8.31825 6.28313 7.55546 7.04592 6.6137 7.04592H1.49996C0.558196 7.04592 -0.20459 6.10416 -0.20459 5.34137V1.59126C-0.20459 0.649504 0.558196 -0.113281 1.49996 -0.113281Z" fill="#333333"/>
+                        <path d="M11.3864 11.1367H16.5002C17.4419 11.1367 18.2047 12.0785 18.2047 12.8413V16.5914C18.2047 17.5331 17.4419 18.2959 16.5002 18.2959H11.3864C10.4447 18.2959 9.68188 17.3542 9.68188 16.5914V12.8413C9.68188 11.8995 10.4447 11.1367 11.3864 11.1367Z" fill="#333333"/>
+                        <path d="M11.3864 -0.113281H16.5002C17.4419 -0.113281 18.2047 0.828479 18.2047 1.59126V8.06865C18.2047 9.01041 17.4419 9.77319 16.5002 9.77319H11.3864C10.4447 9.77319 9.68188 8.83143 9.68188 8.06865V1.59126C9.68188 0.649504 10.4447 -0.113281 11.3864 -0.113281Z" fill="#333333"/>
+                        <path d="M1.49996 8.40918H6.6137C7.55546 8.40918 8.31825 9.35094 8.31825 10.1137V16.5911C8.31825 17.5329 7.55546 18.2957 6.6137 18.2957H1.49996C0.558196 18.2957 -0.20459 17.3539 -0.20459 16.5911V10.1137C-0.20459 9.17197 0.558196 8.40918 1.49996 8.40918Z" fill="#333333"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_209_55">
+                        <rect width="18" height="18" fill="white"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+                    </span>
+                    Overview</a>
+                <a href="#listings" class="sidebar__link" data-target="listings" aria-controls="listings" data-tooltip="Manage Listings">
+                    <span class="iconWrapper">
+                        <svg class="dashSideBarIcon" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.200353 20.3106L1.2835 22.9197C1.5508 23.5536 2.05822 24.0558 2.69479 24.3167C3.33137 24.5775 4.04532 24.5756 4.68054 24.3115L8.68338 22.6226C8.84626 22.552 8.98348 22.433 9.07642 22.2818C9.16937 22.1305 9.21352 21.9543 9.2029 21.7771L9.47896 21.6602C9.81571 21.5154 10.186 21.467 10.5487 21.5203C12.6632 21.8366 16.2884 21.1042 18.1575 19.9847C19.9803 18.9007 21.7195 17.6819 23.3604 16.3384C24.988 14.9965 23.2128 12.6059 21.4913 13.7044C20.9775 14.0322 19.787 14.8891 19.1122 15.3645C18.9033 14.8124 18.3166 14.3619 17.7262 14.5076C17.5402 14.5517 17.3619 14.6092 17.1894 14.6648C16.4878 14.8891 15.7631 15.1211 14.1681 14.5115C11.1526 13.3574 8.15427 14.7952 7.92997 14.9064L6.6417 15.4508C6.52388 15.3153 6.3663 15.2205 6.19142 15.1799C6.01654 15.1393 5.8333 15.1549 5.66783 15.2246C5.01411 15.4949 3.14497 16.279 1.58831 16.9308C0.957504 17.1966 0.457499 17.7013 0.197456 18.3345C-0.0625868 18.9677 -0.0615453 19.6781 0.200353 20.3106ZM14.7237 17.6267C14.7286 17.5892 14.7408 17.5531 14.7597 17.5203C14.7785 17.4876 14.8037 17.4589 14.8336 17.4359C14.8636 17.4129 14.8978 17.396 14.9343 17.3862C14.9708 17.3764 15.0089 17.3739 15.0463 17.3788C15.6556 17.4588 16.8202 17.4603 17.3842 17.2095C17.7252 17.0523 18.3182 16.6693 18.5536 16.2569C18.5841 16.2023 18.6317 16.1591 18.689 16.134C18.7464 16.1088 18.8103 16.1031 18.8712 16.1176C18.915 16.127 18.9558 16.1466 18.9905 16.1749C19.0251 16.2032 19.0525 16.2394 19.0703 16.2804C19.0882 16.3214 19.0961 16.366 19.0932 16.4107C19.0904 16.4553 19.077 16.4986 19.0541 16.537C18.6433 17.26 17.6313 17.7294 17.6184 17.7352C16.9446 18.0419 15.6596 18.0348 14.9729 17.9491C14.9353 17.9444 14.8991 17.9323 14.8662 17.9135C14.8333 17.8947 14.8045 17.8696 14.7813 17.8397C14.7581 17.8097 14.7411 17.7755 14.7312 17.7389C14.7214 17.7024 14.7188 17.6642 14.7237 17.6267ZM5.88829 15.7556C5.92323 15.7408 5.96078 15.7332 5.99872 15.7331C6.03666 15.733 6.07423 15.7405 6.10923 15.7552C6.14423 15.7698 6.17596 15.7913 6.20254 15.8184C6.22912 15.8455 6.25003 15.8776 6.26404 15.9128L8.61245 21.7215C8.64087 21.791 8.6407 21.8688 8.61198 21.9381C8.58325 22.0074 8.52829 22.0626 8.45908 22.0915L7.63282 22.4404L5.00836 16.1218C5.3841 15.9665 5.69083 15.8381 5.88829 15.7556Z" fill="#333333"/>
+                        <path d="M16.4091 0H15.4506C15.2982 0.000455129 15.1522 0.0611941 15.0444 0.168952C14.9367 0.276709 14.8759 0.422729 14.8755 0.57512V2.31965L13.0159 0.460096C12.7457 0.192102 12.3805 0.041733 11.9999 0.041733C11.6193 0.041733 11.2541 0.192102 10.9838 0.460096L5.85376 5.59017C5.68076 5.76356 5.57352 5.99178 5.55046 6.23563C5.5274 6.47948 5.58996 6.72375 5.72739 6.9265C5.86483 7.12925 6.06856 7.27782 6.30361 7.34671C6.53866 7.4156 6.79037 7.40051 7.0155 7.30403V11.6941C7.0155 12.0754 7.16698 12.4411 7.43662 12.7108C7.70626 12.9804 8.07197 13.1319 8.4533 13.1319H15.5465C15.9278 13.1319 16.2935 12.9804 16.5631 12.7108C16.8328 12.4411 16.9843 12.0754 16.9843 11.6941V7.30403C17.2094 7.40051 17.4611 7.4156 17.6961 7.34671C17.9312 7.27782 18.1349 7.12925 18.2724 6.9265C18.4098 6.72375 18.4723 6.47948 18.4493 6.23563C18.4262 5.99178 18.319 5.76356 18.146 5.59017L16.9843 4.42843V0.57512C16.9838 0.422729 16.9231 0.276709 16.8153 0.168952C16.7075 0.0611941 16.5615 0.000455129 16.4091 0ZM13.4377 12.5568H10.5621V10.2563C10.5621 10.1038 10.6227 9.9575 10.7305 9.84964C10.8384 9.74178 10.9847 9.68119 11.1372 9.68119H12.8626C13.0151 9.68119 13.1614 9.74178 13.2692 9.84964C13.3771 9.9575 13.4377 10.1038 13.4377 10.2563V12.5568ZM11.9999 7.38071C11.7155 7.38071 11.4375 7.29638 11.2011 7.1384C10.9646 6.98041 10.7803 6.75585 10.6715 6.49313C10.5627 6.23041 10.5342 5.94131 10.5897 5.66241C10.6452 5.3835 10.7821 5.12731 10.9832 4.92623C11.1843 4.72515 11.4405 4.58821 11.7194 4.53274C11.9983 4.47726 12.2874 4.50573 12.5501 4.61455C12.8128 4.72338 13.0374 4.90766 13.1954 5.14411C13.3534 5.38055 13.4377 5.65854 13.4377 5.94291C13.4377 6.32424 13.2862 6.68995 13.0166 6.95959C12.7469 7.22923 12.3812 7.38071 11.9999 7.38071ZM17.7396 5.99659C17.8289 6.08692 17.879 6.20885 17.879 6.33591C17.879 6.46296 17.8289 6.58489 17.7396 6.67523C17.6479 6.76203 17.5265 6.81041 17.4003 6.81041C17.274 6.81041 17.1526 6.76203 17.0609 6.67523L12.4063 2.02059C12.2985 1.91289 12.1523 1.85239 11.9999 1.85239C11.8475 1.85239 11.7013 1.91289 11.5935 2.02059L6.93882 6.67523C6.84882 6.76522 6.72677 6.81578 6.5995 6.81578C6.47223 6.81578 6.35017 6.76522 6.26018 6.67523C6.17018 6.58523 6.11963 6.46318 6.11963 6.33591C6.11963 6.20864 6.17018 6.08658 6.26018 5.99659L11.3902 0.866514C11.5527 0.706217 11.7717 0.616338 11.9999 0.616338C12.2281 0.616338 12.4471 0.706217 12.6095 0.866514L17.7396 5.99659Z" fill="#333333"/>
+                        </svg>
+                    </span>
+                    Manage Listings</a>
+                <a href="#messaging" class="sidebar__link" data-target="messaging" aria-controls="messaging" data-tooltip="Messaging">
+                    <span class="iconWrapper">
+                        <svg class="dashSideBarIcon" width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.37714 1.71439L1.57714 0.205814C1.89011 0.0671179 2.22912 -0.00302276 2.57143 9.98646e-05H21.4286C21.7709 -0.00302276 22.1099 0.0671179 22.4229 0.205814L20.6229 1.71439L12.3686 8.6401C12.322 8.69743 12.2631 8.74364 12.1964 8.77538C12.1297 8.80712 12.0567 8.82359 11.9829 8.82359C11.909 8.82359 11.836 8.80712 11.7693 8.77538C11.7026 8.74364 11.6438 8.69743 11.5971 8.6401L3.37714 1.71439ZM23.6914 1.3801L22.2857 2.57153L13.5 9.92581C13.0989 10.3119 12.5652 10.5297 12.0086 10.5344C11.4326 10.5254 10.8814 10.2988 10.4657 9.9001L1.71429 2.57153L0.308571 1.3801C0.110789 1.74641 0.00489922 2.15526 0 2.57153V14.5715C0 15.2535 0.270918 15.9076 0.753154 16.3898C1.23539 16.872 1.88944 17.143 2.57143 17.143H21.4286C22.1106 17.143 22.7646 16.872 23.2468 16.3898C23.7291 15.9076 24 15.2535 24 14.5715V2.57153C23.9976 2.15494 23.8915 1.7455 23.6914 1.3801Z" fill="#333333"/>
+                        </svg>
+                    </span>
+                    Messaging</a>
+                <a href="#maintenance" class="sidebar__link" data-target="maintenance" aria-controls="maintenance" data-tooltip="Maintenance">
+                    <span class="iconWrapper">
+                        <svg class="dashSideBarIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.5863 0.322206C17.3557 -0.409877 14.8036 0.104273 13.03 1.87783C11.1662 3.74167 10.6846 6.46824 11.588 8.77511L0.75556 19.6076C-0.251853 20.615 -0.251853 22.237 0.75556 23.2444C1.76297 24.2519 3.38501 24.2519 4.39243 23.2444L15.2249 12.412C17.5318 13.3154 20.2584 12.8339 22.1222 10.97C23.8957 9.19644 24.4099 6.64433 23.6778 4.41368L20.0764 8.01506L16.8942 7.1058L15.985 3.92355L19.5863 0.322206Z" fill="#333333"/>
+                        </svg>
+
+                    </span>
+                    Maintenance</a>
+                <a href="#documents" class="sidebar__link" data-target="documents" aria-controls="documents" data-tooltip="Documents">
+                    <span class="iconWrapper">
+                        <svg class="dashSideBarIcon" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.27601 0.698747L0.872805 3.10195H2.8981C3.11018 3.10195 3.27604 2.92807 3.27604 2.72402L3.27601 0.698747ZM4.44596 20.4793C3.79567 20.4793 3.79567 19.4913 4.44596 19.4913H10.759C11.4093 19.4913 11.4093 20.4793 10.759 20.4793H4.44596ZM4.44596 13.7762C3.79567 13.7762 3.79567 12.7882 4.44596 12.7882H10.759C11.4093 12.7882 11.4093 13.7762 10.759 13.7762H4.44596ZM4.44596 10.4242C3.79567 10.4242 3.79567 9.4362 4.44596 9.4362H15.1955C15.8458 9.4362 15.8458 10.4242 15.1955 10.4242H4.44596ZM4.44596 7.07226C3.79567 7.07226 3.79567 6.08425 4.44596 6.08425H15.1955C15.8458 6.08425 15.8458 7.07226 15.1955 7.07226H4.44596ZM4.44596 17.1284C3.79567 17.1284 3.79567 16.1404 4.44596 16.1404H10.759C11.4093 16.1404 11.4093 17.1284 10.759 17.1284H4.44596ZM22.749 13.0817C19.6894 10.022 14.4367 12.2002 14.4367 16.5242C14.4367 20.8483 19.6884 23.0264 22.749 19.9667C24.6507 18.0661 24.6507 14.9835 22.749 13.0817ZM18.5104 10.7217C17.2108 10.8986 16.0479 11.5006 15.1644 12.3831C11.7329 15.8156 13.7502 21.6815 18.5104 22.3276C18.5104 22.8934 18.5858 23.3488 18.1807 23.7548L18.1797 23.7538C17.9757 23.9579 17.6953 24.0845 17.3877 24.0845H1.298C0.682884 24.0845 0.175293 23.582 0.175293 22.9618V4.08981H2.89915C3.64898 4.08981 4.2651 3.47569 4.2651 2.72386L4.26409 0H17.3878C18.0029 0 18.5105 0.502548 18.5105 1.12271L18.5104 10.7217ZM21.5047 14.14C21.9641 13.6807 22.6636 14.3792 22.2032 14.8386L18.1326 18.9092C17.9397 19.1022 17.6271 19.1022 17.4341 18.9092L15.9345 17.4096C15.4751 16.9502 16.1737 16.2507 16.633 16.711L17.7829 17.8609L21.5047 14.14Z" fill="#333333"/>
+                        </svg>
+                    </span>
+                    Documents</a>
+                <a href="#profile" class="sidebar__link" data-target="profile" aria-controls="profile" data-tooltip="Profile">
+                    <span class="iconWrapper">
+                        <svg class="dashSideBarIcon" width="24" height="27" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.0001 0C10.1474 0 8.36992 0.735737 7.05898 2.04654C5.74805 3.35735 5.01244 5.13485 5.01244 6.98769C5.01244 8.84053 5.74945 10.6179 7.05898 11.9288C8.36979 13.2396 10.1473 13.9767 12.0001 13.9767C13.8541 13.9767 15.6316 13.2396 16.9426 11.9288C18.2535 10.618 18.9891 8.84053 18.9891 6.98769C18.9891 5.13485 18.2534 3.35748 16.9426 2.04654C15.6318 0.735607 13.8543 0 12.0001 0ZM7.8114 13.9764C3.2414 15.6697 0.00127511 20.0561 0.00127511 25.228L0 26.1142H24V25.228C24 20.0652 20.7714 15.6852 16.2153 13.9855C14.9224 14.6893 13.4726 15.0592 11.9998 15.0604C10.5347 15.0528 9.09642 14.6804 7.81111 13.9766L7.8114 13.9764Z" fill="#333333"/>
+                        </svg>
+                    </span>
+                    Profile</a>
+                <a href="#admin-approvals" class="sidebar__link" data-target="admin-approvals" aria-controls="admin-approvals" data-tooltip="Admin Approvals">
+                    <span class="iconWrapper">
+                        <svg class="dashSideBarIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    Admin Approvals</a>
+            </nav>
+            <div class="sidebar__footer">
+                <button class="btn btn--primary btn--full-width" id="add-listing-btn">Add Listing</button>
+                <div class="sidebar__support">
+                    <p class="sidebar__support-title">Need help?</p>
+                    <a href="#support" class="sidebar__support-link">Contact Support</a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main">
+            <header class="topbar">
+                <div class="topbar__left">
+                    <h1 class="topbar__title">Portfolio Snapshot</h1>
+                    <p class="topbar__subtitle">Monitor performance and stay on top of operations across your properties.</p>
+                </div>
+                <div class="topbar__right">
+                    <button class="btn btn--secondary">View Public Listings</button>
+                    <div class="user-menu" aria-haspopup="menu" aria-expanded="false">
+                        <button class="user-menu__trigger" aria-controls="user-menu-dropdown" aria-expanded="false">
+                            <img src="assets/avatar-owner.png" alt="Owner avatar" class="user-menu__avatar" />
+                            <div class="user-menu__details">
+                                <span class="user-menu__name">Blessing L.</span>
+                                <span class="user-menu__role">Super Owner</span>
+                            </div>
+                            <span class="user-menu__chevron" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M4.427 6.427a.6.6 0 01.849 0L8 9.151l2.724-2.724a.6.6 0 11.849.849l-3.149 3.148a.6.6 0 01-.848 0L4.427 7.276a.6.6 0 010-.849z"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="user-menu__dropdown" id="user-menu-dropdown" role="menu" aria-labelledby="user-menu-trigger" hidden>
+                            <ul class="user-menu__dropdown-list">
+                                <li>
+                                    <a href="#" class="user-menu__dropdown-item" role="menuitem">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M8 1a7 7 0 100 14A7 7 0 008 1zM8 2.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM6 8.5a.5.5 0 01.5-.5h1V11a.5.5 0 001 0V8h.5a.5.5 0 010 1H8v2a.5.5 0 01-1 0V9H6.5a.5.5 0 01-.5-.5z"/>
+                                        </svg>
+                                        Profile Settings
+                                    </a>
+                                </li>
+                                <li role="button" tabindex="0">
+                                    <a href="#" class="user-menu__dropdown-item" role="menuitem">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM8 3a.5.5 0 01.5.5v4a.5.5 0 01-1 0v-4A.5.5 0 018 3zm0 8a.75.75 0 100 1.5.75.75 0 000-1.5z"/>
+                                        </svg>
+                                        Account Preferences
+                                    </a>
+                                </li>
+                                <li role="button" tabindex="0">
+                                    <a href="#" class="user-menu__dropdown-item" role="menuitem">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 2.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM6.5 8a.5.5 0 000 1H8v2.5a.5.5 0 001 0V9h1.5a.5.5 0 000-1H9V6.5a.5.5 0 00-1 0V8H6.5z"/>
+                                        </svg>
+                                        Notifications
+                                    </a>
+                                </li>
+                                <li class="user-menu__dropdown-divider" role="separator"></li>
+                                <li role="button" tabindex="0">
+                                    <a href="#" class="user-menu__dropdown-item" role="menuitem">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M1.5 8a6.5 6.5 0 1013 0 6.5 6.5 0 00-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.93 6.588l2.29.287-.823.99.194 1.127L8 7.65 5.409 8.992l.194-1.127-.823-.99 2.29-.287L8 5.5l.93 1.088z"/>
+                                        </svg>
+                                        Help & Support
+                                    </a>
+                                </li>
+                                <li role="button" tabindex="0">
+                                    <a href="#" class="user-menu__dropdown-item user-menu__dropdown-item--danger" role="menuitem">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M3 2v1h10V2h-3.5l-.5-.5h-2l-.5.5H3zm1 3v8.5A1.5 1.5 0 005.5 15h5a1.5 1.5 0 001.5-1.5V5H4z"/>
+                                        </svg>
+                                        Sign Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="section section--active metrics" id="analytics" aria-labelledby="analytics-heading">
+                <header class="section__header">
+                    <h2 id="analytics-heading">Analytics Overview</h2>
+                    <p>Key metrics across your active listings and marketing efforts.</p>
+                </header>
+                <div class="metrics__grid">
+                    <article class="metric-card metric-card--primary">
+                        <h3 class="metric-card__label">Occupancy Rate</h3>
+                        <p class="metric-card__value">92%</p>
+                        <span class="metric-card__trend metric-card__trend--up">+3.4% vs last month</span>
+                    </article>
+                    <article class="metric-card">
+                        <h3 class="metric-card__label">Active Leads</h3>
+                        <p class="metric-card__value">47</p>
+                        <span class="metric-card__trend metric-card__trend--up">+12 this week</span>
+                    </article>
+                    <article class="metric-card">
+                        <h3 class="metric-card__label">Monthly Revenue</h3>
+                        <p class="metric-card__value">$18,940</p>
+                        <span class="metric-card__trend metric-card__trend--neutral">On track</span>
+                    </article>
+                    <article class="metric-card">
+                        <h3 class="metric-card__label">Avg. Response Time</h3>
+                        <p class="metric-card__value">1h 12m</p>
+                        <span class="metric-card__trend metric-card__trend--down">-22m vs SLA</span>
+                    </article>
+                </div>
+                <div class="analytics-panels">
+                    <article class="analytics-card analytics-card--sources">
+                        <header class="analytics-card__header">
+                            <h3>Lead Sources</h3>
+                            <button class="analytics-card__action">View full report</button>
+                        </header>
+                        <div class="lead-sources">
+                            <div class="lead-sources__chart">
+                                <canvas id="leadSourcesChart" aria-label="Lead sources distribution" aria-describedby="leadSourcesLegend" role="img"></canvas>
+                            </div>
+                            <ul class="lead-sources__legend" id="leadSourcesLegend">
+                                <li role="button" tabindex="0" data-label="Marketplace" data-value="58" aria-pressed="false">
+                                    <span class="lead-sources__dot lead-sources__dot--marketplace" aria-hidden="true"></span>
+                                    <div class="lead-sources__meta">
+                                        <span class="lead-sources__label">Marketplace</span>
+                                        <span class="lead-sources__value">58%</span>
+                                    </div>
+                                </li>
+                                <li role="button" tabindex="0" data-label="Agent Network" data-value="24" aria-pressed="false">
+                                    <span class="lead-sources__dot lead-sources__dot--agent" aria-hidden="true"></span>
+                                    <div class="lead-sources__meta">
+                                        <span class="lead-sources__label">Agent Network</span>
+                                        <span class="lead-sources__value">24%</span>
+                                    </div>
+                                </li>
+                                <li role="button" tabindex="0" data-label="Referrals" data-value="12" aria-pressed="false">
+                                    <span class="lead-sources__dot lead-sources__dot--referrals" aria-hidden="true"></span>
+                                    <div class="lead-sources__meta">
+                                        <span class="lead-sources__label">Referrals</span>
+                                        <span class="lead-sources__value">12%</span>
+                                    </div>
+                                </li>
+                                <li role="button" tabindex="0" data-label="Website" data-value="6" aria-pressed="false">
+                                    <span class="lead-sources__dot lead-sources__dot--website" aria-hidden="true"></span>
+                                    <div class="lead-sources__meta">
+                                        <span class="lead-sources__label">Website</span>
+                                        <span class="lead-sources__value">6%</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="analytics-card">
+                        <header class="analytics-card__header">
+                            <h3>Forecast</h3>
+                            <div class="analytics-card__actions">
+                                <button class="analytics-card__action" type="button" data-range="week">Week</button>
+                                <button class="analytics-card__action analytics-card__action--active" type="button" data-range="month">Month</button>
+                                <button class="analytics-card__action" type="button" data-range="quarter">Quarter</button>
+                            </div>
+                        </header>
+                        <div class="analytics-card__chart"><canvas id="forecastChart" aria-label="Projected revenue forecast" role="img"></canvas></div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section listings" aria-hidden="true" id="listings" aria-labelledby="listings-heading">
+                <header class="section__header">
+                    <h2 id="listings-heading">Manage Listings</h2>
+                    <p>Keep every property listing updated with pricing, availability, and channel distribution controls.</p>
+                </header>
+
+                <div class="listings__toolbar">
+                    <div class="listings__filters" role="tablist" aria-label="Listing categories">
+                        <button class="listings__filter listings__filter--active" type="button" data-filter="all" role="tab" aria-selected="true">All Properties</button>
+                        <button class="listings__filter" type="button" data-filter="Luxury Apartments" role="tab" aria-selected="false">Luxury Apartments</button>
+                        <button class="listings__filter" type="button" data-filter="Business Suites" role="tab" aria-selected="false">Business Suites</button>
+                        <button class="listings__filter" type="button" data-filter="Family Homes" role="tab" aria-selected="false">Family Homes</button>
+                        <button class="listings__filter" type="button" data-filter="Country Estates" role="tab" aria-selected="false">Country Estates</button>
+                    </div>
+                    <button class="spotlight-trigger" id="spotlight-trigger" aria-label="Open search">
+                        <svg class="spotlight-trigger__icon" aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.5 12.5L17.5 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.5 14.5C12.2614 14.5 14.5 12.2614 14.5 9.5C14.5 6.73858 12.2614 4.5 9.5 4.5C6.73858 4.5 4.5 6.73858 4.5 9.5C4.5 12.2614 6.73858 14.5 9.5 14.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="spotlight-trigger__text">Search properties...</span>
+                        <kbd class="spotlight-trigger__shortcut">⌘K</kbd>
+                    </button>
+                </div>
+
+                <div class="listings__stats metrics__grid">
+                    <article class="metric-card">
+                        <h3 class="metric-card__label">Total Properties</h3>
+                        <p class="metric-card__value">4</p>
+                        <span class="metric-card__trend metric-card__trend--neutral">Residential portfolio</span>
+                    </article>
+                    <article class="metric-card">
+                        <h3 class="metric-card__label">Active Listings</h3>
+                        <p class="metric-card__value">3</p>
+                        <span class="metric-card__trend metric-card__trend--up">Strong tenant interest</span>
+                    </article>
+                    <article class="metric-card">
+                        <h3 class="metric-card__label">Avg. Occupancy</h3>
+                        <p class="metric-card__value">94%</p>
+                        <span class="metric-card__trend metric-card__trend--up">Above market average</span>
+                    </article>
+                    <article class="metric-card">
+                        <h3 class="metric-card__label">Draft Listings</h3>
+                        <p class="metric-card__value">1</p>
+                        <span class="metric-card__trend metric-card__trend--neutral">Ready to publish</span>
+                    </article>
+                </div>
+
+                <div class="listings__grid">
+                    <article class="listing-card" data-category="Luxury Apartments" data-status="active" data-listing-id="listing-1">
+                        <div class="listing-card__media">
+                            <img src="assets/images/property1.jpg" alt="The Haven Loft exterior" loading="lazy">
+                            <div class="listing-card__badges">
+                                <span class="listing-card__badge listing-card__badge--status">Active</span>
+                                <span class="listing-card__badge">Luxury Apartments</span>
+                            </div>
+                        </div>
+                        <div class="listing-card__body">
+                            <header class="listing-card__header">
+                                <h3 class="listing-card__title">The Haven Loft</h3>
+                                <span class="listing-card__updated">Updated 2h ago</span>
+                            </header>
+                            <p class="listing-card__location">Borrowdale, Harare</p>
+                            <div class="listing-card__meta">
+                                <div class="listing-card__meta-item">
+                                    <span class="listing-card__meta-label">Monthly rent</span>
+                                    <span class="listing-card__meta-value">$1,800</span>
+                                </div>
+                                <div class="listing-card__meta-item">
+                                    <span class="listing-card__meta-label">Property details</span>
+                                    <span class="listing-card__meta-value">3BR &bull; 2BA &bull; Furnished</span>
+                                </div>
+                            </div>
+                            <div class="listing-card__insights">
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">95%</span>
+                                    <span class="listing-card__stat-label">Occupancy</span>
+                                </div>
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">12</span>
+                                    <span class="listing-card__stat-label">Active leads</span>
+                                </div>
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">182</span>
+                                    <span class="listing-card__stat-label">Views</span>
+                                </div>
+                            </div>
+                            <div class="listing-card__channels">
+                                <span class="chip chip--primary">Rent.com.ng</span>
+                                <span class="chip">PropertyPro</span>
+                                <span class="chip">Website</span>
+                            </div>
+                        </div>
+                        <footer class="listing-card__footer">
+                            <div class="listing-card__schedule">
+                                <span class="listing-card__schedule-label">Next viewing</span>
+                                <span class="listing-card__schedule-value">Sat &bull; 2:00 PM</span>
+                            </div>
+                            <div class="listing-card__actions">
+                                <button class="btn btn--secondary btn--small" onclick="openEditListingModal(this.closest('.listing-card'))">Edit</button>
+                                <button class="btn btn--secondary btn--small" onclick="openViewListingModal(this.closest('.listing-card'))">View</button>
+                                <button class="btn btn--secondary btn--small" data-analytics-trigger>Analytics</button>
+                            </div>
+                        </footer>
+                    </article>
+
+                    <article class="listing-card" data-category="Business Suites" data-status="active" data-listing-id="listing-2">
+                        <div class="listing-card__media">
+                            <img src="assets/images/property2.jpg" alt="Bayview Suites exterior" loading="lazy">
+                            <div class="listing-card__badges">
+                                <span class="listing-card__badge listing-card__badge--status">Active</span>
+                                <span class="listing-card__badge">Business Suites</span>
+                            </div>
+                        </div>
+                        <div class="listing-card__body">
+                            <header class="listing-card__header">
+                                <h3 class="listing-card__title">Bayview Suites</h3>
+                                <span class="listing-card__updated">Updated yesterday</span>
+                            </header>
+                            <p class="listing-card__location">Highlands, Harare</p>
+                            <div class="listing-card__meta">
+                                <div class="listing-card__meta-item">
+                                    <span class="listing-card__meta-label">Monthly rent</span>
+                                    <span class="listing-card__meta-value">$2,200</span>
+                                </div>
+                                <div class="listing-card__meta-item">
+                                    <span class="listing-card__meta-label">Lease programme</span>
+                                    <span class="listing-card__meta-value">Annual &bull; Guaranteed</span>
+                                </div>
+                            </div>
+                            <div class="listing-card__insights">
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">100%</span>
+                                    <span class="listing-card__stat-label">Occupancy</span>
+                                </div>
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">8</span>
+                                    <span class="listing-card__stat-label">Active leads</span>
+                                </div>
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">220</span>
+                                    <span class="listing-card__stat-label">Views</span>
+                                </div>
+                            </div>
+                            <div class="listing-card__channels">
+                                <span class="chip chip--primary">Marketplace</span>
+                                <span class="chip">Corporate portal</span>
+                                <span class="chip">Direct</span>
+                            </div>
+                        </div>
+                        <footer class="listing-card__footer">
+                            <div class="listing-card__schedule">
+                                <span class="listing-card__schedule-label">Renewal</span>
+                                <span class="listing-card__schedule-value">Nov 18 &bull; 45 days</span>
+                            </div>
+                            <div class="listing-card__actions">
+                                <button class="btn btn--secondary btn--small" onclick="openEditListingModal(this.closest('.listing-card'))">Edit</button>
+                                <button class="btn btn--secondary btn--small" onclick="openViewListingModal(this.closest('.listing-card'))">View</button>
+                                <button class="btn btn--secondary btn--small" data-analytics-trigger>Analytics</button>
+                            </div>
+                        </footer>
+                    </article>
+
+                    <article class="listing-card" data-category="Family Homes" data-status="active" data-listing-id="listing-3">
+                        <div class="listing-card__media">
+                            <img src="assets/images/property3.jpg" alt="Maple Court exterior" loading="lazy">
+                            <div class="listing-card__badges">
+                                <span class="listing-card__badge listing-card__badge--status">Active</span>
+                                <span class="listing-card__badge">Family Homes</span>
+                            </div>
+                        </div>
+                        <div class="listing-card__body">
+                            <header class="listing-card__header">
+                                <h3 class="listing-card__title">Maple Court</h3>
+                                <span class="listing-card__updated">Updated 3 days ago</span>
+                            </header>
+                            <p class="listing-card__location">Avondale, Harare</p>
+                            <div class="listing-card__meta">
+                                <div class="listing-card__meta-item">
+                                    <span class="listing-card__meta-label">Monthly rent</span>
+                                    <span class="listing-card__meta-value">$1,500</span>
+                                </div>
+                                <div class="listing-card__meta-item">
+                                    <span class="listing-card__meta-label">Available units</span>
+                                    <span class="listing-card__meta-value">3 of 18</span>
+                                </div>
+                            </div>
+                            <div class="listing-card__insights">
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">87%</span>
+                                    <span class="listing-card__stat-label">Occupancy</span>
+                                </div>
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">9</span>
+                                    <span class="listing-card__stat-label">Active leads</span>
+                                </div>
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">143</span>
+                                    <span class="listing-card__stat-label">Views</span>
+                                </div>
+                            </div>
+                            <div class="listing-card__channels">
+                                <span class="chip chip--accent">SmartRent</span>
+                                <span class="chip">Marketplace</span>
+                                <span class="chip">Website</span>
+                            </div>
+                        </div>
+                        <footer class="listing-card__footer">
+                            <div class="listing-card__schedule">
+                                <span class="listing-card__schedule-label">Upcoming viewing</span>
+                                <span class="listing-card__schedule-value">Mon &bull; 11:30 AM</span>
+                            </div>
+                            <div class="listing-card__actions">
+                                <button class="btn btn--secondary btn--small" onclick="openEditListingModal(this.closest('.listing-card'))">Edit</button>
+                                <button class="btn btn--secondary btn--small" onclick="openViewListingModal(this.closest('.listing-card'))">View</button>
+                                <button class="btn btn--secondary btn--small" data-analytics-trigger>Analytics</button>
+                            </div>
+                        </footer>
+                    </article>
+
+                    <article class="listing-card" data-category="Country Estates" data-status="draft" data-listing-id="listing-4">
+                        <div class="listing-card__media">
+                            <img src="assets/images/property4.jpg" alt="Palm Grove Villas exterior" loading="lazy">
+                            <div class="listing-card__badges">
+                                <span class="listing-card__badge listing-card__badge--status listing-card__badge--draft">Draft</span>
+                                <span class="listing-card__badge">Country Estates</span>
+                            </div>
+                        </div>
+                        <div class="listing-card__body">
+                            <header class="listing-card__header">
+                                <h3 class="listing-card__title">Palm Grove Villas</h3>
+                                <span class="listing-card__updated">Edited 5 days ago</span>
+                            </header>
+                            <p class="listing-card__location">Hillside, Bulawayo</p>
+                            <div class="listing-card__meta">
+                                <div class="listing-card__meta-item">
+                                    <span class="listing-card__meta-label">Monthly rent</span>
+                                    <span class="listing-card__meta-value">$850</span>
+                                </div>
+                                <div class="listing-card__meta-item">
+                                    <span class="listing-card__meta-label">Launch checklist</span>
+                                    <span class="listing-card__meta-value">Media &bull; Pricing &bull; Docs</span>
+                                </div>
+                            </div>
+                            <div class="listing-card__insights">
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">--</span>
+                                    <span class="listing-card__stat-label">Occupancy</span>
+                                </div>
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">3</span>
+                                    <span class="listing-card__stat-label">Interested buyers</span>
+                                </div>
+                                <div class="listing-card__stat">
+                                    <span class="listing-card__stat-value">Pending</span>
+                                    <span class="listing-card__stat-label">Approval</span>
+                                </div>
+                            </div>
+                            <div class="listing-card__channels">
+                                <span class="chip">Photo shoot</span>
+                                <span class="chip">Staging</span>
+                            </div>
+                        </div>
+                        <footer class="listing-card__footer">
+                            <div class="listing-card__schedule">
+                                <span class="listing-card__schedule-label">Next step</span>
+                                <span class="listing-card__schedule-value">Upload compliance docs</span>
+                            </div>
+                            <div class="listing-card__actions">
+                                <button class="btn btn--secondary btn--small" onclick="openEditListingModal(this.closest('.listing-card'))">Edit</button>
+                                <button class="btn btn--secondary btn--small" onclick="openPreviewListingModal(this.closest('.listing-card'))">Preview</button>
+                                <button class="btn btn--secondary btn--small">Publish</button>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section messaging" aria-hidden="true" id="messaging" aria-labelledby="messaging-heading">
+                <header class="section__header">
+                    <h2 id="messaging-heading">Property Correspondence</h2>
+                    <p>Manage inquiries and communicate with prospects interested in your properties.</p>
+                </header>
+                <div class="messaging__filters-bar">
+                    <nav class="messaging__filters">
+                        <button class="messaging__filter messaging__filter--active">All Properties</button>
+                        <button class="messaging__filter">The Haven Loft (3)</button>
+                        <button class="messaging__filter">Bayview Suites (2)</button>
+                        <button class="messaging__filter">Maple Court (1)</button>
+                        <button class="messaging__filter">Palm Grove Villas (0)</button>
+                    </nav>
+                    <div class="messaging__stats">
+                        <span>Active inquiries: <strong>6 prospects</strong></span>
+                        <span>&bull;</span>
+                        <span>This week: <strong>2 viewings scheduled</strong></span>
+                    </div>
+                </div>
+                <div class="messaging__content">
+                        <ul class="message-list" aria-label="Conversation list">
+                            <li class="message-list__item message-list__item--active">
+                                <div class="message-list__property">
+                                    <img src="assets/images/property1.jpg" alt="The Haven Loft" class="message-list__property-thumb">
+                                    <div class="message-list__property-info">
+                                        <span class="message-list__property-name">The Haven Loft</span>
+                                        <span class="chip chip--primary">Viewing Request</span>
+                                    </div>
+                                </div>
+                                <div class="message-list__meta">
+                                    <h3>Sarah Johnson</h3>
+                                    <time datetime="2025-09-20T09:24">09:24</time>
+                                </div>
+                                <p>Can we schedule a viewing for Saturday afternoon?</p>
+                            </li>
+                            <li class="message-list__item">
+                                <div class="message-list__property">
+                                    <img src="assets/images/property2.jpg" alt="Bayview Suites" class="message-list__property-thumb">
+                                    <div class="message-list__property-info">
+                                        <span class="message-list__property-name">Bayview Suites</span>
+                                        <span class="chip chip--accent">Lease Application</span>
+                                    </div>
+                                </div>
+                                <div class="message-list__meta">
+                                    <h3>Corporate Lettings</h3>
+                                    <time datetime="2025-09-20T08:10">08:10</time>
+                                </div>
+                                <p>Reviewing the lease draft—will share updates later today.</p>
+                            </li>
+                            <li class="message-list__item">
+                                <div class="message-list__property">
+                                    <img src="assets/images/property3.jpg" alt="Maple Court" class="message-list__property-thumb">
+                                    <div class="message-list__property-info">
+                                        <span class="message-list__property-name">Maple Court</span>
+                                        <span class="chip">Tenant Support</span>
+                                    </div>
+                                </div>
+                                <div class="message-list__meta">
+                                    <h3>Dapo &amp; Ada</h3>
+                                    <time datetime="2025-09-19T20:47">Yesterday</time>
+                                </div>
+                                <p>Thanks for the assistance with move-in logistics!</p>
+                            </li>
+                        </ul>
+                        <article class="conversation" aria-label="Active conversation">
+                            <div class="conversation__property-context">
+                                <img src="assets/images/property1.jpg" alt="The Haven Loft" class="conversation__property-image">
+                                <div class="conversation__property-details">
+                                    <h3 class="conversation__property-title">The Haven Loft</h3>
+                                    <p class="conversation__property-info">$1,800/month &bull; 3BR 2BA &bull; Borrowdale, Harare</p>
+                                    <span class="status-badge status-badge--success">Available</span>
+                                </div>
+                            </div>
+                            <header class="conversation__header">
+                                <div>
+                                    <h3>Sarah Johnson</h3>
+                                    <p>Viewing Request &bull; Applied via Marketplace &bull; 2 days ago</p>
+                                </div>
+                                <div class="conversation__actions">
+                                    <button class="btn btn--secondary">Schedule Viewing</button>
+                                    <button class="btn btn--primary">Send Property Details</button>
+                                </div>
+                            </header>
+                            <ul class="conversation__timeline">
+                                <li class="conversation__message conversation__message--sent">
+                                    <div class="conversation__message-content">
+                                        <p>Happy to confirm Saturday at 2pm. Do you have any specific questions about the property before then?</p>
+                                    </div>
+                                    <div class="conversation__message-meta">You &bull; 09:12</div>
+                                </li>
+                                <li class="conversation__message conversation__message--received">
+                                    <div class="conversation__message-content">
+                                        <p>Can we schedule a viewing for Saturday afternoon? I'm particularly interested in the natural lighting and balcony space.</p>
+                                    </div>
+                                    <div class="conversation__message-meta">Sarah Johnson &bull; 09:24</div>
+                                </li>
+                                <li role="button" tabindex="0">
+                                    <p class="conversation__system-message">New viewing request received for The Haven Loft via Marketplace &bull; 2 days ago</p>
+                                </li>
+                            </ul>
+                            <form class="conversation__composer" aria-label="Send a reply">
+                                <textarea rows="3" placeholder="Type your reply..." aria-label="Message"></textarea>
+                                <div class="conversation__composer-actions">
+                                    <button type="button" class="composer__attachment">Attach</button>
+                                    <button type="submit" class="btn btn--primary">Send reply</button>
+                                </div>
+                            </form>
+                        </article>
+                    </div>
+            
+            </section>
+
+            <section class="section maintenance" aria-hidden="true" id="maintenance" aria-labelledby="maintenance-heading">
+                <header class="section__header">
+                    <h2 id="maintenance-heading">Maintenance Hub</h2>
+                    <p>Track and prioritize open work orders and preventative tasks.</p>
+                </header>
+                <div class="maintenance__board">
+                    <div class="maintenance__column">
+                        <h3>New (3)</h3>
+                        <article class="ticket">
+                            <span class="ticket__status ticket__status--urgent">Urgent</span>
+                            <h4>Water leak in bathroom</h4>
+                            <p>Reported by: Maple Court &bull; Unit 3B</p>
+                            <footer>
+                                <span>Logged 2h ago</span>
+                                <button class="ticket__action">Assign vendor</button>
+                            </footer>
+                        </article>
+                        <article class="ticket">
+                            <span class="ticket__status">Medium</span>
+                            <h4>AC maintenance request</h4>
+                            <p>Scheduled check for Bayview Suites</p>
+                            <footer>
+                                <span>Due in 3 days</span>
+                                <button class="ticket__action">Schedule</button>
+                            </footer>
+                        </article>
+                    </div>
+                    <div class="maintenance__column">
+                        <h3>In Progress (2)</h3>
+                        <article class="ticket">
+                            <span class="ticket__status ticket__status--progress">In Progress</span>
+                            <h4>Elevator inspection</h4>
+                            <p>Vendor: LiftCo &bull; Maple Court</p>
+                            <footer>
+                                <span>SLA: 12h remaining</span>
+                                <button class="ticket__action">View details</button>
+                            </footer>
+                        </article>
+                        <article class="ticket">
+                            <span class="ticket__status ticket__status--progress">In Progress</span>
+                            <h4>Landscaping refresh</h4>
+                            <p>Vendor visit scheduled for Friday</p>
+                            <footer>
+                                <span>Budget: $650</span>
+                                <button class="ticket__action">Update cost</button>
+                            </footer>
+                        </article>
+                    </div>
+                    <div class="maintenance__column">
+                        <h3>Completed (5)</h3>
+                        <article class="ticket ticket--done">
+                            <span class="ticket__status ticket__status--done">Done</span>
+                            <h4>Pool cleaning</h4>
+                            <p>Vendor: AquaPro &bull; Completed yesterday</p>
+                            <footer>
+                                <span>Feedback score: 5/5</span>
+                                <button class="ticket__action">View report</button>
+                            </footer>
+                        </article>
+                        <article class="ticket ticket--done">
+                            <span class="ticket__status ticket__status--done">Done</span>
+                            <h4>Smart lock installation</h4>
+                            <p>Bayview Suites &bull; Installed Tuesday</p>
+                            <footer>
+                                <span>Cost: $220</span>
+                                <button class="ticket__action">Invoice</button>
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section documents" aria-hidden="true" id="documents" aria-labelledby="documents-heading">
+                <header class="section__header">
+                    <h2 id="documents-heading">Document Hub</h2>
+                    <p>Stay compliant with centralised storage and expiring document alerts.</p>
+                </header>
+                <div class="documents__grid">
+                    <article class="document-card">
+                        <h3>Lease Agreements</h3>
+                        <p>12 active &bull; 3 awaiting signature</p>
+                        <button class="document-card__cta">Review expirations</button>
+                    </article>
+                    <article class="document-card document-card--alert">
+                        <h3>Compliance Certificates</h3>
+                        <p>2 expiring within 15 days</p>
+                        <button class="document-card__cta">Renew now</button>
+                    </article>
+                    <article class="document-card">
+                        <h3>Financial Statements</h3>
+                        <p>Latest payout statement ready</p>
+                        <button class="document-card__cta">Download PDF</button>
+                    </article>
+                    <article class="document-card">
+                        <h3>Media Library</h3>
+                        <p>152 assets &bull; 4 new uploads</p>
+                        <button class="document-card__cta">Manage assets</button>
+                    </article>
+                </div>
+                <div class="documents__table">
+                    <header class="documents__table-header">
+                        <h3>Recent Activity</h3>
+                        <button class="analytics-card__action">View archive</button>
+                    </header>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Document</th>
+                                <th>Property</th>
+                                <th>Status</th>
+                                <th>Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Lease renewal - Unit 12A</td>
+                                <td>The Haven Loft</td>
+                                <td><span class="status-badge status-badge--progress">Awaiting signature</span></td>
+                                <td>Today</td>
+                            </tr>
+                            <tr>
+                                <td>Gas safety certificate</td>
+                                <td>Maple Court</td>
+                                <td><span class="status-badge status-badge--alert">Expiring</span></td>
+                                <td>2 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>Payout summary - August</td>
+                                <td>Portfolio</td>
+                                <td><span class="status-badge status-badge--success">Completed</span></td>
+                                <td>1 week ago</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="section profile" aria-hidden="true" id="profile" aria-labelledby="profile-heading">
+                <header class="section__header">
+                    <h2 id="profile-heading">Profile &amp; Settings</h2>
+                    <p>Manage your account, payouts, and team permissions.</p>
+                </header>
+                <div class="profile__container">
+                    <!-- Personal Information Card -->
+                    <article class="profile-card">
+                        <header class="profile-card__header">
+                            <div class="profile-card__title">
+                                <h3>Personal Information</h3>
+                                <span class="profile-card__description">Update your personal details and contact information</span>
+                            </div>
+                        </header>
+                        <div class="profile-card__content">
+                            <div class="profile-avatar">
+                                <img src="assets/avatar-owner.png" alt="Profile photo" class="profile-avatar__image">
+                                <button class="profile-avatar__upload" onclick="openProfileModal('avatar-upload')">Change photo</button>
+                            </div>
+                            <div class="profile-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-group__label" for="first-name">First Name</label>
+                                        <input type="text" id="first-name" class="form-group__input" value="Blessing">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-group__label" for="last-name">Last Name</label>
+                                        <input type="text" id="last-name" class="form-group__input" value="L.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-group__label" for="email">Email Address</label>
+                                    <input type="email" id="email" class="form-group__input" value="blessing.l@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-group__label" for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" class="form-group__input" value="+263 77 123 4567">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-group__label" for="company">Company/Business Name</label>
+                                    <input type="text" id="company" class="form-group__input" value="Lendaz Properties">
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="profile-card__footer">
+                            <button class="btn btn--secondary">Cancel</button>
+                            <button class="btn btn--primary">Save Changes</button>
+                        </footer>
+                    </article>
+
+                    <!-- Security & Authentication Card -->
+                    <article class="profile-card">
+                        <header class="profile-card__header">
+                            <div class="profile-card__title">
+                                <h3>Security &amp; Authentication</h3>
+                                <span class="profile-card__description">Manage your account security and login preferences</span>
+                            </div>
+                        </header>
+                        <div class="profile-card__content">
+                            <div class="profile-card__section">
+                                <h4>Password</h4>
+                                <div class="profile-card__item">
+                                    <span>Last changed 3 months ago</span>
+                                    <button class="profile-card__button" onclick="openProfileModal('password-change')">Change Password</button>
+                                </div>
+                            </div>
+                            <div class="profile-card__section">
+                                <h4>Two-Factor Authentication</h4>
+                                <div class="profile-card__item">
+                                    <div>
+                                        <span>Add an extra layer of security to your account</span>
+                                        <span class="profile-card__status profile-card__status--disabled">Not enabled</span>
+                                    </div>
+                                    <button class="profile-card__button" onclick="openProfileModal('twofa-setup')">Enable 2FA</button>
+                                </div>
+                            </div>
+                            <div class="profile-card__section">
+                                <h4>Active Sessions</h4>
+                                <div class="profile-card__item">
+                                    <div>
+                                        <span>3 active sessions</span>
+                                        <span class="profile-card__detail">Last activity: 2 minutes ago</span>
+                                    </div>
+                                    <button class="profile-card__button" onclick="openProfileModal('sessions')">Manage Sessions</button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Enhanced Verification Card -->
+                    <article class="profile-card">
+                        <header class="profile-card__header">
+                            <div class="profile-card__title">
+                                <h3>Account Verification</h3>
+                                <span class="profile-card__progress">85% complete</span>
+                            </div>
+                        </header>
+                        <div class="profile-card__content">
+                            <div class="verification-progress">
+                                <div class="verification-progress__bar">
+                                    <div class="verification-progress__fill" style="width: 85%"></div>
+                                </div>
+                                <span class="verification-progress__text">4 of 5 verification steps completed</span>
+                            </div>
+                            <div class="verification-items">
+                                <div class="verification-item verification-item--complete">
+                                    <div class="verification-item__icon">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="verification-item__content">
+                                        <span class="verification-item__title">Email Verification</span>
+                                        <span class="verification-item__description">Verified on Sept 15, 2024</span>
+                                    </div>
+                                </div>
+                                <div class="verification-item verification-item--complete">
+                                    <div class="verification-item__icon">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="verification-item__content">
+                                        <span class="verification-item__title">Phone Number</span>
+                                        <span class="verification-item__description">Verified via SMS</span>
+                                    </div>
+                                </div>
+                                <div class="verification-item verification-item--complete">
+                                    <div class="verification-item__icon">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="verification-item__content">
+                                        <span class="verification-item__title">Bank Account</span>
+                                        <span class="verification-item__description">Standard Bank ****1234</span>
+                                    </div>
+                                </div>
+                                <div class="verification-item verification-item--complete">
+                                    <div class="verification-item__icon">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="verification-item__content">
+                                        <span class="verification-item__title">KYC Documents</span>
+                                        <span class="verification-item__description">ID and proof of address uploaded</span>
+                                    </div>
+                                </div>
+                                <div class="verification-item verification-item--pending">
+                                    <div class="verification-item__icon">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM7 6a1 1 0 1 1 2 0v2a1 1 0 1 1-2 0V6zM8 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="verification-item__content">
+                                        <span class="verification-item__title">Business Registration</span>
+                                        <span class="verification-item__description">Upload business registration certificate</span>
+                                    </div>
+                                    <button class="verification-item__action" onclick="openProfileModal('file-upload')">Upload</button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Payout & Banking Card -->
+                    <article class="profile-card">
+                        <header class="profile-card__header">
+                            <div class="profile-card__title">
+                                <h3>Payout &amp; Banking</h3>
+                                <span class="profile-card__description">Manage your payout preferences and banking information</span>
+                            </div>
+                        </header>
+                        <div class="profile-card__content">
+                            <div class="profile-card__section">
+                                <h4>Primary Bank Account</h4>
+                                <div class="bank-account">
+                                    <div class="bank-account__info">
+                                        <span class="bank-account__name">Standard Bank Zimbabwe</span>
+                                        <span class="bank-account__number">****1234</span>
+                                        <span class="bank-account__type">Savings Account</span>
+                                    </div>
+                                    <button class="profile-card__button" onclick="openProfileModal('bank-account')">Change Account</button>
+                                </div>
+                            </div>
+                            <div class="profile-card__section">
+                                <h4>Payout Schedule</h4>
+                                <div class="profile-card__item">
+                                    <span>Weekly payouts every Friday</span>
+                                    <button class="profile-card__button" onclick="openProfileModal('payout-schedule')">Change Schedule</button>
+                                </div>
+                            </div>
+                            <div class="profile-card__section">
+                                <h4>Tax Information</h4>
+                                <div class="profile-card__item">
+                                    <div>
+                                        <span>Tax ID: ****567890</span>
+                                        <span class="profile-card__detail">Last updated: Aug 2024</span>
+                                    </div>
+                                    <button class="profile-card__button" onclick="openProfileModal('tax-info')">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="profile-card__footer">
+                            <button class="profile-card__link">View payout history</button>
+                        </footer>
+                    </article>
+
+                    <!-- Enhanced Notifications Card -->
+                    <article class="profile-card">
+                        <header class="profile-card__header">
+                            <div class="profile-card__title">
+                                <h3>Notifications</h3>
+                                <span class="profile-card__description">Choose how and when you want to be notified</span>
+                            </div>
+                        </header>
+                        <div class="profile-card__content">
+                            <div class="notification-section">
+                                <h4>Property Management</h4>
+                                <div class="notification-item">
+                                    <div class="notification-item__info">
+                                        <span class="notification-item__title">Maintenance Alerts</span>
+                                        <span class="notification-item__description">Urgent repair requests and scheduled maintenance</span>
+                                    </div>
+                                    <div class="notification-controls">
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle__slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-item__info">
+                                        <span class="notification-item__title">Lead Updates</span>
+                                        <span class="notification-item__description">New inquiries and application status changes</span>
+                                    </div>
+                                    <div class="notification-controls">
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle__slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-item__info">
+                                        <span class="notification-item__title">Rent Collection</span>
+                                        <span class="notification-item__description">Payment confirmations and overdue notices</span>
+                                    </div>
+                                    <div class="notification-controls">
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle__slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-section">
+                                <h4>Reports & Analytics</h4>
+                                <div class="notification-item">
+                                    <div class="notification-item__info">
+                                        <span class="notification-item__title">Weekly Insights</span>
+                                        <span class="notification-item__description">Performance summaries and key metrics</span>
+                                    </div>
+                                    <div class="notification-controls">
+                                        <label class="toggle">
+                                            <input type="checkbox">
+                                            <span class="toggle__slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-item__info">
+                                        <span class="notification-item__title">Monthly Reports</span>
+                                        <span class="notification-item__description">Comprehensive portfolio performance reports</span>
+                                    </div>
+                                    <div class="notification-controls">
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle__slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dashboard Preferences Card -->
+                    <article class="profile-card">
+                        <header class="profile-card__header">
+                            <div class="profile-card__title">
+                                <h3>Dashboard Preferences</h3>
+                                <span class="profile-card__description">Customize your dashboard experience</span>
+                            </div>
+                        </header>
+                        <div class="profile-card__content">
+                            <div class="form-group">
+                                <label class="form-group__label" for="theme">Theme</label>
+                                <select id="theme" class="form-group__input">
+                                    <option value="light" selected>Light</option>
+                                    <option value="dark">Dark</option>
+                                    <option value="auto">Auto (system preference)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-group__label" for="language">Language</label>
+                                <select id="language" class="form-group__input">
+                                    <option value="en" selected>English</option>
+                                    <option value="zu">Zulu</option>
+                                    <option value="af">Afrikaans</option>
+                                    <option value="sn">Shona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-group__label" for="timezone">Timezone</label>
+                                <select id="timezone" class="form-group__input">
+                                    <option value="Africa/Harare" selected>CAT (Africa/Harare)</option>
+                                    <option value="Africa/Johannesburg">SAST (Africa/Johannesburg)</option>
+                                    <option value="UTC">UTC</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-group__label" for="currency">Currency Display</label>
+                                <select id="currency" class="form-group__input">
+                                    <option value="USD" selected>USD ($)</option>
+                                    <option value="ZWL">ZWL (Z$)</option>
+                                    <option value="ZAR">ZAR (R)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <footer class="profile-card__footer">
+                            <button class="btn btn--secondary">Reset to defaults</button>
+                            <button class="btn btn--primary">Save Preferences</button>
+                        </footer>
+                    </article>
+
+                    <!-- Team & Permissions Card (Enhanced) -->
+                </div>
+            </section>
+
+            <!-- Admin Approvals Section -->
+            <section class="section admin-approvals" aria-hidden="true" id="admin-approvals" aria-labelledby="admin-approvals-heading">
+                <header class="section__header">
+                    <h2 id="admin-approvals-heading">Listing Approvals</h2>
+                    <p>Review, approve, or request changes for submitted property listings.</p>
+                </header>
+
+                <!-- Stats Overview -->
+                <div class="admin-approvals__stats metrics__grid">
+                    <article class="metric-card">
+                        <h3 class="metric-card__label">Pending Review</h3>
+                        <p class="metric-card__value" id="pending-count">8</p>
+                        <span class="metric-card__trend metric-card__trend--warning">Awaiting action</span>
+                    </article>
+                    <article class="metric-card">
+                        <h3 class="metric-card__label">Approved</h3>
+                        <p class="metric-card__value" id="approved-count">24</p>
+                        <span class="metric-card__trend metric-card__trend--up">This month</span>
+                    </article>
+                    <article class="metric-card">
+                        <h3 class="metric-card__label">Changes Requested</h3>
+                        <p class="metric-card__value" id="changes-count">3</p>
+                        <span class="metric-card__trend metric-card__trend--neutral">Awaiting owner response</span>
+                    </article>
+                    <article class="metric-card">
+                        <h3 class="metric-card__label">Rejected</h3>
+                        <p class="metric-card__value" id="rejected-count">2</p>
+                        <span class="metric-card__trend metric-card__trend--down">This month</span>
+                    </article>
+                </div>
+
+                <!-- Toolbar -->
+                <div class="admin-approvals__toolbar">
+                    <div class="admin-approvals__filters" role="tablist" aria-label="Listing approval status">
+                        <button class="admin-approvals__filter admin-approvals__filter--active" type="button" data-filter="all" role="tab" aria-selected="true">
+                            All
+                            <span class="admin-approvals__filter-count">37</span>
+                        </button>
+                        <button class="admin-approvals__filter" type="button" data-filter="pending" role="tab" aria-selected="false">
+                            Pending
+                            <span class="admin-approvals__filter-count admin-approvals__filter-count--warning">8</span>
+                        </button>
+                        <button class="admin-approvals__filter" type="button" data-filter="approved" role="tab" aria-selected="false">
+                            Approved
+                            <span class="admin-approvals__filter-count admin-approvals__filter-count--success">24</span>
+                        </button>
+                        <button class="admin-approvals__filter" type="button" data-filter="changes-requested" role="tab" aria-selected="false">
+                            Changes Requested
+                            <span class="admin-approvals__filter-count">3</span>
+                        </button>
+                        <button class="admin-approvals__filter" type="button" data-filter="rejected" role="tab" aria-selected="false">
+                            Rejected
+                            <span class="admin-approvals__filter-count admin-approvals__filter-count--error">2</span>
+                        </button>
+                    </div>
+                    <div class="admin-approvals__search">
+                        <svg class="admin-approvals__search-icon" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.5 12.5L17.5 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.5 14.5C12.2614 14.5 14.5 12.2614 14.5 9.5C14.5 6.73858 12.2614 4.5 9.5 4.5C6.73858 4.5 4.5 6.73858 4.5 9.5C4.5 12.2614 6.73858 14.5 9.5 14.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <input type="text" class="admin-approvals__search-input" id="approval-search" placeholder="Search by property or owner...">
+                    </div>
+                </div>
+
+                <!-- Listings Table -->
+                <div class="admin-approvals__table-container">
+                    <table class="admin-approvals__table" role="grid" aria-label="Listing approvals table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="admin-approvals__th admin-approvals__th--property">Property</th>
+                                <th scope="col" class="admin-approvals__th">Owner</th>
+                                <th scope="col" class="admin-approvals__th">Type</th>
+                                <th scope="col" class="admin-approvals__th">Location</th>
+                                <th scope="col" class="admin-approvals__th">Price</th>
+                                <th scope="col" class="admin-approvals__th">Submitted</th>
+                                <th scope="col" class="admin-approvals__th">Status</th>
+                                <th scope="col" class="admin-approvals__th admin-approvals__th--actions">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="approvals-table-body">
+                            <!-- Pending Listing -->
+                            <tr class="admin-approvals__row" data-status="pending" data-listing-id="approval-1">
+                                <td class="admin-approvals__td admin-approvals__td--property">
+                                    <div class="admin-approvals__property">
+                                        <img src="assets/images/property1.jpg" alt="Sunset Villa" class="admin-approvals__thumbnail">
+                                        <div class="admin-approvals__property-info">
+                                            <span class="admin-approvals__property-name">Sunset Villa</span>
+                                            <span class="admin-approvals__property-id">#LST-2024-001</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">
+                                    <div class="admin-approvals__owner">
+                                        <span class="admin-approvals__owner-name">John Moyo</span>
+                                        <span class="admin-approvals__owner-email">john.m@example.com</span>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">Luxury Apartments</td>
+                                <td class="admin-approvals__td">Borrowdale, Harare</td>
+                                <td class="admin-approvals__td admin-approvals__td--price">$2,500/mo</td>
+                                <td class="admin-approvals__td">Jan 15, 2026</td>
+                                <td class="admin-approvals__td">
+                                    <span class="admin-approvals__status admin-approvals__status--pending">Pending</span>
+                                </td>
+                                <td class="admin-approvals__td admin-approvals__td--actions">
+                                    <div class="admin-approvals__actions">
+                                        <button class="btn btn--small btn--primary" onclick="openApprovalModal('approval-1', 'approve')">Approve</button>
+                                        <button class="btn btn--small btn--secondary" onclick="openApprovalModal('approval-1', 'changes')">Request Changes</button>
+                                        <button class="btn btn--small btn--danger" onclick="openApprovalModal('approval-1', 'reject')">Reject</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="admin-approvals__row" data-status="pending" data-listing-id="approval-2">
+                                <td class="admin-approvals__td admin-approvals__td--property">
+                                    <div class="admin-approvals__property">
+                                        <img src="assets/images/property2.jpg" alt="Garden View Apartment" class="admin-approvals__thumbnail">
+                                        <div class="admin-approvals__property-info">
+                                            <span class="admin-approvals__property-name">Garden View Apartment</span>
+                                            <span class="admin-approvals__property-id">#LST-2024-002</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">
+                                    <div class="admin-approvals__owner">
+                                        <span class="admin-approvals__owner-name">Sarah Ncube</span>
+                                        <span class="admin-approvals__owner-email">sarah.n@example.com</span>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">Family Homes</td>
+                                <td class="admin-approvals__td">Avondale, Harare</td>
+                                <td class="admin-approvals__td admin-approvals__td--price">$1,800/mo</td>
+                                <td class="admin-approvals__td">Jan 14, 2026</td>
+                                <td class="admin-approvals__td">
+                                    <span class="admin-approvals__status admin-approvals__status--pending">Pending</span>
+                                </td>
+                                <td class="admin-approvals__td admin-approvals__td--actions">
+                                    <div class="admin-approvals__actions">
+                                        <button class="btn btn--small btn--primary" onclick="openApprovalModal('approval-2', 'approve')">Approve</button>
+                                        <button class="btn btn--small btn--secondary" onclick="openApprovalModal('approval-2', 'changes')">Request Changes</button>
+                                        <button class="btn btn--small btn--danger" onclick="openApprovalModal('approval-2', 'reject')">Reject</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="admin-approvals__row" data-status="pending" data-listing-id="approval-3">
+                                <td class="admin-approvals__td admin-approvals__td--property">
+                                    <div class="admin-approvals__property">
+                                        <img src="assets/images/property3.jpg" alt="Hillside Retreat" class="admin-approvals__thumbnail">
+                                        <div class="admin-approvals__property-info">
+                                            <span class="admin-approvals__property-name">Hillside Retreat</span>
+                                            <span class="admin-approvals__property-id">#LST-2024-003</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">
+                                    <div class="admin-approvals__owner">
+                                        <span class="admin-approvals__owner-name">Peter Dube</span>
+                                        <span class="admin-approvals__owner-email">peter.d@example.com</span>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">Country Estates</td>
+                                <td class="admin-approvals__td">Glen Lorne, Harare</td>
+                                <td class="admin-approvals__td admin-approvals__td--price">$3,200/mo</td>
+                                <td class="admin-approvals__td">Jan 13, 2026</td>
+                                <td class="admin-approvals__td">
+                                    <span class="admin-approvals__status admin-approvals__status--pending">Pending</span>
+                                </td>
+                                <td class="admin-approvals__td admin-approvals__td--actions">
+                                    <div class="admin-approvals__actions">
+                                        <button class="btn btn--small btn--primary" onclick="openApprovalModal('approval-3', 'approve')">Approve</button>
+                                        <button class="btn btn--small btn--secondary" onclick="openApprovalModal('approval-3', 'changes')">Request Changes</button>
+                                        <button class="btn btn--small btn--danger" onclick="openApprovalModal('approval-3', 'reject')">Reject</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Approved Listing -->
+                            <tr class="admin-approvals__row" data-status="approved" data-listing-id="approval-4">
+                                <td class="admin-approvals__td admin-approvals__td--property">
+                                    <div class="admin-approvals__property">
+                                        <img src="assets/images/property4.jpg" alt="Executive Suite" class="admin-approvals__thumbnail">
+                                        <div class="admin-approvals__property-info">
+                                            <span class="admin-approvals__property-name">Executive Suite</span>
+                                            <span class="admin-approvals__property-id">#LST-2024-004</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">
+                                    <div class="admin-approvals__owner">
+                                        <span class="admin-approvals__owner-name">Grace Chikara</span>
+                                        <span class="admin-approvals__owner-email">grace.c@example.com</span>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">Business Suites</td>
+                                <td class="admin-approvals__td">Highlands, Harare</td>
+                                <td class="admin-approvals__td admin-approvals__td--price">$2,800/mo</td>
+                                <td class="admin-approvals__td">Jan 10, 2026</td>
+                                <td class="admin-approvals__td">
+                                    <span class="admin-approvals__status admin-approvals__status--approved">Approved</span>
+                                </td>
+                                <td class="admin-approvals__td admin-approvals__td--actions">
+                                    <div class="admin-approvals__actions">
+                                        <button class="btn btn--small btn--secondary" onclick="viewListingDetails('approval-4')">View</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Changes Requested Listing -->
+                            <tr class="admin-approvals__row" data-status="changes-requested" data-listing-id="approval-5">
+                                <td class="admin-approvals__td admin-approvals__td--property">
+                                    <div class="admin-approvals__property">
+                                        <img src="assets/images/property1.jpg" alt="Modern Penthouse" class="admin-approvals__thumbnail">
+                                        <div class="admin-approvals__property-info">
+                                            <span class="admin-approvals__property-name">Modern Penthouse</span>
+                                            <span class="admin-approvals__property-id">#LST-2024-005</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">
+                                    <div class="admin-approvals__owner">
+                                        <span class="admin-approvals__owner-name">Michael Sithole</span>
+                                        <span class="admin-approvals__owner-email">michael.s@example.com</span>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">Luxury Apartments</td>
+                                <td class="admin-approvals__td">Mount Pleasant, Harare</td>
+                                <td class="admin-approvals__td admin-approvals__td--price">$4,500/mo</td>
+                                <td class="admin-approvals__td">Jan 8, 2026</td>
+                                <td class="admin-approvals__td">
+                                    <span class="admin-approvals__status admin-approvals__status--changes">Changes Requested</span>
+                                </td>
+                                <td class="admin-approvals__td admin-approvals__td--actions">
+                                    <div class="admin-approvals__actions">
+                                        <button class="btn btn--small btn--secondary" onclick="viewListingDetails('approval-5')">View Notes</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Rejected Listing -->
+                            <tr class="admin-approvals__row" data-status="rejected" data-listing-id="approval-6">
+                                <td class="admin-approvals__td admin-approvals__td--property">
+                                    <div class="admin-approvals__property">
+                                        <img src="assets/images/property2.jpg" alt="Budget Studio" class="admin-approvals__thumbnail">
+                                        <div class="admin-approvals__property-info">
+                                            <span class="admin-approvals__property-name">Budget Studio</span>
+                                            <span class="admin-approvals__property-id">#LST-2024-006</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">
+                                    <div class="admin-approvals__owner">
+                                        <span class="admin-approvals__owner-name">Robert Zimba</span>
+                                        <span class="admin-approvals__owner-email">robert.z@example.com</span>
+                                    </div>
+                                </td>
+                                <td class="admin-approvals__td">Family Homes</td>
+                                <td class="admin-approvals__td">Mbare, Harare</td>
+                                <td class="admin-approvals__td admin-approvals__td--price">$350/mo</td>
+                                <td class="admin-approvals__td">Jan 5, 2026</td>
+                                <td class="admin-approvals__td">
+                                    <span class="admin-approvals__status admin-approvals__status--rejected">Rejected</span>
+                                </td>
+                                <td class="admin-approvals__td admin-approvals__td--actions">
+                                    <div class="admin-approvals__actions">
+                                        <button class="btn btn--small btn--secondary" onclick="viewListingDetails('approval-6')">View Reason</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State -->
+                <div class="admin-approvals__empty" id="approvals-empty" style="display: none;">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3>No listings found</h3>
+                    <p>No listings match your current filter or search criteria.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Approval Action Modal -->
+    <div class="modal approval-modal" id="approval-modal" role="dialog" aria-hidden="true" aria-labelledby="approval-modal-title">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content approval-modal__content">
+            <header class="approval-modal__header">
+                <h2 id="approval-modal-title">Approve Listing</h2>
+                <button class="modal__close" id="approval-modal-close" type="button" aria-label="Close modal">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+            <div class="approval-modal__body">
+                <div class="approval-modal__listing-info" id="approval-modal-listing-info">
+                    <img src="assets/images/property1.jpg" alt="" class="approval-modal__thumbnail" id="approval-modal-thumbnail">
+                    <div class="approval-modal__listing-details">
+                        <span class="approval-modal__listing-name" id="approval-modal-listing-name">Property Name</span>
+                        <span class="approval-modal__listing-owner" id="approval-modal-listing-owner">Owner Name</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-group__label" for="approval-comment">
+                        <span id="approval-comment-label">Add a comment (optional)</span>
+                    </label>
+                    <textarea id="approval-comment" class="form-group__input approval-modal__textarea" rows="4" placeholder="Enter your feedback or notes for the owner..."></textarea>
+                    <span class="form-group__hint" id="approval-comment-hint">This message will be sent to the property owner.</span>
+                </div>
+            </div>
+            <footer class="approval-modal__footer">
+                <button class="btn btn--secondary" id="approval-modal-cancel">Cancel</button>
+                <button class="btn btn--primary" id="approval-modal-confirm">Confirm</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Listing Review Modal -->
+    <div class="modal review-modal" id="review-modal" role="dialog" aria-hidden="true" aria-labelledby="review-modal-title">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content review-modal__content">
+            <header class="review-modal__header">
+                <div class="review-modal__header-info">
+                    <h2 id="review-modal-title">Review Listing</h2>
+                    <span class="review-modal__status" id="review-modal-status">Pending</span>
+                </div>
+                <button class="modal__close" id="review-modal-close" type="button" aria-label="Close modal">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <div class="review-modal__body">
+                <!-- Image Carousel -->
+                <div class="review-modal__gallery">
+                    <div class="review-carousel" id="review-carousel">
+                        <div class="review-carousel__container">
+                            <div class="review-carousel__track" id="review-carousel-track">
+                                <div class="review-carousel__slide">
+                                    <img src="assets/images/property1.jpg" alt="Property image 1">
+                                </div>
+                                <div class="review-carousel__slide">
+                                    <img src="assets/images/property2.jpg" alt="Property image 2">
+                                </div>
+                                <div class="review-carousel__slide">
+                                    <img src="assets/images/property3.jpg" alt="Property image 3">
+                                </div>
+                            </div>
+                            <button class="review-carousel__nav review-carousel__nav--prev" id="review-carousel-prev" type="button" aria-label="Previous image">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <button class="review-carousel__nav review-carousel__nav--next" id="review-carousel-next" type="button" aria-label="Next image">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="review-carousel__counter" id="review-carousel-counter">1 / 3</div>
+                        </div>
+                        <div class="review-carousel__indicators" id="review-carousel-indicators">
+                            <button class="review-carousel__indicator review-carousel__indicator--active" type="button" aria-label="Go to slide 1"></button>
+                            <button class="review-carousel__indicator" type="button" aria-label="Go to slide 2"></button>
+                            <button class="review-carousel__indicator" type="button" aria-label="Go to slide 3"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Details -->
+                <div class="review-modal__details">
+                    <!-- Basic Info -->
+                    <div class="review-modal__section">
+                        <div class="review-modal__title-row">
+                            <h3 class="review-modal__property-name" id="review-modal-name">Sunset Villa</h3>
+                            <span class="review-modal__price" id="review-modal-price">$2,500/mo</span>
+                        </div>
+                        <p class="review-modal__location" id="review-modal-location">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Borrowdale, Harare</span>
+                        </p>
+                        <span class="review-modal__id" id="review-modal-id">#LST-2024-001</span>
+                    </div>
+
+                    <!-- Property Specs -->
+                    <div class="review-modal__section">
+                        <h4 class="review-modal__section-title">Property Details</h4>
+                        <div class="review-modal__specs" id="review-modal-specs">
+                            <div class="review-modal__spec">
+                                <span class="review-modal__spec-label">Type</span>
+                                <span class="review-modal__spec-value" id="review-modal-type">Luxury Apartments</span>
+                            </div>
+                            <div class="review-modal__spec">
+                                <span class="review-modal__spec-label">Bedrooms</span>
+                                <span class="review-modal__spec-value" id="review-modal-bedrooms">3</span>
+                            </div>
+                            <div class="review-modal__spec">
+                                <span class="review-modal__spec-label">Bathrooms</span>
+                                <span class="review-modal__spec-value" id="review-modal-bathrooms">2</span>
+                            </div>
+                            <div class="review-modal__spec">
+                                <span class="review-modal__spec-label">Size</span>
+                                <span class="review-modal__spec-value" id="review-modal-size">1,800 sq ft</span>
+                            </div>
+                            <div class="review-modal__spec">
+                                <span class="review-modal__spec-label">Furnished</span>
+                                <span class="review-modal__spec-value" id="review-modal-furnished">Yes</span>
+                            </div>
+                            <div class="review-modal__spec">
+                                <span class="review-modal__spec-label">Available</span>
+                                <span class="review-modal__spec-value" id="review-modal-available">Immediately</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="review-modal__section">
+                        <h4 class="review-modal__section-title">Description</h4>
+                        <p class="review-modal__description" id="review-modal-description">
+                            Stunning modern villa with panoramic views of the surrounding hills. This beautifully appointed property features an open-plan living area, gourmet kitchen with top-of-the-line appliances, and a spacious master suite. The outdoor space includes a private pool, landscaped gardens, and a covered entertainment area perfect for hosting guests.
+                        </p>
+                    </div>
+
+                    <!-- Amenities -->
+                    <div class="review-modal__section">
+                        <h4 class="review-modal__section-title">Amenities</h4>
+                        <div class="review-modal__amenities" id="review-modal-amenities">
+                            <span class="review-modal__amenity">Swimming Pool</span>
+                            <span class="review-modal__amenity">Garden</span>
+                            <span class="review-modal__amenity">Parking</span>
+                            <span class="review-modal__amenity">Security</span>
+                            <span class="review-modal__amenity">Air Conditioning</span>
+                            <span class="review-modal__amenity">WiFi</span>
+                            <span class="review-modal__amenity">Generator</span>
+                            <span class="review-modal__amenity">Borehole</span>
+                        </div>
+                    </div>
+
+                    <!-- Owner Info -->
+                    <div class="review-modal__section">
+                        <h4 class="review-modal__section-title">Owner Information</h4>
+                        <div class="review-modal__owner">
+                            <div class="review-modal__owner-avatar">
+                                <span id="review-modal-owner-initials">JM</span>
+                            </div>
+                            <div class="review-modal__owner-details">
+                                <span class="review-modal__owner-name" id="review-modal-owner-name">John Moyo</span>
+                                <span class="review-modal__owner-email" id="review-modal-owner-email">john.m@example.com</span>
+                                <span class="review-modal__owner-phone" id="review-modal-owner-phone">+263 77 123 4567</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submission Info -->
+                    <div class="review-modal__section">
+                        <h4 class="review-modal__section-title">Submission Details</h4>
+                        <div class="review-modal__submission">
+                            <div class="review-modal__submission-item">
+                                <span class="review-modal__submission-label">Submitted</span>
+                                <span class="review-modal__submission-value" id="review-modal-submitted">Jan 15, 2026 at 2:30 PM</span>
+                            </div>
+                            <div class="review-modal__submission-item" id="review-modal-notes-section" style="display: none;">
+                                <span class="review-modal__submission-label">Admin Notes</span>
+                                <div class="review-modal__notes">
+                                    <p class="review-modal__notes-text" id="review-modal-notes"></p>
+                                    <button class="review-modal__notes-edit" id="review-modal-edit-notes" type="button">Edit Notes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="review-modal__footer" id="review-modal-footer">
+                <button class="btn btn--secondary" id="review-modal-cancel">Close</button>
+                <div class="review-modal__actions" id="review-modal-actions">
+                    <button class="btn btn--danger" id="review-modal-reject">Reject</button>
+                    <button class="btn btn--secondary" id="review-modal-changes">Request Changes</button>
+                    <button class="btn btn--primary" id="review-modal-approve">Approve</button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Notes Edit Modal -->
+    <div class="modal notes-modal" id="notes-modal" role="dialog" aria-hidden="true" aria-labelledby="notes-modal-title">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content notes-modal__content">
+            <header class="notes-modal__header">
+                <h2 id="notes-modal-title">Edit Notes</h2>
+                <button class="modal__close" id="notes-modal-close" type="button" aria-label="Close modal">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+            <div class="notes-modal__body">
+                <div class="notes-modal__listing-info">
+                    <span class="notes-modal__listing-name" id="notes-modal-listing-name">Property Name</span>
+                    <span class="notes-modal__listing-status" id="notes-modal-listing-status">Changes Requested</span>
+                </div>
+                <div class="form-group">
+                    <label class="form-group__label" for="notes-content">Notes / Feedback</label>
+                    <textarea id="notes-content" class="form-group__input notes-modal__textarea" rows="5" placeholder="Enter your notes or feedback..."></textarea>
+                    <span class="form-group__hint">This will be visible to the property owner.</span>
+                </div>
+            </div>
+            <footer class="notes-modal__footer">
+                <button class="btn btn--danger" id="notes-modal-remove">Remove Notes</button>
+                <div class="notes-modal__footer-right">
+                    <button class="btn btn--secondary" id="notes-modal-cancel">Cancel</button>
+                    <button class="btn btn--primary" id="notes-modal-save">Save Notes</button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Listing Analytics Modal -->
+    <div class="modal listing-analytics-modal" id="listing-analytics-modal" role="dialog" aria-hidden="true" aria-labelledby="listing-analytics-title">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <header class="listing-analytics__header">
+                <div>
+                    <h2 id="listing-analytics-title">Property Analytics</h2>
+                    <p class="listing-analytics__subtitle" id="listing-analytics-subtitle">Performance overview for this property.</p>
+                </div>
+                <button class="listing-analytics__close" id="listing-analytics-close" type="button" aria-label="Close analytics">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <section class="listing-analytics__summary" aria-live="polite">
+                <div class="listing-analytics__summary-card">
+                    <span class="listing-analytics__summary-label">Total Leads</span>
+                    <span class="listing-analytics__summary-value" id="listing-analytics-total-leads">0</span>
+                </div>
+                <div class="listing-analytics__summary-card">
+                    <span class="listing-analytics__summary-label">Qualified</span>
+                    <span class="listing-analytics__summary-value" id="listing-analytics-qualified">0</span>
+                    <span class="listing-analytics__summary-helper" id="listing-analytics-qualified-rate">0% of leads</span>
+                </div>
+                <div class="listing-analytics__summary-card">
+                    <span class="listing-analytics__summary-label">Conversion Rate</span>
+                    <span class="listing-analytics__summary-value" id="listing-analytics-conversion">0%</span>
+                </div>
+            </section>
+
+            <div class="listing-analytics__body">
+                <div class="listing-analytics__charts">
+                    <article class="listing-analytics__card">
+                        <header class="listing-analytics__card-header">
+                            <h3>Engagement Trends</h3>
+                            <span class="listing-analytics__card-helper" id="listing-analytics-date-range">Last 30 days</span>
+                        </header>
+                        <div class="listing-analytics__chart">
+                            <canvas id="listing-analytics-activity" aria-label="Property engagement trend chart" role="img"></canvas>
+                        </div>
+                    </article>
+                    <article class="listing-analytics__card">
+                        <header class="listing-analytics__card-header">
+                            <h3>Lead Sources</h3>
+                            <span class="listing-analytics__card-helper">Where inquiries are coming from</span>
+                        </header>
+                        <div class="listing-analytics__chart">
+                            <canvas id="listing-analytics-sources" aria-label="Lead sources breakdown" role="img"></canvas>
+                        </div>
+                    </article>
+                </div>
+                <aside class="listing-analytics__panel">
+                    <header class="listing-analytics__panel-header">
+                        <h3>Leads & Interested Buyers</h3>
+                        <span class="listing-analytics__panel-count" id="listing-analytics-lead-count">0 people</span>
+                    </header>
+                    <ul class="listing-analytics__lead-list" id="listing-analytics-leads" aria-live="polite"></ul>
+                </aside>
+            </div>
+        </div>
+    </div>
+    <!-- Add Listing Modal -->
+    <div class="modal add-listing-modal" id="add-listing-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2>Add New Property Listing</h2>
+                <button class="modal__close" id="add-modal-close" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="add-listing-modal__steps">
+                <div class="add-listing-modal__step add-listing-modal__step--active">
+                    1. Property Details
+                </div>
+                <div class="add-listing-modal__step">
+                    2. Location & Amenities
+                </div>
+                <div class="add-listing-modal__step">
+                    3. Pricing & Media
+                </div>
+            </div>
+
+            <form class="add-listing-form">
+                <!-- Step 1: Property Details -->
+                <div class="add-listing-modal__form-step add-listing-modal__form-step--active" data-step="1">
+                    <div class="form-group">
+                        <label class="form-group__label" for="property-name">Property Name *</label>
+                        <input type="text" id="property-name" class="form-group__input" placeholder="Enter property name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-group__label">Property Type *</label>
+                        <div class="radio-group">
+                            <input type="radio" id="luxury-apartments" name="property-type" value="Luxury Apartments" class="radio-group__input" required>
+                            <label for="luxury-apartments" class="radio-group__option">
+                                <div class="radio-group__indicator"></div>
+                                <div class="radio-group__content">
+                                    <div class="title">Luxury Apartments</div>
+                                    <div class="description">High-end residential apartments with premium amenities and services</div>
+                                </div>
+                            </label>
+                            
+                            <input type="radio" id="family-homes" name="property-type" value="Family Homes" class="radio-group__input">
+                            <label for="family-homes" class="radio-group__option">
+                                <div class="radio-group__indicator"></div>
+                                <div class="radio-group__content">
+                                    <div class="title">Family Homes</div>
+                                    <div class="description">Single-family houses and townhomes suitable for families</div>
+                                </div>
+                            </label>
+                            
+                            <input type="radio" id="studio-1br" name="property-type" value="Studio & 1BR" class="radio-group__input">
+                            <label for="studio-1br" class="radio-group__option">
+                                <div class="radio-group__indicator"></div>
+                                <div class="radio-group__content">
+                                    <div class="title">Studio & 1BR</div>
+                                    <div class="description">Compact residential units perfect for young professionals and students</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-group__label" for="bedrooms">Bedrooms</label>
+                            <select id="bedrooms" class="form-group__input">
+                                <option value="">Select bedrooms</option>
+                                <option value="1">1 Bedroom</option>
+                                <option value="2">2 Bedrooms</option>
+                                <option value="3">3 Bedrooms</option>
+                                <option value="4">4 Bedrooms</option>
+                                <option value="5">5+ Bedrooms</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-group__label" for="bathrooms">Bathrooms</label>
+                            <select id="bathrooms" class="form-group__input">
+                                <option value="">Select bathrooms</option>
+                                <option value="1">1 Bathroom</option>
+                                <option value="2">2 Bathrooms</option>
+                                <option value="3">3 Bathrooms</option>
+                                <option value="4">4+ Bathrooms</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-group__label" for="description">Property Description</label>
+                        <textarea id="description" class="form-group__input" rows="4" placeholder="Describe your property..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 2: Location & Amenities -->
+                <div class="add-listing-modal__form-step" data-step="2">
+                    <div class="form-group">
+                        <label class="form-group__label" for="address">Address *</label>
+                        <input type="text" id="address" class="form-group__input" placeholder="Full address" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-group__label" for="city">City *</label>
+                            <input type="text" id="city" class="form-group__input" placeholder="City" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-group__label" for="state">Province *</label>
+                            <select id="state" class="form-group__input" required>
+                                <option value="">Select province</option>
+                                <option value="Harare">Harare</option>
+                                <option value="Bulawayo">Bulawayo</option>
+                                <option value="Manicaland">Manicaland</option>
+                                <option value="Mashonaland Central">Mashonaland Central</option>
+                                <option value="Mashonaland East">Mashonaland East</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-group__label">Amenities</label>
+                        <div class="form-row">
+                            <label>
+                                <input type="checkbox" name="amenities" value="parking"> Parking
+                            </label>
+                            <label>
+                                <input type="checkbox" name="amenities" value="gym"> Gym
+                            </label>
+                            <label>
+                                <input type="checkbox" name="amenities" value="pool"> Swimming Pool
+                            </label>
+                            <label>
+                                <input type="checkbox" name="amenities" value="security"> 24/7 Security
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Pricing & Media -->
+                <div class="add-listing-modal__form-step" data-step="3">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-group__label" for="rent-amount">Monthly Rent (₦) *</label>
+                            <input type="number" id="rent-amount" class="form-group__input" placeholder="0.00" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-group__label" for="security-deposit">Security Deposit (₦)</label>
+                            <input type="number" id="security-deposit" class="form-group__input" placeholder="0.00">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-group__label" for="property-images">Property Images</label>
+                        <input type="file" id="property-images" class="form-group__input" multiple accept="image/*">
+                        <div class="form-group__hint">Upload up to 10 high-quality images of your property</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-group__label">Listing Status</label>
+                        <div class="radio-group">
+                            <input type="radio" id="status-draft" name="status" value="draft" class="radio-group__input" checked>
+                            <label for="status-draft" class="radio-group__option">
+                                <div class="radio-group__indicator"></div>
+                                <div class="radio-group__content">
+                                    <div class="title">Save as Draft</div>
+                                    <div class="description">Save listing privately for review before publishing</div>
+                                </div>
+                            </label>
+                            
+                            <input type="radio" id="status-publish" name="status" value="published" class="radio-group__input">
+                            <label for="status-publish" class="radio-group__option">
+                                <div class="radio-group__indicator"></div>
+                                <div class="radio-group__content">
+                                    <div class="title">Publish Immediately</div>
+                                    <div class="description">Make listing live and visible to potential tenants</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add-listing-modal__navigation">
+                    <button type="button" class="btn btn--secondary" id="prev-step" style="display: none;">Previous</button>
+                    <div style="display: flex; gap: var(--space-3);">
+                        <button type="button" class="btn btn--secondary" id="close-modal">Cancel</button>
+                        <button type="button" class="btn btn--primary" id="next-step">Next</button>
+                        <button type="submit" class="btn btn--primary" id="submit-listing" style="display: none;">Create Listing</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View/Preview Listing Modal -->
+    <div class="modal view-listing-modal" id="view-listing-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 id="view-listing-title">Property Details</h2>
+                <button class="modal__close" id="view-listing-close" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="modal__body">
+                <div class="view-listing__content">
+                    <!-- Property Status Badge -->
+                    <div class="view-listing__status" id="view-listing-status">
+                        <span class="status-badge status-badge--success">Active</span>
+                    </div>
+                    
+                    <!-- Property Images Carousel -->
+                    <div class="view-listing__gallery">
+                        <div class="image-carousel" id="view-listing-carousel">
+                            <!-- Carousel Container -->
+                            <div class="image-carousel__container">
+                                <div class="image-carousel__track" id="carousel-track">
+                                    <!-- Images will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <!-- Navigation Buttons -->
+                            <button class="image-carousel__nav image-carousel__nav--prev" id="carousel-prev" aria-label="Previous image">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <button class="image-carousel__nav image-carousel__nav--next" id="carousel-next" aria-label="Next image">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            
+                            <!-- Image Counter -->
+                            <div class="image-carousel__counter" id="carousel-counter">
+                                <span id="current-image">1</span> of <span id="total-images">1</span>
+                            </div>
+                            
+                            <!-- Image Indicators -->
+                            <div class="image-carousel__indicators" id="carousel-indicators">
+                                <!-- Indicators will be populated by JavaScript -->
+                            </div>
+                            
+                            <!-- Fullscreen Trigger Icon -->
+                            <button class="image-carousel__fullscreen-trigger" id="carousel-fullscreen-trigger" aria-label="View in fullscreen" title="View fullscreen">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 3H5C3.89543 3 3 3.89543 3 5V8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M21 8V5C21 3.89543 20.1046 3 19 3H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16 21H19C20.1046 21 21 20.1046 21 19V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M3 16V19C3 20.1046 3.89543 21 5 21H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Property Details Grid -->
+                    <div class="view-listing__details">
+                        <div class="view-listing__section">
+                            <h3 class="view-listing__section-title">Property Information</h3>
+                            <div class="view-listing__info-grid">
+                                <div class="view-listing__info-item">
+                                    <span class="view-listing__info-label">Property Name</span>
+                                    <span class="view-listing__info-value" id="view-listing-name">-</span>
+                                </div>
+                                <div class="view-listing__info-item">
+                                    <span class="view-listing__info-label">Property Type</span>
+                                    <span class="view-listing__info-value" id="view-listing-type">-</span>
+                                </div>
+                                <div class="view-listing__info-item">
+                                    <span class="view-listing__info-label">Price</span>
+                                    <span class="view-listing__info-value" id="view-listing-price">-</span>
+                                </div>
+                                <div class="view-listing__info-item">
+                                    <span class="view-listing__info-label">Bedrooms</span>
+                                    <span class="view-listing__info-value" id="view-listing-bedrooms">-</span>
+                                </div>
+                                <div class="view-listing__info-item">
+                                    <span class="view-listing__info-label">Bathrooms</span>
+                                    <span class="view-listing__info-value" id="view-listing-bathrooms">-</span>
+                                </div>
+                                <div class="view-listing__info-item">
+                                    <span class="view-listing__info-label">Square Footage</span>
+                                    <span class="view-listing__info-value" id="view-listing-sqft">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Description Section -->
+                        <div class="view-listing__section">
+                            <h3 class="view-listing__section-title">Description</h3>
+                            <p class="view-listing__description" id="view-listing-description">-</p>
+                        </div>
+                        
+                        <!-- Amenities Section -->
+                        <div class="view-listing__section">
+                            <h3 class="view-listing__section-title">Amenities</h3>
+                            <div class="view-listing__amenities" id="view-listing-amenities"></div>
+                        </div>
+                        
+                        <!-- Location & Availability -->
+                        <div class="view-listing__section">
+                            <h3 class="view-listing__section-title">Location & Availability</h3>
+                            <div class="view-listing__info-grid">
+                                <div class="view-listing__info-item">
+                                    <span class="view-listing__info-label">Location</span>
+                                    <span class="view-listing__info-value" id="view-listing-location">-</span>
+                                </div>
+                                <div class="view-listing__info-item">
+                                    <span class="view-listing__info-label">Availability</span>
+                                    <span class="view-listing__info-value" id="view-listing-availability">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Distribution Channels -->
+                        <div class="view-listing__section">
+                            <h3 class="view-listing__section-title">Distribution Channels</h3>
+                            <div class="view-listing__channels" id="view-listing-channels"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Fullscreen Image Carousel Modal -->
+    <div class="fullscreen-carousel" id="fullscreen-carousel" aria-hidden="true">
+        <div class="fullscreen-carousel__backdrop"></div>
+        <div class="fullscreen-carousel__container">
+            <!-- Close Button -->
+            <button class="fullscreen-carousel__close" id="fullscreen-close" aria-label="Close fullscreen">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            
+            <!-- Fullscreen Image Display -->
+            <div class="fullscreen-carousel__image-container">
+                <div class="fullscreen-carousel__track" id="fullscreen-track">
+                    <!-- Images will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <button class="fullscreen-carousel__nav fullscreen-carousel__nav--prev" id="fullscreen-prev" aria-label="Previous image">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button class="fullscreen-carousel__nav fullscreen-carousel__nav--next" id="fullscreen-next" aria-label="Next image">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            
+            <!-- Image Counter -->
+            <div class="fullscreen-carousel__counter" id="fullscreen-counter">
+                <span id="fullscreen-current">1</span> of <span id="fullscreen-total">1</span>
+            </div>
+            
+            <!-- Image Indicators -->
+            <div class="fullscreen-carousel__indicators" id="fullscreen-indicators">
+                <!-- Indicators will be populated by JavaScript -->
+            </div>
+            
+            <!-- Maximize Toggle Button -->
+            <button class="fullscreen-carousel__maximize" id="fullscreen-maximize" aria-label="Enter browser fullscreen" title="Fullscreen (F11)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 3H5C3.89543 3 3 3.89543 3 5V8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 8V5C21 3.89543 20.1046 3 19 3H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 21H19C20.1046 21 21 20.1046 21 19V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 16V19C3 20.1046 3.89543 21 5 21H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Edit Listing Modal -->
+    <div class="modal add-listing-modal" id="edit-listing-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2>Edit Property Listing</h2>
+                <button class="modal__close" id="edit-modal-close" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="add-listing-modal__steps">
+                <div class="add-listing-modal__step add-listing-modal__step--active">
+                    1. Property Details
+                </div>
+                <div class="add-listing-modal__step">
+                    2. Location & Amenities
+                </div>
+                <div class="add-listing-modal__step">
+                    3. Pricing & Media
+                </div>
+            </div>
+
+            <form class="edit-listing-form">
+                <input type="hidden" id="edit-listing-id" name="listing-id">
+                
+                <!-- Step 1: Property Details -->
+                <div class="add-listing-modal__form-step add-listing-modal__form-step--active" data-step="1">
+                    <div class="form-group">
+                        <label class="form-group__label" for="edit-property-name">Property Name *</label>
+                        <input type="text" id="edit-property-name" class="form-group__input" placeholder="Enter property name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-group__label">Property Type *</label>
+                        <div class="radio-group">
+                            <input type="radio" id="edit-luxury-apartments" name="edit-property-type" value="Luxury Apartments" class="radio-group__input" required>
+                            <label for="edit-luxury-apartments" class="radio-group__option">
+                                <div class="radio-group__indicator"></div>
+                                <div class="radio-group__content">
+                                    <div class="title">Luxury Apartments</div>
+                                    <div class="description">High-end residential apartments with premium amenities and services</div>
+                                </div>
+                            </label>
+                            
+                            <input type="radio" id="edit-family-homes" name="edit-property-type" value="Family Homes" class="radio-group__input">
+                            <label for="edit-family-homes" class="radio-group__option">
+                                <div class="radio-group__indicator"></div>
+                                <div class="radio-group__content">
+                                    <div class="title">Family Homes</div>
+                                    <div class="description">Single-family houses and townhomes suitable for families</div>
+                                </div>
+                            </label>
+                            
+                            <input type="radio" id="edit-studio-1br" name="edit-property-type" value="Studio & 1BR" class="radio-group__input">
+                            <label for="edit-studio-1br" class="radio-group__option">
+                                <div class="radio-group__indicator"></div>
+                                <div class="radio-group__content">
+                                    <div class="title">Studio & 1BR</div>
+                                    <div class="description">Compact residential units perfect for young professionals and students</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-group__label" for="edit-bedrooms">Bedrooms</label>
+                            <select id="edit-bedrooms" class="form-group__input">
+                                <option value="">Select bedrooms</option>
+                                <option value="1">1 Bedroom</option>
+                                <option value="2">2 Bedrooms</option>
+                                <option value="3">3 Bedrooms</option>
+                                <option value="4">4 Bedrooms</option>
+                                <option value="5">5+ Bedrooms</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-group__label" for="edit-bathrooms">Bathrooms</label>
+                            <select id="edit-bathrooms" class="form-group__input">
+                                <option value="">Select bathrooms</option>
+                                <option value="1">1 Bathroom</option>
+                                <option value="2">2 Bathrooms</option>
+                                <option value="3">3 Bathrooms</option>
+                                <option value="4">4+ Bathrooms</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-group__label" for="edit-description">Property Description</label>
+                        <textarea id="edit-description" class="form-group__input" rows="4" placeholder="Describe your property..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 2: Location & Amenities -->
+                <div class="add-listing-modal__form-step" data-step="2">
+                    <div class="form-group">
+                        <label class="form-group__label" for="edit-address">Address *</label>
+                        <input type="text" id="edit-address" class="form-group__input" placeholder="Full address" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-group__label" for="edit-city">City *</label>
+                            <input type="text" id="edit-city" class="form-group__input" placeholder="City" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-group__label" for="edit-state">Province *</label>
+                            <select id="edit-state" class="form-group__input" required>
+                                <option value="">Select province</option>
+                                <option value="Harare">Harare</option>
+                                <option value="Bulawayo">Bulawayo</option>
+                                <option value="Manicaland">Manicaland</option>
+                                <option value="Mashonaland Central">Mashonaland Central</option>
+                                <option value="Mashonaland East">Mashonaland East</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-group__label">Amenities</label>
+                        <div class="form-row">
+                            <label>
+                                <input type="checkbox" name="edit-amenities" value="parking"> Parking
+                            </label>
+                            <label>
+                                <input type="checkbox" name="edit-amenities" value="gym"> Gym
+                            </label>
+                            <label>
+                                <input type="checkbox" name="edit-amenities" value="pool"> Swimming Pool
+                            </label>
+                            <label>
+                                <input type="checkbox" name="edit-amenities" value="security"> 24/7 Security
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Pricing & Media -->
+                <div class="add-listing-modal__form-step" data-step="3">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-group__label" for="edit-rent-amount">Monthly Rent (₦) *</label>
+                            <input type="number" id="edit-rent-amount" class="form-group__input" placeholder="0.00" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-group__label" for="edit-security-deposit">Security Deposit (₦)</label>
+                            <input type="number" id="edit-security-deposit" class="form-group__input" placeholder="0.00">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-group__label" for="edit-property-images">Property Images</label>
+                        <input type="file" id="edit-property-images" class="form-group__input" multiple accept="image/*">
+                        <div class="form-group__hint">Upload up to 10 high-quality images of your property</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-group__label">Listing Status</label>
+                        <div class="radio-group">
+                            <input type="radio" id="edit-status-draft" name="edit-status" value="draft" class="radio-group__input">
+                            <label for="edit-status-draft" class="radio-group__option">
+                                <div class="radio-group__indicator"></div>
+                                <div class="radio-group__content">
+                                    <div class="title">Save as Draft</div>
+                                    <div class="description">Save listing privately for review before publishing</div>
+                                </div>
+                            </label>
+                            
+                            <input type="radio" id="edit-status-publish" name="edit-status" value="published" class="radio-group__input">
+                            <label for="edit-status-publish" class="radio-group__option">
+                                <div class="radio-group__indicator"></div>
+                                <div class="radio-group__content">
+                                    <div class="title">Publish Immediately</div>
+                                    <div class="description">Make listing live and visible to potential tenants</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add-listing-modal__navigation">
+                    <button type="button" class="btn btn--secondary" id="edit-prev-step" style="display: none;">Previous</button>
+                    <div style="display: flex; gap: var(--space-3);">
+                        <button type="button" class="btn btn--secondary" id="edit-close-modal">Cancel</button>
+                        <button type="button" class="btn btn--primary" id="edit-next-step">Next</button>
+                        <button type="submit" class="btn btn--primary" id="edit-submit-listing" style="display: none;">Update Listing</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Spotlight Search Modal -->
+    <div class="spotlight-modal" id="spotlight-modal" aria-hidden="true" role="dialog" aria-labelledby="spotlight-title" aria-describedby="spotlight-description">
+        <div class="spotlight-modal__backdrop"></div>
+        <div class="spotlight-modal__container">
+            <div class="spotlight-modal__content">
+                <div class="spotlight-search">
+                    <div class="spotlight-search__header">
+                        <svg class="spotlight-search__icon" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.5 12.5L17.5 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.5 14.5C12.2614 14.5 14.5 12.2614 14.5 9.5C14.5 6.73858 12.2614 4.5 9.5 4.5C6.73858 4.5 4.5 6.73858 4.5 9.5C4.5 12.2614 6.73858 14.5 9.5 14.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            class="spotlight-search__input" 
+                            placeholder="Search properties by name, location, or type..." 
+                            aria-label="Search properties"
+                            id="spotlight-search-input"
+                            autocomplete="off"
+                            spellcheck="false"
+                        >
+                        <button class="spotlight-search__close" aria-label="Close search" id="spotlight-close">
+                            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="spotlight-search__results" id="spotlight-results">
+                        <!-- Empty state -->
+                        <div class="spotlight-empty" id="spotlight-empty">
+                            <div class="spotlight-empty__content">
+                                <svg class="spotlight-empty__icon" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <h3 class="spotlight-empty__title">Search your properties</h3>
+                                <p class="spotlight-empty__description">Find properties by name, location, or type. Start typing to see results.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- No results state -->
+                        <div class="spotlight-no-results" id="spotlight-no-results" style="display: none;">
+                            <div class="spotlight-no-results__content">
+                                <svg class="spotlight-no-results__icon" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="8" y1="11" x2="14" y2="11" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <h3 class="spotlight-no-results__title">No properties found</h3>
+                                <p class="spotlight-no-results__description">Try adjusting your search terms or browse all properties.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Results list -->
+                        <div class="spotlight-results-list" id="spotlight-results-list" style="display: none;">
+                            <!-- Dynamic results will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent searches -->
+                <div class="spotlight-recents" id="spotlight-recents">
+                    <div class="spotlight-recents__header">
+                        <h3 class="spotlight-recents__title">Recent searches</h3>
+                        <button class="spotlight-recents__clear" id="spotlight-clear-recents">
+                            <span>Clear</span>
+                        </button>
+                    </div>
+                    <div class="spotlight-recents__list" id="spotlight-recents-list">
+                        <!-- Recent searches will be populated dynamically -->
+                    </div>
+                </div>
+                
+                <!-- Footer -->
+                <div class="spotlight-footer">
+                    <div class="spotlight-footer__shortcuts">
+                        <div class="spotlight-shortcut">
+                            <kbd class="spotlight-kbd">↵</kbd>
+                            <span>to select</span>
+                        </div>
+                        <div class="spotlight-shortcut">
+                            <kbd class="spotlight-kbd">↑↓</kbd>
+                            <span>to navigate</span>
+                        </div>
+                        <div class="spotlight-shortcut">
+                            <kbd class="spotlight-kbd">esc</kbd>
+                            <span>to close</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modals -->
+
+    <!-- Password Change Modal -->
+    <div class="modal" id="password-change-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content" style="max-width: 500px;">
+            <div class="modal__header">
+                <h2>Change Password</h2>
+                <p style="color: var(--color-gray-600); font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                    Keep your account secure with a strong password
+                </p>
+            </div>
+            
+            <form id="password-change-form">
+                <div class="form-group">
+                    <label class="form-group__label" for="current-password">Current Password</label>
+                    <input type="password" id="current-password" class="form-group__input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-group__label" for="new-password">New Password</label>
+                    <input type="password" id="new-password" class="form-group__input" required>
+                    <div class="form-group__hint">
+                        Must be at least 8 characters with letters, numbers, and symbols
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-group__label" for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" class="form-group__input" required>
+                </div>
+                
+                <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+                    <button type="button" class="btn btn--secondary" id="password-modal-cancel" style="flex: 1;">Cancel</button>
+                    <button type="submit" class="btn btn--primary" style="flex: 1;">Update Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2FA Setup Modal -->
+    <div class="modal" id="twofa-setup-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content" style="max-width: 500px;">
+            <div class="modal__header">
+                <h2>Enable Two-Factor Authentication</h2>
+                <p style="color: var(--color-gray-600); font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                    Add an extra layer of security to your account
+                </p>
+            </div>
+            
+            <div id="twofa-step-1" class="twofa-step">
+                <div style="text-align: center; margin-bottom: var(--space-6);">
+                    <div style="width: 150px; height: 150px; background: var(--color-gray-100); border: 2px dashed var(--color-gray-300); border-radius: var(--radius-md); margin: 0 auto var(--space-4); display: flex; align-items: center; justify-content: center; color: var(--color-gray-500);">
+                        QR Code
+                    </div>
+                    <p style="font-size: var(--font-size-sm); color: var(--color-gray-600); margin: 0;">
+                        Scan this QR code with your authenticator app (Google Authenticator, Authy, etc.)
+                    </p>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-group__label">Manual Entry Key</label>
+                    <div style="background: var(--color-gray-50); padding: var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--color-gray-200); font-family: monospace; font-size: var(--font-size-sm); word-break: break-all;">
+                        JBSWY3DPEHPK3PXP
+                    </div>
+                    <div class="form-group__hint">
+                        Enter this key manually if you can't scan the QR code
+                    </div>
+                </div>
+                
+                <button type="button" class="btn btn--primary btn--full-width" id="twofa-next-step">
+                    I've Added the Account
+                </button>
+            </div>
+            
+            <div id="twofa-step-2" class="twofa-step" style="display: none;">
+                <div class="form-group">
+                    <label class="form-group__label" for="twofa-code">Verification Code</label>
+                    <input type="text" id="twofa-code" class="form-group__input" placeholder="123456" maxlength="6" style="text-align: center; font-size: var(--font-size-lg); letter-spacing: 0.1em;">
+                    <div class="form-group__hint">
+                        Enter the 6-digit code from your authenticator app
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+                    <button type="button" class="btn btn--secondary" id="twofa-back-step" style="flex: 1;">Back</button>
+                    <button type="button" class="btn btn--primary" id="twofa-verify" style="flex: 1;">Verify & Enable</button>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: center; margin-top: var(--space-4);">
+                <button type="button" class="btn btn--secondary" id="twofa-modal-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sessions Management Modal -->
+    <div class="modal" id="sessions-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content" style="max-width: 600px;">
+            <div class="modal__header">
+                <h2>Active Sessions</h2>
+                <p style="color: var(--color-gray-600); font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                    Manage devices that are currently signed in to your account
+                </p>
+            </div>
+            
+            <div class="sessions-list">
+                <div class="session-item session-item--current">
+                    <div class="session-item__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M22 7L12 13L2 7" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="session-item__info">
+                        <div class="session-item__device">Chrome on Windows</div>
+                        <div class="session-item__location">Harare, Zimbabwe</div>
+                        <div class="session-item__activity">Current session • Last activity: now</div>
+                    </div>
+                    <div class="session-item__badge">Current</div>
+                </div>
+                
+                <div class="session-item">
+                    <div class="session-item__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M21 15L16 10L5 21" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="session-item__info">
+                        <div class="session-item__device">Safari on iPhone</div>
+                        <div class="session-item__location">Harare, Zimbabwe</div>
+                        <div class="session-item__activity">Last activity: 2 hours ago</div>
+                    </div>
+                    <button class="session-item__revoke">Revoke</button>
+                </div>
+                
+                <div class="session-item">
+                    <div class="session-item__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2"/>
+                            <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="session-item__info">
+                        <div class="session-item__device">Firefox on Ubuntu</div>
+                        <div class="session-item__location">Cape Town, South Africa</div>
+                        <div class="session-item__activity">Last activity: 1 week ago</div>
+                    </div>
+                    <button class="session-item__revoke">Revoke</button>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+                <button type="button" class="btn btn--secondary" style="flex: 1;" id="revoke-all-sessions">Revoke All Other Sessions</button>
+                <button type="button" class="btn btn--primary" style="flex: 1;" id="sessions-modal-close">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bank Account Change Modal -->
+    <div class="modal" id="bank-account-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content" style="max-width: 500px;">
+            <div class="modal__header">
+                <h2>Change Bank Account</h2>
+                <p style="color: var(--color-gray-600); font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                    Update your primary account for payouts
+                </p>
+            </div>
+            
+            <form id="bank-account-form">
+                <div class="form-group">
+                    <label class="form-group__label" for="bank-name">Bank Name</label>
+                    <select id="bank-name" class="form-group__input" required>
+                        <option value="">Select your bank</option>
+                        <option value="Standard Bank Zimbabwe">Standard Bank Zimbabwe</option>
+                        <option value="CBZ Bank">CBZ Bank</option>
+                        <option value="Barclays Bank Zimbabwe">Barclays Bank Zimbabwe</option>
+                        <option value="NMB Bank">NMB Bank</option>
+                        <option value="Stanbic Bank Zimbabwe">Stanbic Bank Zimbabwe</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-group__label" for="account-number">Account Number</label>
+                    <input type="text" id="account-number" class="form-group__input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-group__label" for="account-holder-name">Account Holder Name</label>
+                    <input type="text" id="account-holder-name" class="form-group__input" required>
+                    <div class="form-group__hint">
+                        Must match the name on your account
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-group__label" for="account-type">Account Type</label>
+                    <select id="account-type" class="form-group__input" required>
+                        <option value="">Select account type</option>
+                        <option value="savings">Savings Account</option>
+                        <option value="current">Current Account</option>
+                        <option value="business">Business Account</option>
+                    </select>
+                </div>
+                
+                <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+                    <button type="button" class="btn btn--secondary" id="bank-modal-cancel" style="flex: 1;">Cancel</button>
+                    <button type="submit" class="btn btn--primary" style="flex: 1;">Update Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- File Upload Modal -->
+    <div class="modal" id="file-upload-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content" style="max-width: 500px;">
+            <div class="modal__header">
+                <h2>Upload Business Registration</h2>
+                <p style="color: var(--color-gray-600); font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                    Upload your business registration certificate
+                </p>
+            </div>
+            
+            <div class="file-upload-area" id="file-upload-area">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--color-gray-400); margin-bottom: var(--space-4);">
+                    <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="7,10 12,15 17,10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <p style="margin: 0 0 var(--space-2) 0; font-weight: var(--font-weight-medium);">
+                    Drop your file here or click to browse
+                </p>
+                <p style="margin: 0; font-size: var(--font-size-sm); color: var(--color-gray-500);">
+                    Supports PDF, JPG, PNG up to 10MB
+                </p>
+                <input type="file" id="file-input" accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
+            </div>
+            
+            <div id="file-preview" style="display: none; margin-top: var(--space-4);">
+                <div class="file-preview-item">
+                    <div class="file-preview-icon">📄</div>
+                    <div class="file-preview-info">
+                        <div class="file-preview-name">business-registration.pdf</div>
+                        <div class="file-preview-size">2.3 MB</div>
+                    </div>
+                    <button type="button" class="file-preview-remove">Remove</button>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+                <button type="button" class="btn btn--secondary" id="file-modal-cancel" style="flex: 1;">Cancel</button>
+                <button type="button" class="btn btn--primary" id="file-upload-submit" style="flex: 1;" disabled>Upload Document</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payout Schedule Modal -->
+    <div class="modal" id="payout-schedule-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content" style="max-width: 500px;">
+            <div class="modal__header">
+                <h2>Payout Schedule Settings</h2>
+                <button class="modal__close" onclick="closeProfileModal('payout-schedule')" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="payout-schedule-form">
+                <div class="form-group">
+                    <label class="form-group__label" for="payout-frequency">Payout Frequency</label>
+                    <select id="payout-frequency" class="form-group__input" required>
+                        <option value="weekly" selected>Weekly</option>
+                        <option value="bi-weekly">Bi-weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-group__label" for="payout-day">Payout Day</label>
+                    <select id="payout-day" class="form-group__input" required>
+                        <option value="monday">Monday</option>
+                        <option value="tuesday">Tuesday</option>
+                        <option value="wednesday">Wednesday</option>
+                        <option value="thursday">Thursday</option>
+                        <option value="friday" selected>Friday</option>
+                        <option value="saturday">Saturday</option>
+                        <option value="sunday">Sunday</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-group__label" for="minimum-payout">Minimum Payout Amount</label>
+                    <div class="input-group">
+                        <span class="input-group__prefix">$</span>
+                        <input type="number" id="minimum-payout" class="form-group__input" value="50" min="10" step="10" required>
+                    </div>
+                    <div class="form-group__help">Minimum amount to trigger a payout</div>
+                </div>
+                <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+                    <button type="button" class="btn btn--secondary" onclick="closeProfileModal('payout-schedule')" style="flex: 1;">Cancel</button>
+                    <button type="submit" class="btn btn--primary" style="flex: 1;">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tax Information Modal -->
+    <div class="modal" id="tax-info-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content" style="max-width: 500px;">
+            <div class="modal__header">
+                <h2>Tax Information</h2>
+                <button class="modal__close" onclick="closeProfileModal('tax-info')" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="tax-info-form">
+                <div class="form-group">
+                    <label class="form-group__label" for="tax-id">Tax Identification Number</label>
+                    <input type="text" id="tax-id" class="form-group__input" value="567890" placeholder="Enter your tax ID" required>
+                    <div class="form-group__help">Your business or personal tax identification number</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-group__label" for="tax-classification">Tax Classification</label>
+                    <select id="tax-classification" class="form-group__input" required>
+                        <option value="">Select classification</option>
+                        <option value="individual" selected>Individual</option>
+                        <option value="sole-proprietor">Sole Proprietor</option>
+                        <option value="partnership">Partnership</option>
+                        <option value="corporation">Corporation</option>
+                        <option value="llc">LLC</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-group__label" for="vat-registered">VAT Registration</label>
+                    <select id="vat-registered" class="form-group__input">
+                        <option value="no" selected>Not VAT registered</option>
+                        <option value="yes">VAT registered</option>
+                    </select>
+                </div>
+                <div class="form-group" id="vat-number-group" style="display: none;">
+                    <label class="form-group__label" for="vat-number">VAT Number</label>
+                    <input type="text" id="vat-number" class="form-group__input" placeholder="Enter VAT number">
+                </div>
+                <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+                    <button type="button" class="btn btn--secondary" onclick="closeProfileModal('tax-info')" style="flex: 1;">Cancel</button>
+                    <button type="submit" class="btn btn--primary" style="flex: 1;">Update Information</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Avatar Upload Modal -->
+    <div class="modal" id="avatar-upload-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content" style="max-width: 500px;">
+            <div class="modal__header">
+                <h2>Change Profile Photo</h2>
+                <button class="modal__close" onclick="closeProfileModal('avatar-upload')" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="avatar-upload-container">
+                <div class="avatar-preview">
+                    <img src="assets/avatar-owner.png" alt="Current profile photo" class="avatar-preview__image" id="avatar-preview">
+                    <div class="avatar-preview__overlay">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                            <circle cx="12" cy="13" r="4"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="file-upload-area" id="avatar-upload-area">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                        <circle cx="12" cy="13" r="3"/>
+                    </svg>
+                    <h3>Upload new photo</h3>
+                    <p>Drag and drop an image here, or click to browse</p>
+                    <p class="file-upload-help">Supports JPG, PNG up to 5MB</p>
+                    <input type="file" id="avatar-file-input" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="avatar-actions">
+                    <button type="button" class="btn btn--secondary" id="remove-avatar">Remove Photo</button>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+                <button type="button" class="btn btn--secondary" onclick="closeProfileModal('avatar-upload')" style="flex: 1;">Cancel</button>
+                <button type="button" class="btn btn--primary" id="avatar-save" style="flex: 1;" disabled>Save Photo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal success-modal" id="success-modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content" style="max-width: 450px; text-align: center;">
+            <div class="success-modal__icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9 12l2 2 4-4"/>
+                </svg>
+            </div>
+            
+            <div class="success-modal__content">
+                <h2 id="success-modal-title">Success!</h2>
+                <p id="success-modal-message">Your action completed successfully.</p>
+                
+                <div class="success-modal__status" id="success-modal-status" style="display: none;">
+                    <span class="status-badge status-badge--success">Published</span>
+                </div>
+            </div>
+            
+            <div class="success-modal__actions">
+                <button type="button" class="btn btn--primary" id="success-modal-close">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous"></script>
+    <script src="./dashboard.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

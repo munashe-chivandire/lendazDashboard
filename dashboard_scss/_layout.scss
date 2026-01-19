@@ -1,0 +1,145 @@
+@use 'variables' as *;
+
+// Layout Styles
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  
+  @include respond-above($breakpoint-sm) {
+    padding: 0 var(--space-6);
+  }
+}
+
+.checkout-layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: var(--color-gray-50);
+}
+
+.checkout-header {
+  background: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-4) 0;
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  .progress-steps {
+    display: none;
+    
+    @include respond-above($breakpoint-md) {
+      display: flex;
+      gap: var(--space-8);
+    }
+  }
+}
+
+.checkout-main {
+  padding: var(--space-8) 0;
+  
+  .main-content {
+    display: grid;
+    gap: var(--space-8);
+    
+    @include respond-above($breakpoint-lg) {
+      grid-template-columns: 1fr 400px;
+      gap: var(--space-12);
+    }
+  }
+}
+
+.checkout-footer {
+  background: var(--color-white);
+  border-top: 1px solid var(--color-gray-200);
+  padding: var(--space-6) 0;
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: center;
+    text-align: center;
+    
+    @include respond-above($breakpoint-md) {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: var(--space-6);
+    
+    a {
+      color: var(--color-gray-600);
+      text-decoration: none;
+      font-size: var(--font-size-sm);
+      
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+}
+
+.section {
+  @include card-base;
+  
+  &__header {
+    margin-bottom: var(--space-2);
+    
+    h2 {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-gray-900);
+      margin-bottom: var(--space-2);
+    }
+    
+    p {
+      color: var(--color-gray-600);
+      font-size: var(--font-size-sm);
+    }
+  }
+  
+  &__content {
+    &:not(:last-child) {
+      margin-bottom: var(--space-6);
+    }
+  }
+}
+
+// Responsive utilities
+.mobile-only {
+  @include respond-above($breakpoint-md) {
+    display: none;
+  }
+}
+
+.desktop-only {
+  display: none;
+  
+  @include respond-above($breakpoint-md) {
+    display: block;
+  }
+}
+
+.tablet-up {
+  display: none;
+  
+  @include respond-above($breakpoint-md) {
+    display: block;
+  }
+}

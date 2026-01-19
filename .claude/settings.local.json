@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sass:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd Lendaz Owner Dashboard with admin listing approvals\n\nFeatures:\n- Property owner dashboard with analytics, listings, messaging, maintenance, documents, and profile sections\n- Admin listing approvals page with:\n  - Status filtering \\(All, Pending, Approved, Changes Requested, Rejected\\)\n  - Search by property name or owner\n  - Detailed table view with thumbnails\n  - Full workflow actions \\(Approve, Reject, Request Changes\\)\n- Listing review modal with:\n  - Image carousel with navigation\n  - Complete property details \\(specs, description, amenities\\)\n  - Owner information\n  - Submission details and admin notes\n  - Quick action buttons\n- Notes editing modal for managing admin feedback\n- Responsive design with SCSS modular architecture\n- Vanilla JavaScript with IIFE module pattern\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ],
+    "deny": []
+  }
+}

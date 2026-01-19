@@ -2704,3 +2704,774 @@ img {
     transform: translateY(0);
   }
 }
+
+// ============================================
+// COMPREHENSIVE MOBILE RESPONSIVE STYLES
+// Min width support: 360px
+// ============================================
+
+// Mobile hamburger menu button
+.mobile-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background: var(--color-gray-50);
+    border-color: var(--color-gray-300);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  .hamburger-icon {
+    width: 20px;
+    height: 14px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--color-gray-700);
+      border-radius: 2px;
+      transition: all var(--transition-fast);
+    }
+  }
+
+  &[aria-expanded="true"] {
+    .hamburger-icon span:nth-child(1) {
+      transform: rotate(45deg) translate(4px, 4px);
+    }
+    .hamburger-icon span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-icon span:nth-child(3) {
+      transform: rotate(-45deg) translate(4px, -4px);
+    }
+  }
+
+  @include respond-below($breakpoint-lg) {
+    display: flex;
+  }
+}
+
+// Mobile overlay for sidebar
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+
+  &.active {
+    opacity: 1;
+  }
+
+  @include respond-below($breakpoint-lg) {
+    &.active {
+      display: block;
+    }
+  }
+}
+
+// Mobile sidebar styles
+@include respond-below($breakpoint-lg) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    max-width: 85vw;
+    height: 100vh;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: translateX(-100%);
+    transition: transform var(--transition-base);
+    z-index: 1000;
+    border-right: 1px solid var(--color-gray-200);
+    border-bottom: none;
+
+    &.sidebar--open {
+      transform: translateX(0);
+    }
+
+    &[data-collapsed="true"] {
+      padding: var(--space-8) var(--space-6);
+
+      .sidebar__logo {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .sidebar__link {
+        justify-content: flex-start;
+        padding: 0 1rem;
+        width: auto;
+        height: 3rem;
+        text-indent: 0;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .sidebar__nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sidebar__link {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .sidebar__footer {
+    margin-top: auto;
+  }
+}
+
+// Mobile topbar styles
+@include respond-below($breakpoint-md) {
+  .main {
+    padding: var(--space-4);
+
+    .dashboard--sidebar-collapsed & {
+      padding: var(--space-4);
+    }
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-4);
+  }
+
+  .topbar__left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .topbar__title {
+    font-size: var(--font-size-xl);
+  }
+
+  .topbar__subtitle {
+    font-size: var(--font-size-sm);
+    display: none;
+  }
+
+  .topbar__right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+// Smaller mobile screens
+@include respond-below($breakpoint-sm) {
+  .main {
+    padding: var(--space-3);
+    gap: var(--space-4);
+  }
+
+  .topbar__title {
+    font-size: var(--font-size-lg);
+  }
+}
+
+// Mobile user menu
+@include respond-below($breakpoint-md) {
+  .user-menu__trigger {
+    padding: var(--space-1) var(--space-2);
+
+    .user-menu__info {
+      display: none;
+    }
+  }
+
+  .user-menu__dropdown {
+    right: 0;
+    left: auto;
+    min-width: 180px;
+    max-width: calc(100vw - var(--space-4));
+  }
+}
+
+// Mobile metrics grid
+@include respond-below($breakpoint-md) {
+  .metrics__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+
+  .metric-card {
+    padding: var(--space-4);
+  }
+
+  .metric-card__value {
+    font-size: var(--font-size-xl);
+  }
+
+  .metric-card__label {
+    font-size: var(--font-size-xs);
+  }
+}
+
+@include respond-below($breakpoint-sm) {
+  .metrics__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+  }
+
+  .metric-card {
+    padding: var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .metric-card__value {
+    font-size: var(--font-size-lg);
+  }
+}
+
+// Mobile analytics panels
+@include respond-below($breakpoint-md) {
+  .analytics-panels {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    min-height: auto;
+  }
+
+  .analytics-card {
+    padding: var(--space-4);
+  }
+
+  .analytics-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .analytics-card__actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .lead-sources {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .lead-sources__chart {
+    width: min(200px, 100%);
+    height: min(200px, 50vw);
+    margin: 0 auto;
+  }
+
+  .lead-sources__legend {
+    gap: var(--space-2);
+  }
+
+  .lead-sources__legend li {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+  }
+}
+
+// Mobile section styles
+@include respond-below($breakpoint-md) {
+  .section {
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+  }
+
+  .section__header h2 {
+    font-size: var(--font-size-lg);
+  }
+
+  .section__header p {
+    font-size: var(--font-size-sm);
+  }
+}
+
+// Mobile listing cards
+@include respond-below($breakpoint-sm) {
+  .listing-card {
+    border-radius: var(--radius-lg);
+  }
+
+  .listing-card__body {
+    padding: var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .listing-card__title {
+    font-size: var(--font-size-lg);
+  }
+
+  .listing-card__insights {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+  }
+
+  .listing-card__stat {
+    padding: var(--space-2);
+  }
+
+  .listing-card__stat-value {
+    font-size: var(--font-size-base);
+  }
+
+  .listing-card__footer {
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .listing-card__actions {
+    width: 100%;
+
+    .btn {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+}
+
+// Mobile toolbar and search
+@include respond-below($breakpoint-md) {
+  .listings__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+
+  .listings__search {
+    width: 100%;
+    min-width: 0;
+    order: -1;
+  }
+
+  .listings__filters {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .listings__filter {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-xs);
+  }
+}
+
+// Mobile messaging section
+@include respond-below($breakpoint-lg) {
+  .messaging__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include respond-below($breakpoint-md) {
+  .messaging__filters-bar {
+    padding: var(--space-3);
+    gap: var(--space-3);
+  }
+
+  .messaging__filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--space-2);
+    margin-bottom: calc(var(--space-2) * -1);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .messaging__filter {
+    flex-shrink: 0;
+    height: 2.25rem;
+    padding: 0 var(--space-3);
+    font-size: var(--font-size-xs);
+  }
+
+  .conversation {
+    padding: var(--space-4);
+  }
+
+  .conversation__property-context {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3);
+  }
+
+  .conversation__property-image {
+    width: 100%;
+    height: 120px;
+    border-radius: var(--radius-md);
+  }
+
+  .conversation__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .conversation__message {
+    max-width: 85%;
+  }
+
+  .message-list__item {
+    padding: var(--space-3);
+  }
+}
+
+// Mobile maintenance kanban board
+@include respond-below($breakpoint-lg) {
+  .maintenance__board {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+@include respond-below($breakpoint-md) {
+  .maintenance__board {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .maintenance__column {
+    padding: var(--space-4);
+  }
+
+  .ticket {
+    padding: var(--space-4);
+  }
+
+  .ticket footer {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+}
+
+// Mobile documents - Card layout instead of table
+@include respond-below($breakpoint-md) {
+  .documents__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .document-card {
+    padding: var(--space-4);
+  }
+
+  // Hide table on mobile and show card-based layout
+  .documents__table {
+    display: none;
+  }
+
+  // Mobile document cards (to be used instead of table)
+  .documents__mobile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .document-mobile-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+
+    &__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+
+    &__title {
+      font-weight: var(--font-weight-medium);
+      color: var(--color-gray-900);
+    }
+
+    &__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      font-size: var(--font-size-sm);
+      color: var(--color-gray-600);
+    }
+
+    &__actions {
+      display: flex;
+      gap: var(--space-2);
+
+      .btn {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// Show table on desktop
+@include respond-above($breakpoint-md) {
+  .documents__mobile-cards {
+    display: none;
+  }
+}
+
+// Mobile profile section
+@include respond-below($breakpoint-md) {
+  .profile__container {
+    gap: var(--space-4);
+  }
+
+  .profile-card {
+    border-radius: var(--radius-lg);
+  }
+
+  .profile-card__header {
+    padding: var(--space-4);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .profile-card__content {
+    padding: var(--space-4);
+  }
+
+  .profile-card__footer {
+    padding: var(--space-3) var(--space-4);
+    flex-direction: column;
+    gap: var(--space-2);
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  .profile-avatar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-card__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .verification-item {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+
+    &__content {
+      width: 100%;
+    }
+  }
+
+  .bank-account {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .notification-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  #profile {
+    padding: var(--space-3) !important;
+  }
+}
+
+// Mobile form row
+@include respond-below($breakpoint-sm) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Mobile buttons
+@include respond-below($breakpoint-md) {
+  .btn {
+    min-height: 44px;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .btn--small {
+    min-height: 36px;
+    padding: var(--space-2) var(--space-3);
+  }
+}
+
+// Mobile modal adjustments
+@include respond-below($breakpoint-md) {
+  .modal {
+    padding: var(--space-3);
+  }
+
+  .modal__content {
+    max-height: calc(100vh - var(--space-6));
+    max-width: calc(100vw - var(--space-6));
+    border-radius: var(--radius-lg);
+  }
+
+  .listing-analytics-modal .modal__content {
+    padding: var(--space-4);
+  }
+
+  .listing-analytics__header {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .listing-analytics__summary {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+  }
+
+  .listing-analytics__summary-card {
+    padding: var(--space-3);
+  }
+
+  .listing-analytics__summary-value {
+    font-size: var(--font-size-lg);
+  }
+}
+
+// Mobile spotlight search
+@include respond-below($breakpoint-md) {
+  .spotlight-trigger {
+    min-width: auto;
+    flex: 1;
+
+    &__shortcut {
+      display: none;
+    }
+  }
+}
+
+// Mobile session items
+@include respond-below($breakpoint-md) {
+  .session-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+
+    &__icon {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  .sessions-list {
+    gap: var(--space-3);
+  }
+}
+
+// Touch-friendly targets
+@include respond-below($breakpoint-md) {
+  // Ensure minimum 44px touch targets
+  button,
+  a,
+  input[type="checkbox"],
+  input[type="radio"],
+  .listings__filter,
+  .messaging__filter,
+  .analytics-card__action {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Scrollbar improvements for mobile
+@include respond-below($breakpoint-md) {
+  .main::-webkit-scrollbar,
+  .sidebar::-webkit-scrollbar,
+  .messaging__filters::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .main::-webkit-scrollbar-thumb,
+  .sidebar::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    border-radius: var(--radius-full);
+  }
+}
+
+// Hide non-essential elements on mobile
+@include respond-below($breakpoint-sm) {
+  .listing-card__updated {
+    display: none;
+  }
+
+  .lead-sources__dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+// Improve spacing consistency on mobile
+@include respond-below($breakpoint-md) {
+  .gap-mobile-sm {
+    gap: var(--space-2);
+  }
+
+  .gap-mobile-md {
+    gap: var(--space-3);
+  }
+
+  .p-mobile-sm {
+    padding: var(--space-3);
+  }
+
+  .p-mobile-md {
+    padding: var(--space-4);
+  }
+}

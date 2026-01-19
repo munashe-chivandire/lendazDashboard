@@ -12,6 +12,9 @@
 </head>
 <body>
     <div class="dashboard">
+        <!-- Mobile overlay -->
+        <div class="mobile-overlay" id="mobile-overlay"></div>
+
         <aside class="sidebar" aria-label="Primary" data-collapsed="false">
             <div class="sidebar__header">
                 <div class="sidebar__logo">
@@ -99,6 +102,14 @@
         <div class="main">
             <header class="topbar">
                 <div class="topbar__left">
+                    <!-- Mobile hamburger menu button -->
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+                        <span class="hamburger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
                     <h1 class="topbar__title">Portfolio Snapshot</h1>
                     <p class="topbar__subtitle">Monitor performance and stay on top of operations across your properties.</p>
                 </div>

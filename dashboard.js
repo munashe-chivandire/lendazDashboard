@@ -3208,6 +3208,75 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 })();
 
+// Mobile Menu Toggle Functionality
+(function() {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const sidebar = document.querySelector('.sidebar');
+    const sidebarLinks = document.querySelectorAll('.sidebar__link');
+
+    if (!mobileMenuToggle || !mobileOverlay || !sidebar) {
+        return;
+    }
+
+    let isMenuOpen = false;
+
+    function openMobileMenu() {
+        isMenuOpen = true;
+        sidebar.classList.add('sidebar--open');
+        mobileOverlay.classList.add('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        mobileMenuToggle.setAttribute('aria-label', 'Close navigation menu');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        isMenuOpen = false;
+        sidebar.classList.remove('sidebar--open');
+        mobileOverlay.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.setAttribute('aria-label', 'Open navigation menu');
+        document.body.style.overflow = '';
+    }
+
+    function toggleMobileMenu() {
+        if (isMenuOpen) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+    }
+
+    // Toggle button click
+    mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+
+    // Close when clicking overlay
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+
+    // Close when clicking a sidebar link (on mobile)
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 1024) {
+                closeMobileMenu();
+            }
+        });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+
+    // Close menu on window resize if going to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024 && isMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+})();
+
 // Admin Approvals Functionality
 (function() {
     const filterButtons = document.querySelectorAll('.admin-approvals__filter');

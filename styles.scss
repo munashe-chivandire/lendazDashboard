@@ -3964,7 +3964,36 @@ img {
   }
 }
 
-// 15. Help indicator styles (for future implementation)
+// 15. Sticky topbar on mobile for persistent navigation
+@include respond-below($breakpoint-lg) {
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-white);
+    padding: var(--space-4);
+    margin: calc(var(--space-4) * -1);
+    margin-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-gray-200);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  // Ensure main content has proper scroll container
+  .main {
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+}
+
+@include respond-below($breakpoint-md) {
+  .topbar {
+    padding: var(--space-3);
+    margin: calc(var(--space-3) * -1);
+    margin-bottom: var(--space-3);
+  }
+}
+
+// 16. Help indicator styles (for future implementation)
 .help-indicator {
   display: inline-flex;
   align-items: center;

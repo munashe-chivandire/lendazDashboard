@@ -6256,6 +6256,30 @@ img {
     padding: var(--space-5);
   }
 }
+@media (max-width: 1023px) {
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-white);
+    padding: var(--space-4);
+    margin: calc(var(--space-4) * -1);
+    margin-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-gray-200);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .main {
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+}
+@media (max-width: 767px) {
+  .topbar {
+    padding: var(--space-3);
+    margin: calc(var(--space-3) * -1);
+    margin-bottom: var(--space-3);
+  }
+}
 .help-indicator {
   display: inline-flex;
   align-items: center;

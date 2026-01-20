@@ -4097,469 +4097,77 @@ document.addEventListener('DOMContentLoaded', function() {
     window.openNotesModal = openNotesModal;
 })();
 
-// Property Upload Module
+// Mobile Floating Action Button & Back to Top
 (function() {
-    const form = document.getElementById('property-upload-form');
-    if (!form) return;
+    const fabButton = document.getElementById('mobile-fab-add-listing');
+    const backToTopButton = document.getElementById('back-to-top');
+    const mainContent = document.querySelector('.main');
+    const addListingBtn = document.getElementById('add-listing-btn');
 
-    // DOM Elements
-    const propertyNameInput = document.getElementById('property-name');
-    const propertyTypeInput = document.getElementById('property-type');
-    const propertyLocationInput = document.getElementById('property-location');
-    const propertyPriceInput = document.getElementById('property-price');
-    const ownerNameInput = document.getElementById('owner-name');
-    const ownerEmailInput = document.getElementById('owner-email');
-    const propertyBedroomsSelect = document.getElementById('property-bedrooms');
-    const propertyBathroomsSelect = document.getElementById('property-bathrooms');
-    const propertyFurnishedSelect = document.getElementById('property-furnished');
-    const propertyDescriptionInput = document.getElementById('property-description');
-    const propertyImagesInput = document.getElementById('property-images');
-    const imageDropzone = document.getElementById('image-dropzone');
-    const imagePreviewContainer = document.getElementById('image-preview-container');
-    const progressBar = document.getElementById('upload-progress-bar');
-    const progressText = document.getElementById('upload-progress-text');
-    const typeButtons = document.querySelectorAll('.property-upload__type-btn');
-    const clearBtn = document.getElementById('upload-clear-btn');
-    const submitBtn = document.getElementById('upload-submit-btn');
-    const saveAddAnotherBtn = document.getElementById('upload-save-add-another');
-    const recentUploadsSection = document.getElementById('recent-uploads-section');
-    const recentUploadsList = document.getElementById('recent-uploads-list');
-    const recentUploadsEmpty = document.getElementById('recent-uploads-empty');
-    const recentUploadCount = document.getElementById('recent-upload-count');
-    const uploadCountToday = document.getElementById('upload-count-today');
-    const uploadCountPending = document.getElementById('upload-count-pending');
-
-    // State
-    let selectedImages = [];
-    let recentUploads = [];
-    const REQUIRED_FIELDS = ['propertyName', 'propertyType', 'location', 'price', 'ownerName', 'ownerEmail'];
-
-    // Initialize
-    function init() {
-        setupTypeButtons();
-        setupImageUpload();
-        setupFormValidation();
-        setupFormActions();
-        updateProgress();
-        loadRecentUploads();
-    }
-
-    // Property Type Button Selection
-    function setupTypeButtons() {
-        typeButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Deselect all
-                typeButtons.forEach(b => {
-                    b.classList.remove('property-upload__type-btn--selected');
-                    b.setAttribute('aria-checked', 'false');
-                });
-                // Select clicked
-                btn.classList.add('property-upload__type-btn--selected');
-                btn.setAttribute('aria-checked', 'true');
-                propertyTypeInput.value = btn.dataset.type;
-                updateProgress();
-            });
+    // FAB click handler - triggers the add listing modal
+    if (fabButton && addListingBtn) {
+        fabButton.addEventListener('click', () => {
+            // Trigger the existing add listing button click
+            addListingBtn.click();
         });
     }
 
-    // Image Upload Handling
-    function setupImageUpload() {
-        // Dropzone click
-        imageDropzone.addEventListener('click', () => {
-            propertyImagesInput.click();
-        });
+    // Back to Top functionality
+    if (backToTopButton && mainContent) {
+        let scrollTimeout;
+        const scrollThreshold = 300; // Show button after scrolling 300px
 
-        // Dropzone keyboard
-        imageDropzone.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                propertyImagesInput.click();
+        // Check scroll position and show/hide button
+        const checkScroll = () => {
+            const scrollTop = mainContent.scrollTop || document.documentElement.scrollTop;
+
+            if (scrollTop > scrollThreshold) {
+                backToTopButton.hidden = false;
+            } else {
+                backToTopButton.hidden = true;
             }
-        });
-
-        // File input change
-        propertyImagesInput.addEventListener('change', handleImageSelect);
-
-        // Drag and drop
-        imageDropzone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            imageDropzone.classList.add('property-upload__dropzone--active');
-        });
-
-        imageDropzone.addEventListener('dragleave', () => {
-            imageDropzone.classList.remove('property-upload__dropzone--active');
-        });
-
-        imageDropzone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            imageDropzone.classList.remove('property-upload__dropzone--active');
-            const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
-            addImages(files);
-        });
-    }
-
-    function handleImageSelect(e) {
-        const files = Array.from(e.target.files);
-        addImages(files);
-    }
-
-    function addImages(files) {
-        files.forEach(file => {
-            if (file.size > 10 * 1024 * 1024) {
-                alert(`Image "${file.name}" is too large. Maximum size is 10MB.`);
-                return;
-            }
-            if (!selectedImages.some(img => img.name === file.name && img.size === file.size)) {
-                selectedImages.push(file);
-            }
-        });
-        renderImagePreviews();
-        updateProgress();
-    }
-
-    function renderImagePreviews() {
-        imagePreviewContainer.innerHTML = '';
-
-        if (selectedImages.length > 0) {
-            imageDropzone.classList.add('property-upload__dropzone--has-files');
-        } else {
-            imageDropzone.classList.remove('property-upload__dropzone--has-files');
-        }
-
-        selectedImages.forEach((file, index) => {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const item = document.createElement('div');
-                item.className = 'property-upload__preview-item';
-                item.innerHTML = `
-                    <img src="${e.target.result}" alt="Preview ${index + 1}">
-                    <button type="button" class="property-upload__preview-remove" data-index="${index}" aria-label="Remove image">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                `;
-                imagePreviewContainer.appendChild(item);
-
-                // Add remove handler
-                item.querySelector('.property-upload__preview-remove').addEventListener('click', () => {
-                    removeImage(index);
-                });
-            };
-            reader.readAsDataURL(file);
-        });
-    }
-
-    function removeImage(index) {
-        selectedImages.splice(index, 1);
-        renderImagePreviews();
-        updateProgress();
-    }
-
-    // Form Validation & Progress
-    function setupFormValidation() {
-        const inputs = [propertyNameInput, propertyLocationInput, propertyPriceInput, ownerNameInput, ownerEmailInput];
-        inputs.forEach(input => {
-            if (input) {
-                input.addEventListener('input', updateProgress);
-                input.addEventListener('blur', validateField);
-            }
-        });
-    }
-
-    function validateField(e) {
-        const input = e.target;
-        const value = input.value.trim();
-
-        if (input.required && !value) {
-            input.classList.add('property-upload__input--error');
-        } else {
-            input.classList.remove('property-upload__input--error');
-        }
-
-        // Email validation
-        if (input.type === 'email' && value) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(value)) {
-                input.classList.add('property-upload__input--error');
-            }
-        }
-    }
-
-    function updateProgress() {
-        let filledCount = 0;
-        const totalRequired = 6; // name, type, location, price, owner name, owner email
-
-        if (propertyNameInput && propertyNameInput.value.trim()) filledCount++;
-        if (propertyTypeInput && propertyTypeInput.value) filledCount++;
-        if (propertyLocationInput && propertyLocationInput.value.trim()) filledCount++;
-        if (propertyPriceInput && propertyPriceInput.value) filledCount++;
-        if (ownerNameInput && ownerNameInput.value.trim()) filledCount++;
-        if (ownerEmailInput && ownerEmailInput.value.trim()) filledCount++;
-
-        const percentage = (filledCount / totalRequired) * 100;
-
-        if (progressBar) {
-            progressBar.style.width = percentage + '%';
-        }
-        if (progressText) {
-            progressText.textContent = `${filledCount} / ${totalRequired} fields`;
-        }
-
-        // Enable/disable submit button
-        if (submitBtn) {
-            submitBtn.disabled = filledCount < totalRequired;
-        }
-        if (saveAddAnotherBtn) {
-            saveAddAnotherBtn.disabled = filledCount < totalRequired;
-        }
-    }
-
-    // Form Actions
-    function setupFormActions() {
-        // Form submit
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            submitForm(false);
-        });
-
-        // Clear button
-        if (clearBtn) {
-            clearBtn.addEventListener('click', clearForm);
-        }
-
-        // Save and add another
-        if (saveAddAnotherBtn) {
-            saveAddAnotherBtn.addEventListener('click', () => {
-                submitForm(true);
-            });
-        }
-    }
-
-    function submitForm(addAnother) {
-        // Validate
-        if (!validateForm()) {
-            return;
-        }
-
-        // Collect form data
-        const formData = {
-            id: 'LST-' + Date.now(),
-            propertyName: propertyNameInput.value.trim(),
-            propertyType: propertyTypeInput.value,
-            location: propertyLocationInput.value.trim(),
-            price: propertyPriceInput.value,
-            bedrooms: propertyBedroomsSelect ? propertyBedroomsSelect.value : '',
-            bathrooms: propertyBathroomsSelect ? propertyBathroomsSelect.value : '',
-            furnished: propertyFurnishedSelect ? propertyFurnishedSelect.value : '',
-            ownerName: ownerNameInput.value.trim(),
-            ownerEmail: ownerEmailInput.value.trim(),
-            description: propertyDescriptionInput ? propertyDescriptionInput.value.trim() : '',
-            images: selectedImages.length,
-            submittedAt: new Date().toISOString(),
-            status: 'pending'
         };
 
-        // Show loading state
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
-        }
-
-        // Simulate API call
-        setTimeout(() => {
-            // Add to recent uploads
-            recentUploads.unshift(formData);
-            saveRecentUploads();
-            updateStats();
-            renderRecentUploads();
-
-            // Show success
-            showSuccessMessage(formData.propertyName);
-
-            // Reset form
-            if (addAnother) {
-                clearForm();
-                if (propertyNameInput) {
-                    propertyNameInput.focus();
-                }
-            } else {
-                clearForm();
+        // Throttled scroll handler
+        const handleScroll = () => {
+            if (scrollTimeout) {
+                window.cancelAnimationFrame(scrollTimeout);
             }
+            scrollTimeout = window.requestAnimationFrame(checkScroll);
+        };
 
-            // Reset button
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `
-                    <span class="property-upload__btn-text">Submit for Approval</span>
-                    <svg class="property-upload__btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                `;
-            }
-        }, 800);
-    }
+        // Listen to scroll events on main content area
+        mainContent.addEventListener('scroll', handleScroll, { passive: true });
 
-    function validateForm() {
-        let isValid = true;
-        const fields = [
-            { input: propertyNameInput, name: 'Property Name' },
-            { input: propertyTypeInput, name: 'Property Type' },
-            { input: propertyLocationInput, name: 'Location' },
-            { input: propertyPriceInput, name: 'Price' },
-            { input: ownerNameInput, name: 'Owner Name' },
-            { input: ownerEmailInput, name: 'Owner Email' }
-        ];
+        // Also listen to window scroll for fallback
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
-        fields.forEach(field => {
-            if (field.input && !field.input.value.trim()) {
-                field.input.classList.add('property-upload__input--error');
-                isValid = false;
+        // Back to top click handler
+        backToTopButton.addEventListener('click', () => {
+            // Scroll main content to top
+            mainContent.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            // Also scroll window for fallback
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            // Return focus to top of page for accessibility
+            const firstFocusable = document.querySelector('.topbar__title, .mobile-menu-toggle');
+            if (firstFocusable) {
+                setTimeout(() => {
+                    firstFocusable.focus();
+                }, 500);
             }
         });
 
-        // Validate email format
-        if (ownerEmailInput && ownerEmailInput.value) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(ownerEmailInput.value)) {
-                ownerEmailInput.classList.add('property-upload__input--error');
-                isValid = false;
-            }
-        }
-
-        return isValid;
+        // Initial check
+        checkScroll();
     }
-
-    function clearForm() {
-        form.reset();
-        selectedImages = [];
-        renderImagePreviews();
-
-        // Clear type selection
-        typeButtons.forEach(btn => {
-            btn.classList.remove('property-upload__type-btn--selected');
-            btn.setAttribute('aria-checked', 'false');
-        });
-        if (propertyTypeInput) {
-            propertyTypeInput.value = '';
-        }
-
-        // Clear error states
-        form.querySelectorAll('.property-upload__input--error').forEach(el => {
-            el.classList.remove('property-upload__input--error');
-        });
-
-        updateProgress();
-    }
-
-    function showSuccessMessage(propertyName) {
-        const overlay = document.createElement('div');
-        overlay.className = 'property-upload__success-overlay';
-        overlay.innerHTML = `
-            <div class="property-upload__success-content">
-                <div class="property-upload__success-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <h3 class="property-upload__success-title">Property Submitted!</h3>
-                <p class="property-upload__success-message">"${propertyName}" has been submitted for approval.</p>
-            </div>
-        `;
-        document.body.appendChild(overlay);
-
-        // Auto remove after 2 seconds
-        setTimeout(() => {
-            overlay.style.opacity = '0';
-            overlay.style.transition = 'opacity 0.3s ease-out';
-            setTimeout(() => {
-                overlay.remove();
-            }, 300);
-        }, 1500);
-    }
-
-    // Recent Uploads Management
-    function loadRecentUploads() {
-        try {
-            const stored = localStorage.getItem('lendaz_recent_uploads');
-            if (stored) {
-                recentUploads = JSON.parse(stored);
-                // Filter to only today's uploads
-                const today = new Date().toDateString();
-                recentUploads = recentUploads.filter(upload => {
-                    const uploadDate = new Date(upload.submittedAt).toDateString();
-                    return uploadDate === today;
-                });
-            }
-        } catch (e) {
-            recentUploads = [];
-        }
-        updateStats();
-        renderRecentUploads();
-    }
-
-    function saveRecentUploads() {
-        try {
-            localStorage.setItem('lendaz_recent_uploads', JSON.stringify(recentUploads.slice(0, 50)));
-        } catch (e) {
-            console.warn('Could not save recent uploads to localStorage');
-        }
-    }
-
-    function updateStats() {
-        if (uploadCountToday) {
-            uploadCountToday.textContent = recentUploads.length;
-        }
-        if (uploadCountPending) {
-            const pendingCount = recentUploads.filter(u => u.status === 'pending').length;
-            uploadCountPending.textContent = pendingCount;
-        }
-        if (recentUploadCount) {
-            recentUploadCount.textContent = recentUploads.length + ' today';
-        }
-    }
-
-    function renderRecentUploads() {
-        if (!recentUploadsList) return;
-
-        if (recentUploads.length === 0) {
-            if (recentUploadsEmpty) {
-                recentUploadsEmpty.style.display = 'block';
-            }
-            return;
-        }
-
-        if (recentUploadsEmpty) {
-            recentUploadsEmpty.style.display = 'none';
-        }
-
-        // Clear existing items (except empty state)
-        const existingItems = recentUploadsList.querySelectorAll('.property-upload__recent-item');
-        existingItems.forEach(item => item.remove());
-
-        // Render recent uploads
-        recentUploads.slice(0, 5).forEach(upload => {
-            const item = document.createElement('div');
-            item.className = 'property-upload__recent-item';
-
-            const time = new Date(upload.submittedAt);
-            const timeString = time.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-
-            item.innerHTML = `
-                <div class="property-upload__recent-thumb" style="background: linear-gradient(135deg, var(--color-gray-200), var(--color-gray-300));"></div>
-                <div class="property-upload__recent-info">
-                    <div class="property-upload__recent-name">${upload.propertyName}</div>
-                    <div class="property-upload__recent-meta">${upload.propertyType} &bull; ${upload.location} &bull; ${timeString}</div>
-                </div>
-                <span class="property-upload__recent-status">Pending</span>
-            `;
-
-            recentUploadsList.insertBefore(item, recentUploadsEmpty);
-        });
-    }
-
-    // Initialize module
-    init();
 })();
 
 // End of DOMContentLoaded

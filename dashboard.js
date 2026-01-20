@@ -4097,6 +4097,79 @@ document.addEventListener('DOMContentLoaded', function() {
     window.openNotesModal = openNotesModal;
 })();
 
+// Mobile Floating Action Button & Back to Top
+(function() {
+    const fabButton = document.getElementById('mobile-fab-add-listing');
+    const backToTopButton = document.getElementById('back-to-top');
+    const mainContent = document.querySelector('.main');
+    const addListingBtn = document.getElementById('add-listing-btn');
+
+    // FAB click handler - triggers the add listing modal
+    if (fabButton && addListingBtn) {
+        fabButton.addEventListener('click', () => {
+            // Trigger the existing add listing button click
+            addListingBtn.click();
+        });
+    }
+
+    // Back to Top functionality
+    if (backToTopButton && mainContent) {
+        let scrollTimeout;
+        const scrollThreshold = 300; // Show button after scrolling 300px
+
+        // Check scroll position and show/hide button
+        const checkScroll = () => {
+            const scrollTop = mainContent.scrollTop || document.documentElement.scrollTop;
+
+            if (scrollTop > scrollThreshold) {
+                backToTopButton.hidden = false;
+            } else {
+                backToTopButton.hidden = true;
+            }
+        };
+
+        // Throttled scroll handler
+        const handleScroll = () => {
+            if (scrollTimeout) {
+                window.cancelAnimationFrame(scrollTimeout);
+            }
+            scrollTimeout = window.requestAnimationFrame(checkScroll);
+        };
+
+        // Listen to scroll events on main content area
+        mainContent.addEventListener('scroll', handleScroll, { passive: true });
+
+        // Also listen to window scroll for fallback
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        // Back to top click handler
+        backToTopButton.addEventListener('click', () => {
+            // Scroll main content to top
+            mainContent.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            // Also scroll window for fallback
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            // Return focus to top of page for accessibility
+            const firstFocusable = document.querySelector('.topbar__title, .mobile-menu-toggle');
+            if (firstFocusable) {
+                setTimeout(() => {
+                    firstFocusable.focus();
+                }, 500);
+            }
+        });
+
+        // Initial check
+        checkScroll();
+    }
+})();
+
 // End of DOMContentLoaded
 });
 

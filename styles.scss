@@ -3475,3 +3475,520 @@ img {
     padding: var(--space-4);
   }
 }
+
+// ============================================
+// MOBILE USABILITY ENHANCEMENTS
+// Improvements for older/less tech-savvy users
+// ============================================
+
+// 1. Hamburger menu with visible "Menu" label
+.mobile-menu-toggle {
+  flex-direction: column;
+  gap: var(--space-1);
+  width: auto;
+  height: auto;
+  padding: var(--space-2) var(--space-3);
+
+  .mobile-menu-label {
+    display: none;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-700);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @include respond-below($breakpoint-lg) {
+    .mobile-menu-label {
+      display: block;
+    }
+  }
+
+  // Active state for touch feedback
+  &:active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: scale(0.95);
+
+    .hamburger-icon span {
+      background: var(--color-white);
+    }
+
+    .mobile-menu-label {
+      color: var(--color-white);
+    }
+  }
+}
+
+// 2. Show subtitle on mobile (shortened version)
+@include respond-below($breakpoint-md) {
+  .topbar__subtitle {
+    display: block !important;
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-600);
+    margin-top: var(--space-1);
+    line-height: var(--line-height-tight);
+    // Truncate long text
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .topbar__left {
+    flex-wrap: wrap;
+  }
+}
+
+// 3. Improved metric card readability
+@include respond-below($breakpoint-md) {
+  .metric-card__label {
+    font-size: var(--font-size-sm) !important; // Increase from XS to SM
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-700); // Darker for better contrast
+  }
+
+  .metric-card__trend {
+    font-size: var(--font-size-sm); // Increase from XS to SM
+    font-weight: var(--font-weight-medium);
+
+    &--up {
+      color: #047857; // Darker green for better contrast
+    }
+
+    &--down {
+      color: #b91c1c; // Darker red for better contrast
+    }
+
+    &--neutral {
+      color: var(--color-gray-700); // Darker gray
+    }
+  }
+}
+
+// 4. Visible tap/active states for all interactive elements
+@include respond-below($breakpoint-lg) {
+  // Buttons active state
+  .btn:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
+
+  .btn--primary:active {
+    background: var(--color-primary-dark);
+  }
+
+  .btn--secondary:active {
+    background: var(--color-gray-100);
+    border-color: var(--color-primary);
+  }
+
+  // Filter buttons active state
+  .listings__filter:active,
+  .messaging__filter:active,
+  .admin-approvals__filter:active {
+    transform: scale(0.95);
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+  }
+
+  // Cards active state
+  .metric-card:active,
+  .listing-card:active,
+  .analytics-card:active {
+    transform: scale(0.98);
+    box-shadow: var(--shadow-sm);
+  }
+
+  // Sidebar links active state
+  .sidebar__link:active {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: scale(0.98);
+
+    .dashSideBarIcon path {
+      fill: var(--color-white);
+    }
+  }
+
+  // User menu active state
+  .user-menu__trigger:active {
+    transform: scale(0.97);
+    background: var(--color-gray-100);
+  }
+}
+
+// 5. Improved filter button sizes
+@include respond-below($breakpoint-md) {
+  .listings__filter {
+    padding: var(--space-3) var(--space-4); // Larger padding
+    font-size: var(--font-size-sm); // Increase from XS to SM
+    min-height: 44px;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .messaging__filter {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-sm);
+    min-height: 40px;
+  }
+
+  // Add scroll fade indicators for horizontal scroll
+  .listings__filters,
+  .messaging__filters {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      background: linear-gradient(to left, var(--color-white) 0%, transparent 100%);
+      pointer-events: none;
+      opacity: 0.8;
+    }
+  }
+}
+
+// 6. Improved listing card footer button spacing
+@include respond-below($breakpoint-md) {
+  .listing-card__footer {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .listing-card__actions {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3) !important;
+    width: 100%;
+
+    .btn {
+      min-height: 48px; // Larger touch targets
+      font-size: var(--font-size-sm);
+      padding: var(--space-3);
+    }
+  }
+}
+
+@include respond-below($breakpoint-sm) {
+  .listing-card__actions {
+    grid-template-columns: 1fr; // Stack on very small screens
+
+    .btn {
+      min-height: 52px; // Even larger on small screens
+    }
+  }
+}
+
+// 7. Floating Action Button (FAB) for primary action
+.mobile-fab {
+  display: none;
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-4);
+  z-index: 900;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-primary);
+  color: var(--color-dark);
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  box-shadow:
+    0 4px 14px rgba(37, 99, 235, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow:
+      0 6px 20px rgba(37, 99, 235, 0.5),
+      0 3px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.95);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--color-white);
+    outline-offset: 2px;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &__label {
+    white-space: nowrap;
+  }
+
+  @include respond-below($breakpoint-lg) {
+    display: flex;
+  }
+
+  @include respond-below($breakpoint-sm) {
+    // Compact on very small screens
+    padding: var(--space-4);
+    border-radius: var(--radius-full);
+
+    &__label {
+      @include visually-hidden;
+    }
+  }
+}
+
+// 8. Back to Top button
+.back-to-top {
+  display: none;
+  position: fixed;
+  bottom: var(--space-6);
+  left: var(--space-4);
+  z-index: 900;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  background: var(--color-white);
+  color: var(--color-gray-700);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-fast);
+  opacity: 0;
+  transform: translateY(20px);
+
+  &:not([hidden]) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background: var(--color-gray-50);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &__label {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @include respond-below($breakpoint-lg) {
+    display: flex;
+  }
+}
+
+// 9. Improved contrast for gray text elements
+@include respond-below($breakpoint-md) {
+  // Status and timestamps
+  .listing-card__updated,
+  .listing-card__meta-label,
+  .listing-card__schedule-label {
+    color: var(--color-gray-700); // Darker than default
+    font-size: var(--font-size-sm);
+  }
+
+  // Values should be even more prominent
+  .listing-card__meta-value {
+    color: var(--color-gray-900);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  // Analytics card improvements
+  .analytics-card__action {
+    font-size: var(--font-size-sm);
+    min-height: 40px;
+    padding: var(--space-2) var(--space-4);
+  }
+
+  // Lead sources legend improvements
+  .lead-sources__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-900);
+  }
+
+  .lead-sources__value {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+// 10. Improved modal footer with visible Cancel button
+@include respond-below($breakpoint-md) {
+  .modal__footer {
+    flex-direction: column;
+    gap: var(--space-3);
+
+    .btn {
+      width: 100%;
+      min-height: 52px;
+      font-size: var(--font-size-base);
+    }
+  }
+
+  // Ensure close button is more visible
+  .modal__close {
+    width: 48px;
+    height: 48px;
+    background: var(--color-gray-200);
+
+    &:hover {
+      background: var(--color-gray-300);
+    }
+  }
+}
+
+// 11. Better visual hierarchy for status badges
+@include respond-below($breakpoint-md) {
+  .listing-card__badge--status {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .status-badge {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-sm);
+
+    &--success {
+      background: rgba(34, 197, 94, 0.2);
+      color: #14532d; // Very dark green
+    }
+
+    &--warning {
+      background: rgba(251, 191, 36, 0.25);
+      color: #78350f; // Very dark amber
+    }
+
+    &--draft {
+      background: rgba(107, 114, 128, 0.2);
+      color: #1f2937; // Very dark gray
+    }
+  }
+}
+
+// 12. Chart improvements for mobile - show key numbers prominently
+@include respond-below($breakpoint-md) {
+  .lead-sources__chart {
+    // Add a center label showing the main metric
+    position: relative;
+
+    &::after {
+      content: attr(data-center-label);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-gray-900);
+    }
+  }
+
+  // Make legend items larger and more tappable
+  .lead-sources__legend li {
+    padding: var(--space-3) var(--space-4);
+    min-height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--color-gray-50);
+    margin-bottom: var(--space-2);
+
+    &:active {
+      background: var(--color-primary);
+
+      .lead-sources__label,
+      .lead-sources__value {
+        color: var(--color-white);
+      }
+    }
+  }
+}
+
+// 13. Section header improvements
+@include respond-below($breakpoint-md) {
+  .section__header {
+    margin-bottom: var(--space-5);
+
+    h2 {
+      font-size: var(--font-size-xl) !important;
+      margin-bottom: var(--space-2);
+    }
+
+    p {
+      font-size: var(--font-size-base) !important;
+      color: var(--color-gray-700);
+      line-height: var(--line-height-relaxed);
+    }
+  }
+}
+
+// 14. Ensure adequate spacing between interactive elements
+@include respond-below($breakpoint-md) {
+  // Add more gap between metric cards for easier tapping
+  .metrics__grid {
+    gap: var(--space-4);
+  }
+
+  // More spacing in listing grid
+  .listings__grid {
+    gap: var(--space-5);
+  }
+
+  // More padding in cards
+  .metric-card {
+    padding: var(--space-5);
+  }
+}
+
+// 15. Help indicator styles (for future implementation)
+.help-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: var(--space-2);
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-600);
+  cursor: help;
+
+  &:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  @include respond-below($breakpoint-md) {
+    width: 28px;
+    height: 28px;
+    font-size: var(--font-size-sm);
+  }
+}

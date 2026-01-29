@@ -97,6 +97,13 @@
                         </svg>
                     </span>
                     Quick Upload</a>
+                <a href="#runner-portal" class="sidebar__link" data-target="runner-portal" aria-controls="runner-portal" data-tooltip="Runner Portal">
+                    <span class="iconWrapper">
+                        <svg class="dashSideBarIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    Runner Portal</a>
             </nav>
             <div class="sidebar__footer">
                 <button class="btn btn--primary btn--full-width" id="add-listing-btn">Add Listing</button>
@@ -1675,6 +1682,225 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Runner Portal Section -->
+            <section class="section runner-portal" aria-hidden="true" id="runner-portal" aria-labelledby="runner-portal-heading">
+                <header class="section__header">
+                    <h2 id="runner-portal-heading">Runner Portal</h2>
+                    <p>Track your listings, earnings, and performance as a field agent.</p>
+                </header>
+
+                <!-- 1. Earnings Overview Cards -->
+                <div class="runner-portal__stats">
+                    <article class="runner-stat-card">
+                        <div class="runner-stat-card__icon runner-stat-card__icon--earnings">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 1V23M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="runner-stat-card__content">
+                            <span class="runner-stat-card__label">Total Earnings</span>
+                            <span class="runner-stat-card__value" id="runner-total-earnings">$127.50</span>
+                            <span class="runner-stat-card__sub">255 approved listings</span>
+                        </div>
+                    </article>
+                    <article class="runner-stat-card">
+                        <div class="runner-stat-card__icon runner-stat-card__icon--month">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 3V7M8 3V7M3 11H21M5 5H19C20.1046 5 21 5.89543 21 7V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V7C3 5.89543 3.89543 5 5 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="runner-stat-card__content">
+                            <span class="runner-stat-card__label">This Month</span>
+                            <span class="runner-stat-card__value" id="runner-month-earnings">$23.00</span>
+                            <span class="runner-stat-card__trend runner-stat-card__trend--up">+18% vs last month</span>
+                        </div>
+                    </article>
+                    <article class="runner-stat-card runner-stat-card--actionable" id="runner-withdraw-btn" role="button" tabindex="0" aria-label="Withdraw pending balance">
+                        <div class="runner-stat-card__icon runner-stat-card__icon--balance">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 4H3C1.89543 4 1 4.89543 1 6V18C1 19.1046 1.89543 20 3 20H21C22.1046 20 23 19.1046 23 18V6C23 4.89543 22.1046 4 21 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M1 10H23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="runner-stat-card__content">
+                            <span class="runner-stat-card__label">Pending Balance</span>
+                            <span class="runner-stat-card__value" id="runner-pending-balance">$45.50</span>
+                            <span class="runner-stat-card__action">Tap to withdraw
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="runner-stat-card">
+                        <div class="runner-stat-card__icon runner-stat-card__icon--listings">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="runner-stat-card__content">
+                            <span class="runner-stat-card__label">Listings Submitted</span>
+                            <span class="runner-stat-card__value" id="runner-total-listings">278</span>
+                            <span class="runner-stat-card__sub">
+                                <span class="runner-stat-card__badge runner-stat-card__badge--approved">255 approved</span>
+                                <span class="runner-stat-card__badge runner-stat-card__badge--pending">15 pending</span>
+                                <span class="runner-stat-card__badge runner-stat-card__badge--rejected">8 rejected</span>
+                            </span>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- 2. Earnings Chart + 3. Performance Goals (side by side) -->
+                <div class="runner-portal__row">
+                    <div class="runner-portal__chart-wrap">
+                        <div class="runner-portal__chart-header">
+                            <h3>Earnings Over Time</h3>
+                            <div class="runner-portal__chart-filters">
+                                <button class="runner-portal__chart-filter active" data-range="7d">7D</button>
+                                <button class="runner-portal__chart-filter" data-range="30d">30D</button>
+                                <button class="runner-portal__chart-filter" data-range="90d">90D</button>
+                            </div>
+                        </div>
+                        <div class="runner-portal__chart-container">
+                            <canvas id="runner-earnings-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="runner-portal__goals">
+                        <h3>Performance</h3>
+                        <!-- Weekly Target -->
+                        <div class="runner-goal">
+                            <div class="runner-goal__header">
+                                <span class="runner-goal__label">Weekly Target</span>
+                                <span class="runner-goal__count" id="runner-weekly-count">7 / 10</span>
+                            </div>
+                            <div class="runner-goal__bar">
+                                <div class="runner-goal__bar-fill" id="runner-weekly-bar" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <!-- Streak -->
+                        <div class="runner-streak">
+                            <div class="runner-streak__icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#F59E0B" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="runner-streak__info">
+                                <span class="runner-streak__value" id="runner-streak-days">12 days</span>
+                                <span class="runner-streak__label">Current Streak</span>
+                            </div>
+                        </div>
+                        <!-- Milestones -->
+                        <div class="runner-milestones">
+                            <span class="runner-milestones__title">Milestones</span>
+                            <div class="runner-milestones__list">
+                                <div class="runner-milestone runner-milestone--earned" title="10 Listings">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 15L8.24 17.34L9.24 13.09L5.91 10.18L10.3 9.74L12 5.5L13.7 9.74L18.09 10.18L14.76 13.09L15.76 17.34L12 15Z" fill="currentColor"/></svg>
+                                    <span>10</span>
+                                </div>
+                                <div class="runner-milestone runner-milestone--earned" title="50 Listings">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 15L8.24 17.34L9.24 13.09L5.91 10.18L10.3 9.74L12 5.5L13.7 9.74L18.09 10.18L14.76 13.09L15.76 17.34L12 15Z" fill="currentColor"/></svg>
+                                    <span>50</span>
+                                </div>
+                                <div class="runner-milestone runner-milestone--earned" title="100 Listings">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 15L8.24 17.34L9.24 13.09L5.91 10.18L10.3 9.74L12 5.5L13.7 9.74L18.09 10.18L14.76 13.09L15.76 17.34L12 15Z" fill="currentColor"/></svg>
+                                    <span>100</span>
+                                </div>
+                                <div class="runner-milestone" title="500 Listings">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 15L8.24 17.34L9.24 13.09L5.91 10.18L10.3 9.74L12 5.5L13.7 9.74L18.09 10.18L14.76 13.09L15.76 17.34L12 15Z" fill="currentColor"/></svg>
+                                    <span>500</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Leaderboard -->
+                <div class="runner-portal__leaderboard">
+                    <div class="runner-portal__leaderboard-header">
+                        <h3>Leaderboard</h3>
+                        <div class="runner-portal__leaderboard-filters">
+                            <button class="runner-portal__lb-filter active" data-period="week">This Week</button>
+                            <button class="runner-portal__lb-filter" data-period="month">This Month</button>
+                            <button class="runner-portal__lb-filter" data-period="all">All Time</button>
+                        </div>
+                    </div>
+                    <table class="runner-leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Runner</th>
+                                <th>Listings</th>
+                                <th>Earnings</th>
+                            </tr>
+                        </thead>
+                        <tbody id="runner-leaderboard-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 5. Listings Activity Feed -->
+                <div class="runner-portal__activity">
+                    <div class="runner-portal__activity-header">
+                        <h3>Listing Activity</h3>
+                        <div class="runner-portal__activity-controls">
+                            <div class="runner-portal__activity-search">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="text" placeholder="Search listings..." id="runner-activity-search" class="runner-portal__search-input" />
+                            </div>
+                            <select id="runner-activity-filter" class="runner-portal__select">
+                                <option value="all">All Status</option>
+                                <option value="approved">Approved</option>
+                                <option value="pending">Pending</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="runner-portal__activity-table-wrap">
+                        <table class="runner-activity-table">
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Date</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th>Earned</th>
+                                </tr>
+                            </thead>
+                            <tbody id="runner-activity-body">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="runner-portal__activity-footer">
+                        <button class="btn btn--secondary btn--sm" id="runner-load-more">Load More</button>
+                    </div>
+                </div>
+
+                <!-- 6. Withdrawal Section -->
+                <div class="runner-portal__withdrawals">
+                    <div class="runner-portal__withdrawals-header">
+                        <h3>Withdrawal History</h3>
+                        <button class="btn btn--primary btn--sm" id="runner-withdraw-btn-2">Request Withdrawal</button>
+                    </div>
+                    <table class="runner-withdrawal-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="runner-withdrawal-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </div>
     </div>
 
@@ -3091,6 +3317,255 @@
             
             <div class="success-modal__actions">
                 <button type="button" class="btn btn--primary" id="success-modal-close">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Runner Listing Detail Modal -->
+    <div class="modal runner-listing-modal" id="runner-listing-modal" role="dialog" aria-hidden="true" aria-labelledby="runner-listing-modal-title">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content runner-listing-modal__content">
+            <header class="runner-listing-modal__header">
+                <div class="runner-listing-modal__header-info">
+                    <h2 id="runner-listing-modal-title">Listing Details</h2>
+                    <span class="runner-listing-modal__status" id="rlm-status-badge">Pending</span>
+                </div>
+                <button class="modal__close" id="runner-listing-modal-close" type="button" aria-label="Close modal">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <div class="runner-listing-modal__body">
+                <!-- Left: Image Carousel -->
+                <div class="runner-listing-modal__gallery">
+                    <div class="runner-carousel" id="runner-carousel">
+                        <div class="runner-carousel__container">
+                            <div class="runner-carousel__track" id="runner-carousel-track">
+                                <!-- Slides populated by JS -->
+                            </div>
+                            <button class="runner-carousel__nav runner-carousel__nav--prev" id="runner-carousel-prev" type="button" aria-label="Previous image">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                            <button class="runner-carousel__nav runner-carousel__nav--next" id="runner-carousel-next" type="button" aria-label="Next image">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                            <div class="runner-carousel__counter" id="runner-carousel-counter">1 / 3</div>
+                        </div>
+                        <div class="runner-carousel__indicators" id="runner-carousel-indicators">
+                            <!-- Dots populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Earnings Banner -->
+                    <div class="runner-listing-modal__earnings" id="rlm-earnings-banner">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 1V23M17 5H9.5C7.01 5 5 7.01 5 9.5S7.01 14 9.5 14H14.5C16.99 14 19 16.01 19 18.5S16.99 23 14.5 23H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span id="rlm-earned">$0.50 earned</span>
+                    </div>
+                </div>
+
+                <!-- Right: Property Details -->
+                <div class="runner-listing-modal__details">
+                    <!-- Title + Price -->
+                    <div class="runner-listing-modal__section">
+                        <div class="runner-listing-modal__title-row">
+                            <h3 class="runner-listing-modal__name" id="rlm-name">Property Name</h3>
+                            <span class="runner-listing-modal__price" id="rlm-price">$0/mo</span>
+                        </div>
+                        <p class="runner-listing-modal__location" id="rlm-location-row">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5.03 7.03 1 12 1S21 5.03 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                            <span id="rlm-location">—</span>
+                        </p>
+                        <span class="runner-listing-modal__id" id="rlm-id">#LST-0000</span>
+                    </div>
+
+                    <!-- Specs Grid -->
+                    <div class="runner-listing-modal__section">
+                        <h4 class="runner-listing-modal__section-title">Property Details</h4>
+                        <div class="runner-listing-modal__specs">
+                            <div class="runner-listing-modal__spec">
+                                <span class="runner-listing-modal__spec-label">Type</span>
+                                <span class="runner-listing-modal__spec-value" id="rlm-type">—</span>
+                            </div>
+                            <div class="runner-listing-modal__spec">
+                                <span class="runner-listing-modal__spec-label">Bedrooms</span>
+                                <span class="runner-listing-modal__spec-value" id="rlm-bedrooms">—</span>
+                            </div>
+                            <div class="runner-listing-modal__spec">
+                                <span class="runner-listing-modal__spec-label">Bathrooms</span>
+                                <span class="runner-listing-modal__spec-value" id="rlm-bathrooms">—</span>
+                            </div>
+                            <div class="runner-listing-modal__spec">
+                                <span class="runner-listing-modal__spec-label">Size</span>
+                                <span class="runner-listing-modal__spec-value" id="rlm-size">—</span>
+                            </div>
+                            <div class="runner-listing-modal__spec">
+                                <span class="runner-listing-modal__spec-label">Furnished</span>
+                                <span class="runner-listing-modal__spec-value" id="rlm-furnished">—</span>
+                            </div>
+                            <div class="runner-listing-modal__spec">
+                                <span class="runner-listing-modal__spec-label">Submitted</span>
+                                <span class="runner-listing-modal__spec-value" id="rlm-date">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="runner-listing-modal__section">
+                        <h4 class="runner-listing-modal__section-title">Description</h4>
+                        <p class="runner-listing-modal__description" id="rlm-description">—</p>
+                    </div>
+
+                    <!-- Amenities -->
+                    <div class="runner-listing-modal__section">
+                        <h4 class="runner-listing-modal__section-title">Amenities</h4>
+                        <div class="runner-listing-modal__amenities" id="rlm-amenities">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Owner Info -->
+                    <div class="runner-listing-modal__section">
+                        <h4 class="runner-listing-modal__section-title">Owner Information</h4>
+                        <div class="runner-listing-modal__owner">
+                            <div class="runner-listing-modal__owner-avatar">
+                                <span id="rlm-owner-initials">JM</span>
+                            </div>
+                            <div class="runner-listing-modal__owner-details">
+                                <span class="runner-listing-modal__owner-name" id="rlm-owner-name">—</span>
+                                <span class="runner-listing-modal__owner-email" id="rlm-owner-email">—</span>
+                                <span class="runner-listing-modal__owner-phone" id="rlm-owner-phone">—</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Runner Withdrawal Modal -->
+    <div class="modal runner-withdraw-modal" id="runner-withdraw-modal" role="dialog" aria-hidden="true" aria-labelledby="runner-withdraw-modal-title">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content runner-withdraw-modal__content">
+            <!-- Form State -->
+            <div class="runner-withdraw-modal__form-state" id="runner-withdraw-form-state">
+                <header class="runner-withdraw-modal__header">
+                    <h2 id="runner-withdraw-modal-title">Request Withdrawal</h2>
+                    <button class="modal__close" id="runner-withdraw-modal-close" type="button" aria-label="Close modal">
+                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </header>
+                <div class="runner-withdraw-modal__body">
+                    <!-- Hero Balance -->
+                    <div class="runner-withdraw-modal__hero">
+                        <div class="runner-withdraw-modal__hero-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 4H3C1.89543 4 1 4.89543 1 6V18C1 19.1046 1.89543 20 3 20H21C22.1046 20 23 19.1046 23 18V6C23 4.89543 22.1046 4 21 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 10H23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <span class="runner-withdraw-modal__hero-label">Available Balance</span>
+                        <span class="runner-withdraw-modal__hero-amount" id="runner-withdraw-available">$45.50</span>
+                    </div>
+
+                    <!-- Amount -->
+                    <div class="form-group">
+                        <label class="form-group__label" for="runner-withdraw-amount">Withdrawal Amount</label>
+                        <div class="runner-withdraw-modal__amount-input">
+                            <span class="runner-withdraw-modal__currency">$</span>
+                            <input type="number" id="runner-withdraw-amount" class="form-group__input" placeholder="0.00" min="5" step="0.50" />
+                        </div>
+                        <span class="form-group__hint">Minimum withdrawal: $5.00</span>
+                    </div>
+
+                    <!-- Payment Method Cards -->
+                    <div class="form-group">
+                        <label class="form-group__label">Payment Method</label>
+                        <div class="runner-withdraw-modal__methods">
+                            <label class="runner-withdraw-modal__method" tabindex="0">
+                                <input type="radio" name="runner-withdraw-method" value="ecocash" class="runner-withdraw-modal__method-radio" />
+                                <div class="runner-withdraw-modal__method-card">
+                                    <div class="runner-withdraw-modal__method-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M22 16.92V19.92C22 20.48 21.56 20.93 21 20.95C20.68 20.98 20.35 21 20 21C10.61 21 3 13.39 3 4C3 3.65 3.02 3.32 3.05 3C3.07 2.44 3.52 2 4.08 2H7.08C7.56 2 7.97 2.35 8.05 2.82C8.14 3.38 8.3 3.93 8.52 4.44L7.02 5.94C6.57 5.13 6.22 4.26 6 3.34L7.5 1.84" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </div>
+                                    <div class="runner-withdraw-modal__method-info">
+                                        <span class="runner-withdraw-modal__method-name">EcoCash</span>
+                                        <span class="runner-withdraw-modal__method-desc">Mobile money transfer</span>
+                                    </div>
+                                    <div class="runner-withdraw-modal__method-check">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="runner-withdraw-modal__method" tabindex="0">
+                                <input type="radio" name="runner-withdraw-method" value="bank" class="runner-withdraw-modal__method-radio" />
+                                <div class="runner-withdraw-modal__method-card">
+                                    <div class="runner-withdraw-modal__method-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 21H21M3 10H21M5 6L12 3L19 6M4 10V21M20 10V21M8 14V17M12 14V17M16 14V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </div>
+                                    <div class="runner-withdraw-modal__method-info">
+                                        <span class="runner-withdraw-modal__method-name">Bank Transfer</span>
+                                        <span class="runner-withdraw-modal__method-desc">Direct to bank account</span>
+                                    </div>
+                                    <div class="runner-withdraw-modal__method-check">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="runner-withdraw-modal__method" tabindex="0">
+                                <input type="radio" name="runner-withdraw-method" value="paypal" class="runner-withdraw-modal__method-radio" />
+                                <div class="runner-withdraw-modal__method-card">
+                                    <div class="runner-withdraw-modal__method-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/><path d="M8 14L12 10L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </div>
+                                    <div class="runner-withdraw-modal__method-info">
+                                        <span class="runner-withdraw-modal__method-name">PayPal</span>
+                                        <span class="runner-withdraw-modal__method-desc">Online payment</span>
+                                    </div>
+                                    <div class="runner-withdraw-modal__method-check">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Account Details (conditional) -->
+                    <div class="form-group" id="runner-withdraw-details-group" style="display:none;">
+                        <label class="form-group__label" for="runner-withdraw-details">Account Details</label>
+                        <input type="text" id="runner-withdraw-details" class="form-group__input" placeholder="Enter account number or phone..." />
+                    </div>
+                </div>
+                <footer class="runner-withdraw-modal__footer">
+                    <button class="btn btn--secondary" id="runner-withdraw-cancel">Cancel</button>
+                    <button class="btn btn--primary" id="runner-withdraw-submit">Submit Request</button>
+                </footer>
+            </div>
+
+            <!-- Success State -->
+            <div class="runner-withdraw-modal__success-state" id="runner-withdraw-success-state" style="display:none;">
+                <div class="runner-withdraw-modal__success-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3 class="runner-withdraw-modal__success-title">Withdrawal Requested</h3>
+                <p class="runner-withdraw-modal__success-desc" id="runner-withdraw-success-desc">Your withdrawal of $0.00 via EcoCash is being processed.</p>
+                <div class="runner-withdraw-modal__success-summary" id="runner-withdraw-success-summary">
+                    <div class="runner-withdraw-modal__success-row">
+                        <span>Amount</span>
+                        <strong id="runner-withdraw-success-amount">$0.00</strong>
+                    </div>
+                    <div class="runner-withdraw-modal__success-row">
+                        <span>Method</span>
+                        <strong id="runner-withdraw-success-method">—</strong>
+                    </div>
+                    <div class="runner-withdraw-modal__success-row">
+                        <span>Estimated Time</span>
+                        <strong>1-3 business days</strong>
+                    </div>
+                </div>
+                <button class="btn btn--primary" id="runner-withdraw-success-close">Done</button>
             </div>
         </div>
     </div>

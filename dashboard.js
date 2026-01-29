@@ -4562,6 +4562,516 @@ document.addEventListener('DOMContentLoaded', function() {
     init();
 })();
 
+// Runner Portal Module
+(function() {
+    const section = document.getElementById('runner-portal');
+    if (!section) return;
+
+    // Mock Data
+    const RATE_PER_LISTING = 0.50;
+
+    const mockListings = [
+        { id: 'LST-2026-001', name: 'Sunset Villa', date: '2026-01-28', location: 'Borrowdale, Harare', status: 'approved', type: 'Luxury Apartments', price: '$2,500/mo', bedrooms: 4, bathrooms: 3, size: '2,200 sq ft', furnished: 'Yes', description: 'Stunning modern villa with panoramic views of the Borrowdale valley. Open-plan living, imported Italian kitchen, heated pool and manicured gardens.', amenities: ['Swimming Pool', 'Garden', 'Parking', 'Security', 'Air Conditioning', 'WiFi'], images: ['assets/images/property1.jpg', 'assets/images/property2.jpg', 'assets/images/property3.jpg'], ownerName: 'John Moyo', ownerEmail: 'john.m@email.com', ownerPhone: '+263 77 123 4567' },
+        { id: 'LST-2026-002', name: 'Garden Court Apartments', date: '2026-01-27', location: 'Avondale, Harare', status: 'approved', type: 'Family Homes', price: '$1,800/mo', bedrooms: 3, bathrooms: 2, size: '1,600 sq ft', furnished: 'No', description: 'Spacious apartment in the heart of Avondale with easy access to shops and schools.', amenities: ['Parking', 'Security', 'Borehole', 'Generator'], images: ['assets/images/property4.jpg', 'assets/images/property5.jpg'], ownerName: 'Grace Chirwa', ownerEmail: 'grace.c@email.com', ownerPhone: '+263 71 234 5678' },
+        { id: 'LST-2026-003', name: 'Hillside Cottage', date: '2026-01-27', location: 'Hillside, Bulawayo', status: 'pending', type: 'Country Estates', price: '$950/mo', bedrooms: 2, bathrooms: 1, size: '1,100 sq ft', furnished: 'Yes', description: 'Charming cottage with a wraparound veranda and established garden.', amenities: ['Garden', 'Parking', 'WiFi'], images: ['assets/images/property6.jpg', 'assets/images/property1.jpg'], ownerName: 'David Ncube', ownerEmail: 'david.n@email.com', ownerPhone: '+263 77 345 6789' },
+        { id: 'LST-2026-004', name: 'Riverside Estate', date: '2026-01-26', location: 'Glen Lorne, Harare', status: 'approved', type: 'Luxury Apartments', price: '$3,200/mo', bedrooms: 5, bathrooms: 4, size: '3,500 sq ft', furnished: 'Yes', description: 'Executive estate on 2 acres with river frontage. Staff quarters, double garage.', amenities: ['Swimming Pool', 'Garden', 'Parking', 'Security', 'Air Conditioning', 'WiFi', 'Generator', 'Borehole'], images: ['assets/images/property2.jpg', 'assets/images/property3.jpg', 'assets/images/property4.jpg'], ownerName: 'Tapiwa Mhandu', ownerEmail: 'tapiwa.m@email.com', ownerPhone: '+263 78 456 7890' },
+        { id: 'LST-2026-005', name: 'Crown Plaza Unit 4B', date: '2026-01-25', location: 'Eastlea, Harare', status: 'rejected', type: 'Business Suites', price: '$1,200/mo', bedrooms: 2, bathrooms: 1, size: '900 sq ft', furnished: 'No', description: 'Modern apartment in Crown Plaza complex. Rejected due to incomplete documentation.', amenities: ['Parking', 'Security', 'Air Conditioning'], images: ['assets/images/property5.jpg', 'assets/images/property6.jpg'], ownerName: 'Peter Zulu', ownerEmail: 'peter.z@email.com', ownerPhone: '+263 73 567 8901' },
+        { id: 'LST-2026-006', name: 'Emerald Park Home', date: '2026-01-25', location: 'Greendale, Harare', status: 'approved', type: 'Family Homes', price: '$1,500/mo', bedrooms: 3, bathrooms: 2, size: '1,800 sq ft', furnished: 'No', description: 'Family home in leafy Greendale suburb with large garden and secure walled property.', amenities: ['Garden', 'Parking', 'Security', 'Borehole'], images: ['assets/images/property1.jpg', 'assets/images/property3.jpg', 'assets/images/property5.jpg'], ownerName: 'Rumbi Shava', ownerEmail: 'rumbi.s@email.com', ownerPhone: '+263 77 678 9012' },
+        { id: 'LST-2026-007', name: 'Jacaranda Heights', date: '2026-01-24', location: 'Mt Pleasant, Harare', status: 'approved', type: 'Luxury Apartments', price: '$2,100/mo', bedrooms: 3, bathrooms: 2, size: '1,900 sq ft', furnished: 'Yes', description: 'Premium apartment with views of the jacaranda-lined avenues. Fully furnished with designer interiors.', amenities: ['Swimming Pool', 'Parking', 'Security', 'Air Conditioning', 'WiFi', 'Generator'], images: ['assets/images/property4.jpg', 'assets/images/property2.jpg', 'assets/images/property6.jpg'], ownerName: 'Lisa Banda', ownerEmail: 'lisa.b@email.com', ownerPhone: '+263 71 789 0123' },
+        { id: 'LST-2026-008', name: 'Sandton Close 12', date: '2026-01-23', location: 'Chisipite, Harare', status: 'approved', type: 'Family Homes', price: '$2,800/mo', bedrooms: 4, bathrooms: 3, size: '2,600 sq ft', furnished: 'No', description: 'Elegant family home in prestigious Chisipite. Double-storey with entertainment patio.', amenities: ['Garden', 'Parking', 'Security', 'Borehole', 'Generator'], images: ['assets/images/property3.jpg', 'assets/images/property1.jpg'], ownerName: 'Mike Dube', ownerEmail: 'mike.d@email.com', ownerPhone: '+263 78 890 1234' },
+        { id: 'LST-2026-009', name: 'Lakeview Residence', date: '2026-01-22', location: 'Kariba', status: 'pending', type: 'Country Estates', price: '$1,100/mo', bedrooms: 3, bathrooms: 2, size: '1,400 sq ft', furnished: 'Yes', description: 'Lakefront property with stunning views of Lake Kariba. Ideal for holiday letting.', amenities: ['Garden', 'Parking', 'WiFi', 'Generator'], images: ['assets/images/property6.jpg', 'assets/images/property4.jpg', 'assets/images/property2.jpg'], ownerName: 'Sarah Mutasa', ownerEmail: 'sarah.m@email.com', ownerPhone: '+263 77 901 2345' },
+        { id: 'LST-2026-010', name: 'Msasa Industrial Unit', date: '2026-01-22', location: 'Msasa, Harare', status: 'approved', type: 'Business Suites', price: '$800/mo', bedrooms: 0, bathrooms: 1, size: '2,000 sq ft', furnished: 'No', description: 'Commercial unit suitable for light manufacturing or warehouse. Good truck access.', amenities: ['Parking', 'Security'], images: ['assets/images/property5.jpg', 'assets/images/property3.jpg'], ownerName: 'Tendai Gomo', ownerEmail: 'tendai.g@email.com', ownerPhone: '+263 73 012 3456' },
+        { id: 'LST-2026-011', name: 'Highlands Duplex', date: '2026-01-21', location: 'Highlands, Harare', status: 'approved', type: 'Family Homes', price: '$1,700/mo', bedrooms: 3, bathrooms: 2, size: '1,500 sq ft', furnished: 'No', description: 'Well-maintained duplex in popular Highlands area. Shared pool and secure complex.', amenities: ['Swimming Pool', 'Parking', 'Security', 'Garden'], images: ['assets/images/property1.jpg', 'assets/images/property4.jpg'], ownerName: 'Nyasha Pfende', ownerEmail: 'nyasha.p@email.com', ownerPhone: '+263 71 123 4567' },
+        { id: 'LST-2026-012', name: 'Greystone Park House', date: '2026-01-20', location: 'Greystone Park', status: 'rejected', type: 'Family Homes', price: '$1,400/mo', bedrooms: 3, bathrooms: 2, size: '1,600 sq ft', furnished: 'No', description: 'Standard family home rejected due to unresolved title deed issues.', amenities: ['Garden', 'Parking', 'Borehole'], images: ['assets/images/property2.jpg', 'assets/images/property6.jpg'], ownerName: 'Farai Mpofu', ownerEmail: 'farai.mp@email.com', ownerPhone: '+263 78 234 5678' },
+        { id: 'LST-2026-013', name: 'Northwood Flats', date: '2026-01-19', location: 'Northwood, Bulawayo', status: 'approved', type: 'Business Suites', price: '$650/mo', bedrooms: 2, bathrooms: 1, size: '850 sq ft', furnished: 'Yes', description: 'Compact furnished flat in Northwood. Walking distance to CBD.', amenities: ['Parking', 'Security', 'WiFi'], images: ['assets/images/property5.jpg', 'assets/images/property1.jpg', 'assets/images/property3.jpg'], ownerName: 'Blessing Ndlovu', ownerEmail: 'blessing.n@email.com', ownerPhone: '+263 77 345 6789' },
+        { id: 'LST-2026-014', name: 'Pomona Farmhouse', date: '2026-01-18', location: 'Pomona, Harare', status: 'approved', type: 'Country Estates', price: '$1,900/mo', bedrooms: 4, bathrooms: 2, size: '2,400 sq ft', furnished: 'No', description: 'Charming farmhouse on smallholding in Pomona. Original wood floors and fireplace.', amenities: ['Garden', 'Parking', 'Borehole', 'Generator', 'Security'], images: ['assets/images/property6.jpg', 'assets/images/property2.jpg', 'assets/images/property4.jpg'], ownerName: 'Chiedza Katsande', ownerEmail: 'chiedza.k@email.com', ownerPhone: '+263 71 456 7890' },
+        { id: 'LST-2026-015', name: 'Victoria Falls Lodge', date: '2026-01-17', location: 'Victoria Falls', status: 'pending', type: 'Luxury Apartments', price: '$2,000/mo', bedrooms: 3, bathrooms: 2, size: '1,700 sq ft', furnished: 'Yes', description: 'Tourist-area lodge near the falls. Fully furnished, ideal for Airbnb.', amenities: ['Swimming Pool', 'Garden', 'Parking', 'Air Conditioning', 'WiFi', 'Security'], images: ['assets/images/property3.jpg', 'assets/images/property5.jpg'], ownerName: 'Robert Sibanda', ownerEmail: 'robert.s@email.com', ownerPhone: '+263 73 567 8901' },
+        { id: 'LST-2026-016', name: 'Mabelreign Semi-D', date: '2026-01-16', location: 'Mabelreign, Harare', status: 'approved', type: 'Family Homes', price: '$1,000/mo', bedrooms: 3, bathrooms: 1, size: '1,300 sq ft', furnished: 'No', description: 'Affordable semi-detached home in Mabelreign. Good condition, secure wall and gate.', amenities: ['Garden', 'Parking', 'Borehole'], images: ['assets/images/property4.jpg', 'assets/images/property6.jpg'], ownerName: 'Agnes Choto', ownerEmail: 'agnes.c@email.com', ownerPhone: '+263 77 678 9012' },
+        { id: 'LST-2026-017', name: 'Kuwadzana Extension', date: '2026-01-15', location: 'Kuwadzana, Harare', status: 'approved', type: 'Family Homes', price: '$450/mo', bedrooms: 2, bathrooms: 1, size: '800 sq ft', furnished: 'No', description: 'Budget-friendly home in Kuwadzana extension. Recently painted with new roof.', amenities: ['Parking', 'Garden'], images: ['assets/images/property1.jpg', 'assets/images/property5.jpg'], ownerName: 'Tatenda Gwaze', ownerEmail: 'tatenda.g@email.com', ownerPhone: '+263 78 789 0123' },
+        { id: 'LST-2026-018', name: 'Braeside Bungalow', date: '2026-01-14', location: 'Braeside, Harare', status: 'rejected', type: 'Family Homes', price: '$1,200/mo', bedrooms: 3, bathrooms: 2, size: '1,500 sq ft', furnished: 'No', description: 'Classic bungalow in Braeside. Rejected — photos too dark and description insufficient.', amenities: ['Garden', 'Parking', 'Security'], images: ['assets/images/property2.jpg', 'assets/images/property4.jpg'], ownerName: 'Kudzi Mahere', ownerEmail: 'kudzi.m@email.com', ownerPhone: '+263 71 890 1234' },
+        { id: 'LST-2026-019', name: 'Mandara Townhouse', date: '2026-01-13', location: 'Mandara, Harare', status: 'approved', type: 'Family Homes', price: '$1,100/mo', bedrooms: 3, bathrooms: 2, size: '1,350 sq ft', furnished: 'No', description: 'Modern townhouse in Mandara complex. Shared amenities include pool and playground.', amenities: ['Swimming Pool', 'Parking', 'Security', 'Garden'], images: ['assets/images/property3.jpg', 'assets/images/property6.jpg', 'assets/images/property1.jpg'], ownerName: 'Tinashe Murambinda', ownerEmail: 'tinashe.m@email.com', ownerPhone: '+263 73 901 2345' },
+        { id: 'LST-2026-020', name: 'Waterfalls Flat 2A', date: '2026-01-12', location: 'Waterfalls, Harare', status: 'approved', type: 'Business Suites', price: '$550/mo', bedrooms: 1, bathrooms: 1, size: '650 sq ft', furnished: 'Yes', description: 'Compact furnished flat suitable for single professional.', amenities: ['Parking', 'Security', 'WiFi'], images: ['assets/images/property5.jpg', 'assets/images/property2.jpg'], ownerName: 'Rudo Chikwanha', ownerEmail: 'rudo.c@email.com', ownerPhone: '+263 77 012 3456' },
+    ];
+
+    const mockWithdrawals = [
+        { date: '2026-01-20', amount: 25.00, method: 'EcoCash', status: 'completed' },
+        { date: '2026-01-10', amount: 15.00, method: 'Bank Transfer', status: 'completed' },
+        { date: '2025-12-28', amount: 20.00, method: 'EcoCash', status: 'completed' },
+        { date: '2025-12-15', amount: 10.00, method: 'PayPal', status: 'completed' },
+        { date: '2025-12-01', amount: 12.00, method: 'EcoCash', status: 'completed' },
+    ];
+
+    const leaderboardData = {
+        week: [
+            { name: 'Chipo K.', avatar: 'CK', listings: 18, earnings: 9.00 },
+            { name: 'You', avatar: 'YO', listings: 15, earnings: 7.50, isCurrentUser: true },
+            { name: 'Tendai M.', avatar: 'TM', listings: 14, earnings: 7.00 },
+            { name: 'Tafadzwa R.', avatar: 'TR', listings: 12, earnings: 6.00 },
+            { name: 'Nyasha P.', avatar: 'NP', listings: 11, earnings: 5.50 },
+            { name: 'Blessing N.', avatar: 'BN', listings: 10, earnings: 5.00 },
+            { name: 'Farai D.', avatar: 'FD', listings: 8, earnings: 4.00 },
+            { name: 'Rumbidzai S.', avatar: 'RS', listings: 7, earnings: 3.50 },
+            { name: 'Kudakwashe L.', avatar: 'KL', listings: 6, earnings: 3.00 },
+            { name: 'Tatenda G.', avatar: 'TG', listings: 5, earnings: 2.50 },
+        ],
+        month: [
+            { name: 'Tendai M.', avatar: 'TM', listings: 62, earnings: 31.00 },
+            { name: 'You', avatar: 'YO', listings: 46, earnings: 23.00, isCurrentUser: true },
+            { name: 'Chipo K.', avatar: 'CK', listings: 44, earnings: 22.00 },
+            { name: 'Blessing N.', avatar: 'BN', listings: 39, earnings: 19.50 },
+            { name: 'Nyasha P.', avatar: 'NP', listings: 35, earnings: 17.50 },
+            { name: 'Tafadzwa R.', avatar: 'TR', listings: 32, earnings: 16.00 },
+            { name: 'Rumbidzai S.', avatar: 'RS', listings: 28, earnings: 14.00 },
+            { name: 'Farai D.', avatar: 'FD', listings: 24, earnings: 12.00 },
+            { name: 'Tatenda G.', avatar: 'TG', listings: 20, earnings: 10.00 },
+            { name: 'Kudakwashe L.', avatar: 'KL', listings: 16, earnings: 8.00 },
+        ],
+        all: [
+            { name: 'Tendai M.', avatar: 'TM', listings: 312, earnings: 156.00 },
+            { name: 'Chipo K.', avatar: 'CK', listings: 278, earnings: 139.00 },
+            { name: 'You', avatar: 'YO', listings: 255, earnings: 127.50, isCurrentUser: true },
+            { name: 'Blessing N.', avatar: 'BN', listings: 241, earnings: 120.50 },
+            { name: 'Tafadzwa R.', avatar: 'TR', listings: 198, earnings: 99.00 },
+            { name: 'Nyasha P.', avatar: 'NP', listings: 187, earnings: 93.50 },
+            { name: 'Rumbidzai S.', avatar: 'RS', listings: 165, earnings: 82.50 },
+            { name: 'Farai D.', avatar: 'FD', listings: 142, earnings: 71.00 },
+            { name: 'Tatenda G.', avatar: 'TG', listings: 128, earnings: 64.00 },
+            { name: 'Kudakwashe L.', avatar: 'KL', listings: 105, earnings: 52.50 },
+        ]
+    };
+
+    let currentLeaderboardPeriod = 'week';
+
+    let displayedListings = 8;
+
+    // Render Leaderboard
+    function renderLeaderboard(period) {
+        if (period) currentLeaderboardPeriod = period;
+        const data = leaderboardData[currentLeaderboardPeriod] || leaderboardData.week;
+        const tbody = document.getElementById('runner-leaderboard-body');
+        if (!tbody) return;
+        tbody.innerHTML = data.map((runner, i) => `
+            <tr class="${runner.isCurrentUser ? 'runner-leaderboard-table__current' : ''}">
+                <td><span class="runner-rank runner-rank--${i < 3 ? i + 1 : 'default'}">${i + 1}</span></td>
+                <td>
+                    <div class="runner-user">
+                        <span class="runner-user__avatar">${runner.avatar}</span>
+                        <span>${runner.name}</span>
+                    </div>
+                </td>
+                <td>${runner.listings}</td>
+                <td>$${runner.earnings.toFixed(2)}</td>
+            </tr>
+        `).join('');
+    }
+
+    // Render Activity Table
+    function renderActivity(filter, search) {
+        const tbody = document.getElementById('runner-activity-body');
+        if (!tbody) return;
+
+        let filtered = mockListings;
+        if (filter && filter !== 'all') {
+            filtered = filtered.filter(l => l.status === filter);
+        }
+        if (search) {
+            const q = search.toLowerCase();
+            filtered = filtered.filter(l => l.name.toLowerCase().includes(q) || l.location.toLowerCase().includes(q));
+        }
+
+        const toShow = filtered.slice(0, displayedListings);
+        tbody.innerHTML = toShow.map((l, i) => `
+            <tr class="runner-activity-row" data-index="${mockListings.indexOf(l)}" style="cursor:pointer">
+                <td>${l.name}</td>
+                <td>${l.date}</td>
+                <td>${l.location}</td>
+                <td><span class="status-badge status-badge--${l.status}">${l.status.charAt(0).toUpperCase() + l.status.slice(1)}</span></td>
+                <td>${l.status === 'approved' ? '$0.50' : '—'}</td>
+            </tr>
+        `).join('');
+
+        // Attach click handlers to rows
+        tbody.querySelectorAll('.runner-activity-row').forEach(row => {
+            row.addEventListener('click', function() {
+                const idx = parseInt(this.dataset.index);
+                const listing = mockListings[idx];
+                if (listing) openListingModal(listing);
+            });
+        });
+
+        const loadMoreBtn = document.getElementById('runner-load-more');
+        if (loadMoreBtn) {
+            loadMoreBtn.style.display = toShow.length < filtered.length ? '' : 'none';
+        }
+    }
+
+    // Listing Detail Modal + Carousel
+    var runnerCarouselIndex = 0;
+    var runnerCarouselTotal = 0;
+
+    function openListingModal(listing) {
+        const modal = document.getElementById('runner-listing-modal');
+        if (!modal) return;
+
+        // Header status badge
+        var badge = document.getElementById('rlm-status-badge');
+        if (badge) {
+            badge.textContent = listing.status.charAt(0).toUpperCase() + listing.status.slice(1);
+            badge.className = 'runner-listing-modal__status runner-listing-modal__status--' + listing.status;
+        }
+
+        // Carousel
+        var track = document.getElementById('runner-carousel-track');
+        var indicators = document.getElementById('runner-carousel-indicators');
+        if (track && listing.images) {
+            track.innerHTML = listing.images.map(function(img, i) {
+                return '<div class="runner-carousel__slide"><img src="' + img + '" alt="' + listing.name + ' image ' + (i + 1) + '"></div>';
+            }).join('');
+            runnerCarouselTotal = listing.images.length;
+            runnerCarouselIndex = 0;
+            track.style.transform = 'translateX(0)';
+
+            // Indicators
+            if (indicators) {
+                indicators.innerHTML = listing.images.map(function(_, i) {
+                    return '<button class="runner-carousel__indicator' + (i === 0 ? ' runner-carousel__indicator--active' : '') + '" data-slide="' + i + '" type="button" aria-label="Go to slide ' + (i + 1) + '"></button>';
+                }).join('');
+            }
+
+            // Counter
+            var counter = document.getElementById('runner-carousel-counter');
+            if (counter) counter.textContent = '1 / ' + runnerCarouselTotal;
+        }
+
+        // Earnings banner
+        var earningsBanner = document.getElementById('rlm-earnings-banner');
+        var earnedEl = document.getElementById('rlm-earned');
+        if (earningsBanner && earnedEl) {
+            if (listing.status === 'approved') {
+                earnedEl.textContent = '$0.50 earned';
+                earningsBanner.className = 'runner-listing-modal__earnings runner-listing-modal__earnings--earned';
+            } else {
+                earnedEl.textContent = listing.status === 'pending' ? 'Pending approval' : 'Not eligible';
+                earningsBanner.className = 'runner-listing-modal__earnings runner-listing-modal__earnings--' + listing.status;
+            }
+        }
+
+        // Property details
+        var setText = function(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
+        setText('rlm-name', listing.name);
+        setText('rlm-price', listing.price || '—');
+        setText('rlm-location', listing.location);
+        setText('rlm-id', '#' + (listing.id || 'LST-0000'));
+        setText('rlm-type', listing.type || '—');
+        setText('rlm-bedrooms', listing.bedrooms !== undefined ? (listing.bedrooms === 0 ? 'N/A' : listing.bedrooms) : '—');
+        setText('rlm-bathrooms', listing.bathrooms !== undefined ? listing.bathrooms : '—');
+        setText('rlm-size', listing.size || '—');
+        setText('rlm-furnished', listing.furnished || '—');
+        setText('rlm-date', listing.date || '—');
+        setText('rlm-description', listing.description || '—');
+
+        // Amenities
+        var amenitiesEl = document.getElementById('rlm-amenities');
+        if (amenitiesEl && listing.amenities) {
+            amenitiesEl.innerHTML = listing.amenities.map(function(a) {
+                return '<span class="runner-listing-modal__amenity">' + a + '</span>';
+            }).join('');
+        }
+
+        // Owner
+        setText('rlm-owner-name', listing.ownerName || '—');
+        setText('rlm-owner-email', listing.ownerEmail || '—');
+        setText('rlm-owner-phone', listing.ownerPhone || '—');
+        var initialsEl = document.getElementById('rlm-owner-initials');
+        if (initialsEl && listing.ownerName) {
+            initialsEl.textContent = listing.ownerName.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase();
+        }
+
+        modal.style.display = 'flex';
+    }
+
+    function updateRunnerCarousel(index) {
+        runnerCarouselIndex = index;
+        var track = document.getElementById('runner-carousel-track');
+        if (track) track.style.transform = 'translateX(-' + (index * 100) + '%)';
+
+        var counter = document.getElementById('runner-carousel-counter');
+        if (counter) counter.textContent = (index + 1) + ' / ' + runnerCarouselTotal;
+
+        var indicators = document.getElementById('runner-carousel-indicators');
+        if (indicators) {
+            indicators.querySelectorAll('.runner-carousel__indicator').forEach(function(dot, i) {
+                dot.classList.toggle('runner-carousel__indicator--active', i === index);
+            });
+        }
+    }
+
+    function initListingModal() {
+        const modal = document.getElementById('runner-listing-modal');
+        if (!modal) return;
+
+        var closeModal = function() { modal.style.display = 'none'; };
+
+        var closeBtn = document.getElementById('runner-listing-modal-close');
+        var backdrop = modal.querySelector('.modal__backdrop');
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (backdrop) backdrop.addEventListener('click', closeModal);
+
+        // Carousel navigation
+        var prevBtn = document.getElementById('runner-carousel-prev');
+        var nextBtn = document.getElementById('runner-carousel-next');
+        if (prevBtn) prevBtn.addEventListener('click', function() {
+            updateRunnerCarousel(runnerCarouselIndex > 0 ? runnerCarouselIndex - 1 : runnerCarouselTotal - 1);
+        });
+        if (nextBtn) nextBtn.addEventListener('click', function() {
+            updateRunnerCarousel(runnerCarouselIndex < runnerCarouselTotal - 1 ? runnerCarouselIndex + 1 : 0);
+        });
+
+        // Indicator dots (delegated)
+        var indicators = document.getElementById('runner-carousel-indicators');
+        if (indicators) {
+            indicators.addEventListener('click', function(e) {
+                var dot = e.target.closest('.runner-carousel__indicator');
+                if (dot && dot.dataset.slide !== undefined) {
+                    updateRunnerCarousel(parseInt(dot.dataset.slide));
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (modal.style.display !== 'flex') return;
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowLeft') updateRunnerCarousel(runnerCarouselIndex > 0 ? runnerCarouselIndex - 1 : runnerCarouselTotal - 1);
+            if (e.key === 'ArrowRight') updateRunnerCarousel(runnerCarouselIndex < runnerCarouselTotal - 1 ? runnerCarouselIndex + 1 : 0);
+        });
+    }
+
+    // Render Withdrawals
+    function renderWithdrawals() {
+        const tbody = document.getElementById('runner-withdrawal-body');
+        if (!tbody) return;
+        tbody.innerHTML = mockWithdrawals.map(w => `
+            <tr>
+                <td>${w.date}</td>
+                <td>$${w.amount.toFixed(2)}</td>
+                <td>${w.method}</td>
+                <td><span class="status-badge status-badge--${w.status === 'completed' ? 'approved' : w.status === 'processing' ? 'pending' : 'rejected'}">${w.status.charAt(0).toUpperCase() + w.status.slice(1)}</span></td>
+            </tr>
+        `).join('');
+    }
+
+    // Earnings Chart
+    function initEarningsChart() {
+        if (typeof Chart === 'undefined') return;
+        const ctx = document.getElementById('runner-earnings-chart');
+        if (!ctx) return;
+
+        const data7d = {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            data: [3.00, 4.50, 2.00, 5.50, 3.50, 1.00, 3.50]
+        };
+        const data30d = {
+            labels: ['Wk1', 'Wk2', 'Wk3', 'Wk4'],
+            data: [12.00, 18.50, 15.00, 23.00]
+        };
+        const data90d = {
+            labels: ['Nov', 'Dec', 'Jan'],
+            data: [35.00, 48.50, 44.00]
+        };
+
+        let chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data7d.labels,
+                datasets: [{
+                    label: 'Earnings ($)',
+                    data: data7d.data,
+                    backgroundColor: 'rgba(37, 99, 235, 0.8)',
+                    borderRadius: 6,
+                    borderSkipped: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { callback: v => '$' + v.toFixed(2) },
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // Chart filter buttons
+        const filterBtns = section.querySelectorAll('.runner-portal__chart-filter');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const range = this.dataset.range;
+                const d = range === '7d' ? data7d : range === '30d' ? data30d : data90d;
+                chart.data.labels = d.labels;
+                chart.data.datasets[0].data = d.data;
+                chart.update();
+            });
+        });
+    }
+
+    // Withdrawal Modal
+    function initWithdrawalModal() {
+        const modal = document.getElementById('runner-withdraw-modal');
+        if (!modal) return;
+
+        const formState = document.getElementById('runner-withdraw-form-state');
+        const successState = document.getElementById('runner-withdraw-success-state');
+        const openBtns = [document.getElementById('runner-withdraw-btn'), document.getElementById('runner-withdraw-btn-2')];
+        const closeBtn = document.getElementById('runner-withdraw-modal-close');
+        const cancelBtn = document.getElementById('runner-withdraw-cancel');
+        const submitBtn = document.getElementById('runner-withdraw-submit');
+        const detailsGroup = document.getElementById('runner-withdraw-details-group');
+        const successCloseBtn = document.getElementById('runner-withdraw-success-close');
+
+        function resetModal() {
+            if (formState) formState.style.display = '';
+            if (successState) successState.style.display = 'none';
+            // Reset form
+            var amountInput = document.getElementById('runner-withdraw-amount');
+            if (amountInput) amountInput.value = '';
+            var radios = modal.querySelectorAll('.runner-withdraw-modal__method-radio');
+            radios.forEach(function(r) { r.checked = false; });
+            if (detailsGroup) detailsGroup.style.display = 'none';
+            var detailsInput = document.getElementById('runner-withdraw-details');
+            if (detailsInput) detailsInput.value = '';
+        }
+
+        function openModal() {
+            resetModal();
+            modal.style.display = 'flex';
+        }
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        openBtns.forEach(function(btn) { if (btn) btn.addEventListener('click', openModal); });
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+        if (successCloseBtn) successCloseBtn.addEventListener('click', closeModal);
+
+        // Payment method radio cards — show details field
+        var methodRadios = modal.querySelectorAll('.runner-withdraw-modal__method-radio');
+        methodRadios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                if (detailsGroup) {
+                    detailsGroup.style.display = this.value ? '' : 'none';
+                    var detailsInput = document.getElementById('runner-withdraw-details');
+                    if (detailsInput) {
+                        if (this.value === 'ecocash') detailsInput.placeholder = 'Enter EcoCash phone number...';
+                        else if (this.value === 'bank') detailsInput.placeholder = 'Enter bank account number...';
+                        else if (this.value === 'paypal') detailsInput.placeholder = 'Enter PayPal email...';
+                    }
+                }
+            });
+        });
+
+        // Submit handler — show success state instead of alert
+        if (submitBtn) {
+            submitBtn.addEventListener('click', function() {
+                var amount = parseFloat(document.getElementById('runner-withdraw-amount').value);
+                var selectedMethod = modal.querySelector('.runner-withdraw-modal__method-radio:checked');
+                var method = selectedMethod ? selectedMethod.value : '';
+
+                if (!amount || amount < 5) {
+                    var amountInput = document.getElementById('runner-withdraw-amount');
+                    if (amountInput) { amountInput.style.borderColor = '#DC2626'; amountInput.focus(); }
+                    return;
+                }
+                if (!method) return;
+
+                // Method display name
+                var methodNames = { ecocash: 'EcoCash', bank: 'Bank Transfer', paypal: 'PayPal' };
+                var methodLabel = methodNames[method] || method;
+
+                // Populate success state
+                var descEl = document.getElementById('runner-withdraw-success-desc');
+                if (descEl) descEl.textContent = 'Your withdrawal of $' + amount.toFixed(2) + ' via ' + methodLabel + ' is being processed.';
+                var amtEl = document.getElementById('runner-withdraw-success-amount');
+                if (amtEl) amtEl.textContent = '$' + amount.toFixed(2);
+                var methEl = document.getElementById('runner-withdraw-success-method');
+                if (methEl) methEl.textContent = methodLabel;
+
+                // Switch to success state
+                if (formState) formState.style.display = 'none';
+                if (successState) successState.style.display = '';
+            });
+        }
+
+        // Backdrop close
+        var backdrop = modal.querySelector('.modal__backdrop');
+        if (backdrop) backdrop.addEventListener('click', closeModal);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+        });
+    }
+
+    // Activity controls
+    function initActivityControls() {
+        const searchInput = document.getElementById('runner-activity-search');
+        const filterSelect = document.getElementById('runner-activity-filter');
+        const loadMoreBtn = document.getElementById('runner-load-more');
+
+        function refresh() {
+            const filter = filterSelect ? filterSelect.value : 'all';
+            const search = searchInput ? searchInput.value : '';
+            renderActivity(filter, search);
+        }
+
+        if (searchInput) searchInput.addEventListener('input', refresh);
+        if (filterSelect) filterSelect.addEventListener('change', refresh);
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', function() {
+                displayedListings += 8;
+                refresh();
+            });
+        }
+    }
+
+    // Leaderboard filters
+    function initLeaderboardFilters() {
+        const filterBtns = section.querySelectorAll('.runner-portal__lb-filter');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderLeaderboard(this.dataset.period);
+            });
+        });
+    }
+
+    // Init
+    function init() {
+        renderLeaderboard('week');
+        renderActivity('all', '');
+        renderWithdrawals();
+        initEarningsChart();
+        initWithdrawalModal();
+        initListingModal();
+        initActivityControls();
+        initLeaderboardFilters();
+    }
+
+    init();
+})();
+
 // End of DOMContentLoaded
 });
 

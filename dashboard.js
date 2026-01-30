@@ -436,12 +436,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevStepBtn = document.getElementById('prev-step');
     const submitBtn = document.getElementById('submit-listing');
     const steps = modal?.querySelectorAll('.add-listing-modal__step');
+    const stepLines = modal?.querySelectorAll('.add-listing-modal__step-line');
     const formSteps = modal?.querySelectorAll('.add-listing-modal__form-step');
-    
+
     if (!modal) return;
-    
+
     let currentStep = 1;
     const totalSteps = 3;
+    let uploadedFiles = [];
 
     function openModal() {
         modal.style.display = 'flex';
@@ -453,35 +455,41 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
-        // Reset form and step
         currentStep = 1;
+        uploadedFiles = [];
+        const preview = document.getElementById('upload-preview');
+        if (preview) preview.innerHTML = '';
         updateStep();
         modal.querySelector('.add-listing-form')?.reset();
     }
 
     function updateStep() {
-        // Update step indicators
-        steps?.forEach((step, index) => {
+        steps?.forEach((step) => {
+            const num = parseInt(step.dataset.stepNum);
             step.classList.remove('add-listing-modal__step--active', 'add-listing-modal__step--completed');
-            if (index + 1 === currentStep) {
+            const circle = step.querySelector('.add-listing-modal__step-circle');
+            if (num === currentStep) {
                 step.classList.add('add-listing-modal__step--active');
-            } else if (index + 1 < currentStep) {
+                if (circle) circle.textContent = String(num);
+            } else if (num < currentStep) {
                 step.classList.add('add-listing-modal__step--completed');
+                if (circle) circle.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+            } else {
+                if (circle) circle.textContent = String(num);
             }
         });
 
-        // Update form steps
+        stepLines?.forEach((line, index) => {
+            line.classList.toggle('add-listing-modal__step-line--completed', index + 1 < currentStep);
+        });
+
         formSteps?.forEach((formStep, index) => {
-            formStep.classList.remove('add-listing-modal__form-step--active');
-            if (index + 1 === currentStep) {
-                formStep.classList.add('add-listing-modal__form-step--active');
-            }
+            formStep.classList.toggle('add-listing-modal__form-step--active', index + 1 === currentStep);
         });
 
-        // Update buttons
-        if (prevStepBtn) prevStepBtn.style.display = currentStep === 1 ? 'none' : 'block';
-        if (nextStepBtn) nextStepBtn.style.display = currentStep === totalSteps ? 'none' : 'block';
-        if (submitBtn) submitBtn.style.display = currentStep === totalSteps ? 'block' : 'none';
+        prevStepBtn?.classList.toggle('add-listing-modal__btn-prev--hidden', currentStep === 1);
+        nextStepBtn?.classList.toggle('add-listing-modal__btn-submit--hidden', currentStep === totalSteps);
+        submitBtn?.classList.toggle('add-listing-modal__btn-submit--hidden', currentStep !== totalSteps);
     }
 
     function nextStep() {
@@ -498,29 +506,83 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Event listeners
     addListingBtn?.addEventListener('click', openModal);
     closeModalBtn?.addEventListener('click', closeModal);
     backdrop?.addEventListener('click', closeModal);
     nextStepBtn?.addEventListener('click', nextStep);
     prevStepBtn?.addEventListener('click', prevStep);
-    
-    // Add event listener for X close button
+
     const addModalCloseBtn = document.getElementById('add-modal-close');
     addModalCloseBtn?.addEventListener('click', closeModal);
 
-    // Handle form submission
+    // Drag and drop upload
+    const dropzone = document.getElementById('upload-dropzone');
+    const fileInput = document.getElementById('property-images');
+    const previewContainer = document.getElementById('upload-preview');
+
+    if (dropzone) {
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('upload-dropzone--dragover');
+        });
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('upload-dropzone--dragover');
+        });
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('upload-dropzone--dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+    }
+
+    if (fileInput) {
+        fileInput.addEventListener('change', () => {
+            handleFiles(fileInput.files);
+            fileInput.value = '';
+        });
+    }
+
+    function handleFiles(files) {
+        const remaining = 10 - uploadedFiles.length;
+        Array.from(files).slice(0, remaining).forEach((file) => {
+            if (!file.type.startsWith('image/')) return;
+            uploadedFiles.push(file);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                renderPreviews();
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function renderPreviews() {
+        if (!previewContainer) return;
+        previewContainer.innerHTML = '';
+        uploadedFiles.forEach((file, i) => {
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const item = document.createElement('div');
+                item.className = 'upload-preview__item';
+                item.innerHTML = '<img src="' + ev.target.result + '" alt="' + file.name + '"><button type="button" class="upload-preview__remove" data-index="' + i + '">&times;</button>';
+                previewContainer.appendChild(item);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    previewContainer?.addEventListener('click', (e) => {
+        const removeBtn = e.target.closest('.upload-preview__remove');
+        if (!removeBtn) return;
+        uploadedFiles.splice(parseInt(removeBtn.dataset.index), 1);
+        renderPreviews();
+    });
+
     modal.querySelector('.add-listing-form')?.addEventListener('submit', (e) => {
         e.preventDefault();
-        
-        // Get form data
         const formData = new FormData(e.target);
         const listingData = Object.fromEntries(formData.entries());
-        
-        // Show success message (in a real app, this would submit to a server)
         const isPublished = listingData.status === 'published';
         showSuccessModal('created', isPublished);
-        
         closeModal();
     });
 })();
@@ -534,10 +596,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const editPrevStepBtn = document.getElementById('edit-prev-step');
     const editSubmitBtn = document.getElementById('edit-submit-listing');
     const editSteps = editModal?.querySelectorAll('.add-listing-modal__step');
+    const editStepLines = editModal?.querySelectorAll('.add-listing-modal__step-line');
     const editFormSteps = editModal?.querySelectorAll('.add-listing-modal__form-step');
-    
+
     if (!editModal) return;
-    
+
     let editCurrentStep = 1;
     const editTotalSteps = 3;
     let currentEditingListingId = null;
@@ -546,11 +609,7 @@ document.addEventListener('DOMContentLoaded', function() {
         editModal.style.display = 'flex';
         editModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        
-        // Populate form with listing data
         populateEditForm(listingData);
-        
-        // Reset to first step
         editCurrentStep = 1;
         updateEditStep();
     }
@@ -559,7 +618,6 @@ document.addEventListener('DOMContentLoaded', function() {
         editModal.style.display = 'none';
         editModal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
-        // Reset form and step
         editCurrentStep = 1;
         updateEditStep();
         editModal.querySelector('.edit-listing-form')?.reset();
@@ -567,28 +625,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateEditStep() {
-        // Update step indicators
-        editSteps?.forEach((step, index) => {
+        editSteps?.forEach((step) => {
+            const num = parseInt(step.dataset.stepNum);
             step.classList.remove('add-listing-modal__step--active', 'add-listing-modal__step--completed');
-            if (index + 1 === editCurrentStep) {
+            const circle = step.querySelector('.add-listing-modal__step-circle');
+            if (num === editCurrentStep) {
                 step.classList.add('add-listing-modal__step--active');
-            } else if (index + 1 < editCurrentStep) {
+                if (circle) circle.textContent = String(num);
+            } else if (num < editCurrentStep) {
                 step.classList.add('add-listing-modal__step--completed');
+                if (circle) circle.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+            } else {
+                if (circle) circle.textContent = String(num);
             }
         });
 
-        // Update form steps
+        editStepLines?.forEach((line, index) => {
+            line.classList.toggle('add-listing-modal__step-line--completed', index + 1 < editCurrentStep);
+        });
+
         editFormSteps?.forEach((formStep, index) => {
-            formStep.classList.remove('add-listing-modal__form-step--active');
-            if (index + 1 === editCurrentStep) {
-                formStep.classList.add('add-listing-modal__form-step--active');
-            }
+            formStep.classList.toggle('add-listing-modal__form-step--active', index + 1 === editCurrentStep);
         });
 
-        // Update buttons
-        if (editPrevStepBtn) editPrevStepBtn.style.display = editCurrentStep === 1 ? 'none' : 'block';
-        if (editNextStepBtn) editNextStepBtn.style.display = editCurrentStep === editTotalSteps ? 'none' : 'block';
-        if (editSubmitBtn) editSubmitBtn.style.display = editCurrentStep === editTotalSteps ? 'block' : 'none';
+        editPrevStepBtn?.classList.toggle('add-listing-modal__btn-prev--hidden', editCurrentStep === 1);
+        editNextStepBtn?.classList.toggle('add-listing-modal__btn-submit--hidden', editCurrentStep === editTotalSteps);
+        editSubmitBtn?.classList.toggle('add-listing-modal__btn-submit--hidden', editCurrentStep !== editTotalSteps);
     }
 
     function editNextStep() {
@@ -1761,13 +1823,149 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 })();
 
+// Profile Accordion & Progress Tracking
+(function() {
+    var accordion = document.querySelector('.profile-accordion');
+    if (!accordion) return;
+
+    var items = accordion.querySelectorAll('.profile-accordion__item');
+    var checkmarkSVG = '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>';
+    var circleSVG = '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+
+    // Accordion toggle
+    items.forEach(function(item) {
+        var header = item.querySelector('.profile-accordion__header');
+        header.addEventListener('click', function() { toggleAccordion(item); });
+        header.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleAccordion(item);
+            }
+        });
+    });
+
+    function toggleAccordion(targetItem) {
+        var isOpen = targetItem.getAttribute('data-accordion-open') === 'true';
+        items.forEach(function(item) {
+            item.setAttribute('data-accordion-open', 'false');
+            var h = item.querySelector('.profile-accordion__header');
+            if (h) h.setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+            targetItem.setAttribute('data-accordion-open', 'true');
+            var h = targetItem.querySelector('.profile-accordion__header');
+            if (h) h.setAttribute('aria-expanded', 'true');
+        }
+    }
+
+    // Progress calculation per section
+    function getSectionCompletion(sectionKey) {
+        switch (sectionKey) {
+            case 'personal-info': {
+                var panel = document.getElementById('panel-personal-info');
+                if (!panel) return { total: 5, filled: 0 };
+                var inputs = panel.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+                var filled = 0;
+                inputs.forEach(function(i) { if (i.value.trim()) filled++; });
+                return { total: inputs.length || 5, filled: filled };
+            }
+            case 'verification': {
+                var panel = document.getElementById('panel-verification');
+                if (!panel) return { total: 5, filled: 0 };
+                var complete = panel.querySelectorAll('.verification-item--complete').length;
+                var total = panel.querySelectorAll('.verification-item').length;
+                return { total: total, filled: complete };
+            }
+            case 'security': {
+                var passwordSet = 1;
+                var twofaEl = document.querySelector('.profile-card__status--disabled');
+                var twofaEnabled = twofaEl ? 0 : 1;
+                return { total: 2, filled: passwordSet + twofaEnabled };
+            }
+            case 'banking': {
+                var panel = document.getElementById('panel-banking');
+                if (!panel) return { total: 3, filled: 0 };
+                var bankName = panel.querySelector('.bank-account__name');
+                var filled = 0;
+                if (bankName && bankName.textContent.trim()) filled++;
+                filled++; // payout schedule always set
+                var taxEl = panel.querySelector('.profile-card__detail');
+                if (taxEl) filled++;
+                return { total: 3, filled: filled };
+            }
+            case 'notifications':
+                return { total: 1, filled: 1 };
+            case 'preferences': {
+                var panel = document.getElementById('panel-preferences');
+                if (!panel) return { total: 4, filled: 0 };
+                var selects = panel.querySelectorAll('select');
+                var filled = 0;
+                selects.forEach(function(s) { if (s.value) filled++; });
+                return { total: selects.length || 4, filled: filled };
+            }
+            default:
+                return { total: 1, filled: 0 };
+        }
+    }
+
+    function updateProgress() {
+        var totalFields = 0, totalFilled = 0;
+        var sections = ['personal-info', 'verification', 'security', 'banking', 'notifications', 'preferences'];
+
+        sections.forEach(function(key) {
+            var result = getSectionCompletion(key);
+            totalFields += result.total;
+            totalFilled += result.filled;
+
+            var item = accordion.querySelector('[data-section="' + key + '"]');
+            if (!item) return;
+            var icon = item.querySelector('.profile-accordion__status-icon');
+            if (!icon) return;
+
+            if (result.filled >= result.total) {
+                icon.classList.remove('profile-accordion__status-icon--incomplete');
+                icon.classList.add('profile-accordion__status-icon--complete');
+                icon.innerHTML = checkmarkSVG;
+            } else {
+                icon.classList.remove('profile-accordion__status-icon--complete');
+                icon.classList.add('profile-accordion__status-icon--incomplete');
+                icon.innerHTML = circleSVG;
+            }
+        });
+
+        var pct = totalFields > 0 ? Math.round((totalFilled / totalFields) * 100) : 0;
+        var fill = document.getElementById('profile-progress-fill');
+        var pctText = document.getElementById('profile-progress-pct');
+        if (fill) fill.style.width = pct + '%';
+        if (pctText) pctText.textContent = pct + '%';
+    }
+
+    // Run on load
+    updateProgress();
+
+    // Hook into modal close to recalculate (deferred since modals init later)
+    setTimeout(function() {
+        var _origClose = window.closeProfileModal;
+        if (_origClose) {
+            window.closeProfileModal = function(id) {
+                _origClose(id);
+                setTimeout(updateProgress, 100);
+            };
+        }
+    }, 0);
+
+    // Listen for input changes
+    accordion.addEventListener('input', updateProgress);
+    accordion.addEventListener('change', updateProgress);
+})();
+
 // Profile Modal Functionality
 (function() {
     // Helper functions for element selection
     function findProfileCardByButtonText(buttonText) {
-        const profileCards = document.querySelectorAll('.profile-card');
+        const profileCards = document.querySelectorAll('.profile-accordion__item, .profile-card');
         for (const card of profileCards) {
-            const button = Array.from(card.querySelectorAll('.profile-card__button')).find(btn => 
+            const button = Array.from(card.querySelectorAll('.profile-card__button')).find(btn =>
                 btn.textContent.trim().includes(buttonText)
             );
             if (button) return card;

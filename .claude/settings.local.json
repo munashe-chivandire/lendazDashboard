@@ -11,7 +11,8 @@
       "Bash(git branch:*)",
       "Bash(git push:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd comprehensive mobile responsive design\n\n- Fix malformed media queries \\(respond-below syntax errors\\)\n- Add hamburger menu for mobile navigation with slide-out sidebar\n- Make metrics grid responsive \\(2-column on mobile\\)\n- Make listing cards stack vertically with full-width images on mobile\n- Make analytics panels single column on smaller screens\n- Add mobile card layout support for documents table\n- Make messaging section responsive with horizontal scrolling filters\n- Make maintenance kanban columns stack on mobile\n- Make profile section responsive with stacking cards\n- Fix topbar, search, and user menu for mobile viewports\n- Add touch-friendly 44px minimum targets\n- Support minimum width of 360px \\(most Android phones\\)\n\nEOF\n\\)\")",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "mcp__playwright__browser_navigate"
     ],
     "deny": []
   }

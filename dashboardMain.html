@@ -808,336 +808,402 @@
                     <p>Manage your account, payouts, and team permissions.</p>
                 </header>
                 <div class="profile__container">
-                    <!-- Personal Information Card -->
-                    <article class="profile-card">
-                        <header class="profile-card__header">
-                            <div class="profile-card__title">
-                                <h3>Personal Information</h3>
-                                <span class="profile-card__description">Update your personal details and contact information</span>
+                    <!-- Overall Progress Bar -->
+                    <div class="profile-progress">
+                        <div class="profile-progress__header">
+                            <span class="profile-progress__label">Profile Completion</span>
+                            <span class="profile-progress__percentage" id="profile-progress-pct">0%</span>
+                        </div>
+                        <div class="profile-progress__bar">
+                            <div class="profile-progress__fill" id="profile-progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Container -->
+                    <div class="profile-accordion" role="region" aria-label="Profile settings">
+
+                        <!-- 1. Personal Information -->
+                        <article class="profile-accordion__item" data-section="personal-info" data-accordion-open="true">
+                            <header class="profile-accordion__header" role="button" tabindex="0" aria-expanded="true" aria-controls="panel-personal-info">
+                                <div class="profile-accordion__title">
+                                    <h3>Personal Information</h3>
+                                    <span class="profile-accordion__description">Update your personal details and contact information</span>
+                                </div>
+                                <div class="profile-accordion__status">
+                                    <span class="profile-accordion__status-icon profile-accordion__status-icon--incomplete">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                                    </span>
+                                    <svg class="profile-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+                                </div>
+                            </header>
+                            <div class="profile-accordion__panel" id="panel-personal-info" role="region">
+                                <div class="profile-card__content">
+                                    <div class="profile-avatar">
+                                        <img src="assets/avatar-owner.png" alt="Profile photo" class="profile-avatar__image">
+                                        <button class="profile-avatar__upload" onclick="openProfileModal('avatar-upload')">Change photo</button>
+                                    </div>
+                                    <div class="profile-form">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label class="form-group__label" for="first-name">First Name</label>
+                                                <input type="text" id="first-name" class="form-group__input" value="Blessing">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-group__label" for="last-name">Last Name</label>
+                                                <input type="text" id="last-name" class="form-group__input" value="L.">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-group__label" for="email">Email Address</label>
+                                            <input type="email" id="email" class="form-group__input" value="blessing.l@example.com">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-group__label" for="phone">Phone Number</label>
+                                            <input type="tel" id="phone" class="form-group__input" value="+263 77 123 4567">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-group__label" for="company">Company/Business Name</label>
+                                            <input type="text" id="company" class="form-group__input" value="Lendaz Properties">
+                                        </div>
+                                    </div>
+                                </div>
+                                <footer class="profile-card__footer">
+                                    <button class="btn btn--secondary">Cancel</button>
+                                    <button class="btn btn--primary">Save Changes</button>
+                                </footer>
                             </div>
-                        </header>
-                        <div class="profile-card__content">
-                            <div class="profile-avatar">
-                                <img src="assets/avatar-owner.png" alt="Profile photo" class="profile-avatar__image">
-                                <button class="profile-avatar__upload" onclick="openProfileModal('avatar-upload')">Change photo</button>
+                        </article>
+
+                        <!-- 2. Account Verification -->
+                        <article class="profile-accordion__item" data-section="verification" data-accordion-open="false">
+                            <header class="profile-accordion__header" role="button" tabindex="0" aria-expanded="false" aria-controls="panel-verification">
+                                <div class="profile-accordion__title">
+                                    <h3>Account Verification</h3>
+                                    <span class="profile-accordion__description">Complete verification to unlock all features</span>
+                                </div>
+                                <div class="profile-accordion__status">
+                                    <span class="profile-accordion__status-icon profile-accordion__status-icon--incomplete">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                                    </span>
+                                    <svg class="profile-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+                                </div>
+                            </header>
+                            <div class="profile-accordion__panel" id="panel-verification" role="region">
+                                <div class="profile-card__content">
+                                    <div class="verification-progress">
+                                        <div class="verification-progress__bar">
+                                            <div class="verification-progress__fill" style="width: 85%"></div>
+                                        </div>
+                                        <span class="verification-progress__text">4 of 5 verification steps completed</span>
+                                    </div>
+                                    <div class="verification-items">
+                                        <div class="verification-item verification-item--complete">
+                                            <div class="verification-item__icon">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="verification-item__content">
+                                                <span class="verification-item__title">Email Verification</span>
+                                                <span class="verification-item__description">Verified on Sept 15, 2024</span>
+                                            </div>
+                                        </div>
+                                        <div class="verification-item verification-item--complete">
+                                            <div class="verification-item__icon">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="verification-item__content">
+                                                <span class="verification-item__title">Phone Number</span>
+                                                <span class="verification-item__description">Verified via SMS</span>
+                                            </div>
+                                        </div>
+                                        <div class="verification-item verification-item--complete">
+                                            <div class="verification-item__icon">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="verification-item__content">
+                                                <span class="verification-item__title">Bank Account</span>
+                                                <span class="verification-item__description">Standard Bank ****1234</span>
+                                            </div>
+                                        </div>
+                                        <div class="verification-item verification-item--complete">
+                                            <div class="verification-item__icon">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="verification-item__content">
+                                                <span class="verification-item__title">KYC Documents</span>
+                                                <span class="verification-item__description">ID and proof of address uploaded</span>
+                                            </div>
+                                        </div>
+                                        <div class="verification-item verification-item--pending">
+                                            <div class="verification-item__icon">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                    <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM7 6a1 1 0 1 1 2 0v2a1 1 0 1 1-2 0V6zM8 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="verification-item__content">
+                                                <span class="verification-item__title">Business Registration</span>
+                                                <span class="verification-item__description">Upload business registration certificate</span>
+                                            </div>
+                                            <button class="verification-item__action" onclick="openProfileModal('file-upload')">Upload</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="profile-form">
-                                <div class="form-row">
+                        </article>
+
+                        <!-- 3. Security & Authentication -->
+                        <article class="profile-accordion__item" data-section="security" data-accordion-open="false">
+                            <header class="profile-accordion__header" role="button" tabindex="0" aria-expanded="false" aria-controls="panel-security">
+                                <div class="profile-accordion__title">
+                                    <h3>Security &amp; Authentication</h3>
+                                    <span class="profile-accordion__description">Manage your account security and login preferences</span>
+                                </div>
+                                <div class="profile-accordion__status">
+                                    <span class="profile-accordion__status-icon profile-accordion__status-icon--incomplete">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                                    </span>
+                                    <svg class="profile-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+                                </div>
+                            </header>
+                            <div class="profile-accordion__panel" id="panel-security" role="region">
+                                <div class="profile-card__content">
+                                    <div class="profile-card__section">
+                                        <h4>Password</h4>
+                                        <div class="profile-card__item">
+                                            <span>Last changed 3 months ago</span>
+                                            <button class="profile-card__button" onclick="openProfileModal('password-change')">Change Password</button>
+                                        </div>
+                                    </div>
+                                    <div class="profile-card__section">
+                                        <h4>Two-Factor Authentication</h4>
+                                        <div class="profile-card__item">
+                                            <div>
+                                                <span>Add an extra layer of security to your account</span>
+                                                <span class="profile-card__status profile-card__status--disabled">Not enabled</span>
+                                            </div>
+                                            <button class="profile-card__button" onclick="openProfileModal('twofa-setup')">Enable 2FA</button>
+                                        </div>
+                                    </div>
+                                    <div class="profile-card__section">
+                                        <h4>Active Sessions</h4>
+                                        <div class="profile-card__item">
+                                            <div>
+                                                <span>3 active sessions</span>
+                                                <span class="profile-card__detail">Last activity: 2 minutes ago</span>
+                                            </div>
+                                            <button class="profile-card__button" onclick="openProfileModal('sessions')">Manage Sessions</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 4. Payout & Banking -->
+                        <article class="profile-accordion__item" data-section="banking" data-accordion-open="false">
+                            <header class="profile-accordion__header" role="button" tabindex="0" aria-expanded="false" aria-controls="panel-banking">
+                                <div class="profile-accordion__title">
+                                    <h3>Payout &amp; Banking</h3>
+                                    <span class="profile-accordion__description">Manage your payout preferences and banking information</span>
+                                </div>
+                                <div class="profile-accordion__status">
+                                    <span class="profile-accordion__status-icon profile-accordion__status-icon--incomplete">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                                    </span>
+                                    <svg class="profile-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+                                </div>
+                            </header>
+                            <div class="profile-accordion__panel" id="panel-banking" role="region">
+                                <div class="profile-card__content">
+                                    <div class="profile-card__section">
+                                        <h4>Primary Bank Account</h4>
+                                        <div class="bank-account">
+                                            <div class="bank-account__info">
+                                                <span class="bank-account__name">Standard Bank Zimbabwe</span>
+                                                <span class="bank-account__number">****1234</span>
+                                                <span class="bank-account__type">Savings Account</span>
+                                            </div>
+                                            <button class="profile-card__button" onclick="openProfileModal('bank-account')">Change Account</button>
+                                        </div>
+                                    </div>
+                                    <div class="profile-card__section">
+                                        <h4>Payout Schedule</h4>
+                                        <div class="profile-card__item">
+                                            <span>Weekly payouts every Friday</span>
+                                            <button class="profile-card__button" onclick="openProfileModal('payout-schedule')">Change Schedule</button>
+                                        </div>
+                                    </div>
+                                    <div class="profile-card__section">
+                                        <h4>Tax Information</h4>
+                                        <div class="profile-card__item">
+                                            <div>
+                                                <span>Tax ID: ****567890</span>
+                                                <span class="profile-card__detail">Last updated: Aug 2024</span>
+                                            </div>
+                                            <button class="profile-card__button" onclick="openProfileModal('tax-info')">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <footer class="profile-card__footer">
+                                    <button class="profile-card__link">View payout history</button>
+                                </footer>
+                            </div>
+                        </article>
+
+                        <!-- 5. Notifications -->
+                        <article class="profile-accordion__item" data-section="notifications" data-accordion-open="false">
+                            <header class="profile-accordion__header" role="button" tabindex="0" aria-expanded="false" aria-controls="panel-notifications">
+                                <div class="profile-accordion__title">
+                                    <h3>Notifications</h3>
+                                    <span class="profile-accordion__description">Choose how and when you want to be notified</span>
+                                </div>
+                                <div class="profile-accordion__status">
+                                    <span class="profile-accordion__status-icon profile-accordion__status-icon--complete">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                        </svg>
+                                    </span>
+                                    <svg class="profile-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+                                </div>
+                            </header>
+                            <div class="profile-accordion__panel" id="panel-notifications" role="region">
+                                <div class="profile-card__content">
+                                    <div class="notification-section">
+                                        <h4>Property Management</h4>
+                                        <div class="notification-item">
+                                            <div class="notification-item__info">
+                                                <span class="notification-item__title">Maintenance Alerts</span>
+                                                <span class="notification-item__description">Urgent repair requests and scheduled maintenance</span>
+                                            </div>
+                                            <div class="notification-controls">
+                                                <label class="toggle">
+                                                    <input type="checkbox" checked>
+                                                    <span class="toggle__slider"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="notification-item">
+                                            <div class="notification-item__info">
+                                                <span class="notification-item__title">Lead Updates</span>
+                                                <span class="notification-item__description">New inquiries and application status changes</span>
+                                            </div>
+                                            <div class="notification-controls">
+                                                <label class="toggle">
+                                                    <input type="checkbox" checked>
+                                                    <span class="toggle__slider"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="notification-item">
+                                            <div class="notification-item__info">
+                                                <span class="notification-item__title">Rent Collection</span>
+                                                <span class="notification-item__description">Payment confirmations and overdue notices</span>
+                                            </div>
+                                            <div class="notification-controls">
+                                                <label class="toggle">
+                                                    <input type="checkbox" checked>
+                                                    <span class="toggle__slider"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="notification-section">
+                                        <h4>Reports & Analytics</h4>
+                                        <div class="notification-item">
+                                            <div class="notification-item__info">
+                                                <span class="notification-item__title">Weekly Insights</span>
+                                                <span class="notification-item__description">Performance summaries and key metrics</span>
+                                            </div>
+                                            <div class="notification-controls">
+                                                <label class="toggle">
+                                                    <input type="checkbox">
+                                                    <span class="toggle__slider"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="notification-item">
+                                            <div class="notification-item__info">
+                                                <span class="notification-item__title">Monthly Reports</span>
+                                                <span class="notification-item__description">Comprehensive portfolio performance reports</span>
+                                            </div>
+                                            <div class="notification-controls">
+                                                <label class="toggle">
+                                                    <input type="checkbox" checked>
+                                                    <span class="toggle__slider"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- 6. Dashboard Preferences -->
+                        <article class="profile-accordion__item" data-section="preferences" data-accordion-open="false">
+                            <header class="profile-accordion__header" role="button" tabindex="0" aria-expanded="false" aria-controls="panel-preferences">
+                                <div class="profile-accordion__title">
+                                    <h3>Dashboard Preferences</h3>
+                                    <span class="profile-accordion__description">Customize your dashboard experience</span>
+                                </div>
+                                <div class="profile-accordion__status">
+                                    <span class="profile-accordion__status-icon profile-accordion__status-icon--complete">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                        </svg>
+                                    </span>
+                                    <svg class="profile-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+                                </div>
+                            </header>
+                            <div class="profile-accordion__panel" id="panel-preferences" role="region">
+                                <div class="profile-card__content">
                                     <div class="form-group">
-                                        <label class="form-group__label" for="first-name">First Name</label>
-                                        <input type="text" id="first-name" class="form-group__input" value="Blessing">
+                                        <label class="form-group__label" for="theme">Theme</label>
+                                        <select id="theme" class="form-group__input">
+                                            <option value="light" selected>Light</option>
+                                            <option value="dark">Dark</option>
+                                            <option value="auto">Auto (system preference)</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-group__label" for="last-name">Last Name</label>
-                                        <input type="text" id="last-name" class="form-group__input" value="L.">
+                                        <label class="form-group__label" for="language">Language</label>
+                                        <select id="language" class="form-group__input">
+                                            <option value="en" selected>English</option>
+                                            <option value="zu">Zulu</option>
+                                            <option value="af">Afrikaans</option>
+                                            <option value="sn">Shona</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-group__label" for="timezone">Timezone</label>
+                                        <select id="timezone" class="form-group__input">
+                                            <option value="Africa/Harare" selected>CAT (Africa/Harare)</option>
+                                            <option value="Africa/Johannesburg">SAST (Africa/Johannesburg)</option>
+                                            <option value="UTC">UTC</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-group__label" for="currency">Currency Display</label>
+                                        <select id="currency" class="form-group__input">
+                                            <option value="USD" selected>USD ($)</option>
+                                            <option value="ZWL">ZWL (Z$)</option>
+                                            <option value="ZAR">ZAR (R)</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-group__label" for="email">Email Address</label>
-                                    <input type="email" id="email" class="form-group__input" value="blessing.l@example.com">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-group__label" for="phone">Phone Number</label>
-                                    <input type="tel" id="phone" class="form-group__input" value="+263 77 123 4567">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-group__label" for="company">Company/Business Name</label>
-                                    <input type="text" id="company" class="form-group__input" value="Lendaz Properties">
-                                </div>
+                                <footer class="profile-card__footer">
+                                    <button class="btn btn--secondary">Reset to defaults</button>
+                                    <button class="btn btn--primary">Save Preferences</button>
+                                </footer>
                             </div>
-                        </div>
-                        <footer class="profile-card__footer">
-                            <button class="btn btn--secondary">Cancel</button>
-                            <button class="btn btn--primary">Save Changes</button>
-                        </footer>
-                    </article>
+                        </article>
 
-                    <!-- Security & Authentication Card -->
-                    <article class="profile-card">
-                        <header class="profile-card__header">
-                            <div class="profile-card__title">
-                                <h3>Security &amp; Authentication</h3>
-                                <span class="profile-card__description">Manage your account security and login preferences</span>
-                            </div>
-                        </header>
-                        <div class="profile-card__content">
-                            <div class="profile-card__section">
-                                <h4>Password</h4>
-                                <div class="profile-card__item">
-                                    <span>Last changed 3 months ago</span>
-                                    <button class="profile-card__button" onclick="openProfileModal('password-change')">Change Password</button>
-                                </div>
-                            </div>
-                            <div class="profile-card__section">
-                                <h4>Two-Factor Authentication</h4>
-                                <div class="profile-card__item">
-                                    <div>
-                                        <span>Add an extra layer of security to your account</span>
-                                        <span class="profile-card__status profile-card__status--disabled">Not enabled</span>
-                                    </div>
-                                    <button class="profile-card__button" onclick="openProfileModal('twofa-setup')">Enable 2FA</button>
-                                </div>
-                            </div>
-                            <div class="profile-card__section">
-                                <h4>Active Sessions</h4>
-                                <div class="profile-card__item">
-                                    <div>
-                                        <span>3 active sessions</span>
-                                        <span class="profile-card__detail">Last activity: 2 minutes ago</span>
-                                    </div>
-                                    <button class="profile-card__button" onclick="openProfileModal('sessions')">Manage Sessions</button>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Enhanced Verification Card -->
-                    <article class="profile-card">
-                        <header class="profile-card__header">
-                            <div class="profile-card__title">
-                                <h3>Account Verification</h3>
-                                <span class="profile-card__progress">85% complete</span>
-                            </div>
-                        </header>
-                        <div class="profile-card__content">
-                            <div class="verification-progress">
-                                <div class="verification-progress__bar">
-                                    <div class="verification-progress__fill" style="width: 85%"></div>
-                                </div>
-                                <span class="verification-progress__text">4 of 5 verification steps completed</span>
-                            </div>
-                            <div class="verification-items">
-                                <div class="verification-item verification-item--complete">
-                                    <div class="verification-item__icon">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="verification-item__content">
-                                        <span class="verification-item__title">Email Verification</span>
-                                        <span class="verification-item__description">Verified on Sept 15, 2024</span>
-                                    </div>
-                                </div>
-                                <div class="verification-item verification-item--complete">
-                                    <div class="verification-item__icon">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="verification-item__content">
-                                        <span class="verification-item__title">Phone Number</span>
-                                        <span class="verification-item__description">Verified via SMS</span>
-                                    </div>
-                                </div>
-                                <div class="verification-item verification-item--complete">
-                                    <div class="verification-item__icon">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="verification-item__content">
-                                        <span class="verification-item__title">Bank Account</span>
-                                        <span class="verification-item__description">Standard Bank ****1234</span>
-                                    </div>
-                                </div>
-                                <div class="verification-item verification-item--complete">
-                                    <div class="verification-item__icon">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="verification-item__content">
-                                        <span class="verification-item__title">KYC Documents</span>
-                                        <span class="verification-item__description">ID and proof of address uploaded</span>
-                                    </div>
-                                </div>
-                                <div class="verification-item verification-item--pending">
-                                    <div class="verification-item__icon">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM7 6a1 1 0 1 1 2 0v2a1 1 0 1 1-2 0V6zM8 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="verification-item__content">
-                                        <span class="verification-item__title">Business Registration</span>
-                                        <span class="verification-item__description">Upload business registration certificate</span>
-                                    </div>
-                                    <button class="verification-item__action" onclick="openProfileModal('file-upload')">Upload</button>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Payout & Banking Card -->
-                    <article class="profile-card">
-                        <header class="profile-card__header">
-                            <div class="profile-card__title">
-                                <h3>Payout &amp; Banking</h3>
-                                <span class="profile-card__description">Manage your payout preferences and banking information</span>
-                            </div>
-                        </header>
-                        <div class="profile-card__content">
-                            <div class="profile-card__section">
-                                <h4>Primary Bank Account</h4>
-                                <div class="bank-account">
-                                    <div class="bank-account__info">
-                                        <span class="bank-account__name">Standard Bank Zimbabwe</span>
-                                        <span class="bank-account__number">****1234</span>
-                                        <span class="bank-account__type">Savings Account</span>
-                                    </div>
-                                    <button class="profile-card__button" onclick="openProfileModal('bank-account')">Change Account</button>
-                                </div>
-                            </div>
-                            <div class="profile-card__section">
-                                <h4>Payout Schedule</h4>
-                                <div class="profile-card__item">
-                                    <span>Weekly payouts every Friday</span>
-                                    <button class="profile-card__button" onclick="openProfileModal('payout-schedule')">Change Schedule</button>
-                                </div>
-                            </div>
-                            <div class="profile-card__section">
-                                <h4>Tax Information</h4>
-                                <div class="profile-card__item">
-                                    <div>
-                                        <span>Tax ID: ****567890</span>
-                                        <span class="profile-card__detail">Last updated: Aug 2024</span>
-                                    </div>
-                                    <button class="profile-card__button" onclick="openProfileModal('tax-info')">Update</button>
-                                </div>
-                            </div>
-                        </div>
-                        <footer class="profile-card__footer">
-                            <button class="profile-card__link">View payout history</button>
-                        </footer>
-                    </article>
-
-                    <!-- Enhanced Notifications Card -->
-                    <article class="profile-card">
-                        <header class="profile-card__header">
-                            <div class="profile-card__title">
-                                <h3>Notifications</h3>
-                                <span class="profile-card__description">Choose how and when you want to be notified</span>
-                            </div>
-                        </header>
-                        <div class="profile-card__content">
-                            <div class="notification-section">
-                                <h4>Property Management</h4>
-                                <div class="notification-item">
-                                    <div class="notification-item__info">
-                                        <span class="notification-item__title">Maintenance Alerts</span>
-                                        <span class="notification-item__description">Urgent repair requests and scheduled maintenance</span>
-                                    </div>
-                                    <div class="notification-controls">
-                                        <label class="toggle">
-                                            <input type="checkbox" checked>
-                                            <span class="toggle__slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="notification-item">
-                                    <div class="notification-item__info">
-                                        <span class="notification-item__title">Lead Updates</span>
-                                        <span class="notification-item__description">New inquiries and application status changes</span>
-                                    </div>
-                                    <div class="notification-controls">
-                                        <label class="toggle">
-                                            <input type="checkbox" checked>
-                                            <span class="toggle__slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="notification-item">
-                                    <div class="notification-item__info">
-                                        <span class="notification-item__title">Rent Collection</span>
-                                        <span class="notification-item__description">Payment confirmations and overdue notices</span>
-                                    </div>
-                                    <div class="notification-controls">
-                                        <label class="toggle">
-                                            <input type="checkbox" checked>
-                                            <span class="toggle__slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="notification-section">
-                                <h4>Reports & Analytics</h4>
-                                <div class="notification-item">
-                                    <div class="notification-item__info">
-                                        <span class="notification-item__title">Weekly Insights</span>
-                                        <span class="notification-item__description">Performance summaries and key metrics</span>
-                                    </div>
-                                    <div class="notification-controls">
-                                        <label class="toggle">
-                                            <input type="checkbox">
-                                            <span class="toggle__slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="notification-item">
-                                    <div class="notification-item__info">
-                                        <span class="notification-item__title">Monthly Reports</span>
-                                        <span class="notification-item__description">Comprehensive portfolio performance reports</span>
-                                    </div>
-                                    <div class="notification-controls">
-                                        <label class="toggle">
-                                            <input type="checkbox" checked>
-                                            <span class="toggle__slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Dashboard Preferences Card -->
-                    <article class="profile-card">
-                        <header class="profile-card__header">
-                            <div class="profile-card__title">
-                                <h3>Dashboard Preferences</h3>
-                                <span class="profile-card__description">Customize your dashboard experience</span>
-                            </div>
-                        </header>
-                        <div class="profile-card__content">
-                            <div class="form-group">
-                                <label class="form-group__label" for="theme">Theme</label>
-                                <select id="theme" class="form-group__input">
-                                    <option value="light" selected>Light</option>
-                                    <option value="dark">Dark</option>
-                                    <option value="auto">Auto (system preference)</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-group__label" for="language">Language</label>
-                                <select id="language" class="form-group__input">
-                                    <option value="en" selected>English</option>
-                                    <option value="zu">Zulu</option>
-                                    <option value="af">Afrikaans</option>
-                                    <option value="sn">Shona</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-group__label" for="timezone">Timezone</label>
-                                <select id="timezone" class="form-group__input">
-                                    <option value="Africa/Harare" selected>CAT (Africa/Harare)</option>
-                                    <option value="Africa/Johannesburg">SAST (Africa/Johannesburg)</option>
-                                    <option value="UTC">UTC</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-group__label" for="currency">Currency Display</label>
-                                <select id="currency" class="form-group__input">
-                                    <option value="USD" selected>USD ($)</option>
-                                    <option value="ZWL">ZWL (Z$)</option>
-                                    <option value="ZAR">ZAR (R)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <footer class="profile-card__footer">
-                            <button class="btn btn--secondary">Reset to defaults</button>
-                            <button class="btn btn--primary">Save Preferences</button>
-                        </footer>
-                    </article>
-
-                    <!-- Team & Permissions Card (Enhanced) -->
+                    </div>
                 </div>
             </section>
 
@@ -2223,16 +2289,21 @@
                     </svg>
                 </button>
             </div>
-            
-            <div class="add-listing-modal__steps">
-                <div class="add-listing-modal__step add-listing-modal__step--active">
-                    1. Property Details
+
+            <div class="add-listing-modal__stepper">
+                <div class="add-listing-modal__step add-listing-modal__step--active" data-step-num="1">
+                    <div class="add-listing-modal__step-circle">1</div>
+                    <span class="add-listing-modal__step-label">Property Details</span>
                 </div>
-                <div class="add-listing-modal__step">
-                    2. Location & Amenities
+                <div class="add-listing-modal__step-line"></div>
+                <div class="add-listing-modal__step" data-step-num="2">
+                    <div class="add-listing-modal__step-circle">2</div>
+                    <span class="add-listing-modal__step-label">Location & Amenities</span>
                 </div>
-                <div class="add-listing-modal__step">
-                    3. Pricing & Media
+                <div class="add-listing-modal__step-line"></div>
+                <div class="add-listing-modal__step" data-step-num="3">
+                    <div class="add-listing-modal__step-circle">3</div>
+                    <span class="add-listing-modal__step-label">Pricing & Media</span>
                 </div>
             </div>
 
@@ -2243,39 +2314,44 @@
                         <label class="form-group__label" for="property-name">Property Name *</label>
                         <input type="text" id="property-name" class="form-group__input" placeholder="Enter property name" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-group__label">Property Type *</label>
-                        <div class="radio-group">
-                            <input type="radio" id="luxury-apartments" name="property-type" value="Luxury Apartments" class="radio-group__input" required>
-                            <label for="luxury-apartments" class="radio-group__option">
-                                <div class="radio-group__indicator"></div>
-                                <div class="radio-group__content">
-                                    <div class="title">Luxury Apartments</div>
-                                    <div class="description">High-end residential apartments with premium amenities and services</div>
-                                </div>
+                        <div class="property-type-grid">
+                            <input type="radio" id="luxury-apartments" name="property-type" value="Luxury Apartments" class="property-type-grid__input" required>
+                            <label for="luxury-apartments" class="property-type-grid__card">
+                                <svg class="property-type-grid__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 21V7l9-4 9 4v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 21V13h6v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 9h.01M15 9h.01M9 5h.01M15 5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <div class="property-type-grid__title">Luxury Apartments</div>
+                                <div class="property-type-grid__subtitle">Premium residential units</div>
                             </label>
-                            
-                            <input type="radio" id="family-homes" name="property-type" value="Family Homes" class="radio-group__input">
-                            <label for="family-homes" class="radio-group__option">
-                                <div class="radio-group__indicator"></div>
-                                <div class="radio-group__content">
-                                    <div class="title">Family Homes</div>
-                                    <div class="description">Single-family houses and townhomes suitable for families</div>
-                                </div>
+
+                            <input type="radio" id="family-homes" name="property-type" value="Family Homes" class="property-type-grid__input">
+                            <label for="family-homes" class="property-type-grid__card">
+                                <svg class="property-type-grid__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 10.182V22h18V10.182L12 2 3 10.182Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 22v-6h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <div class="property-type-grid__title">Family Homes</div>
+                                <div class="property-type-grid__subtitle">Houses and townhomes</div>
                             </label>
-                            
-                            <input type="radio" id="studio-1br" name="property-type" value="Studio & 1BR" class="radio-group__input">
-                            <label for="studio-1br" class="radio-group__option">
-                                <div class="radio-group__indicator"></div>
-                                <div class="radio-group__content">
-                                    <div class="title">Studio & 1BR</div>
-                                    <div class="description">Compact residential units perfect for young professionals and students</div>
-                                </div>
+
+                            <input type="radio" id="studio-1br" name="property-type" value="Studio & 1BR" class="property-type-grid__input">
+                            <label for="studio-1br" class="property-type-grid__card">
+                                <svg class="property-type-grid__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="8" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M7 8V6a5 5 0 0 1 10 0v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <circle cx="12" cy="15" r="2" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                                <div class="property-type-grid__title">Studio & 1BR</div>
+                                <div class="property-type-grid__subtitle">Compact units for professionals</div>
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-group__label" for="bedrooms">Bedrooms</label>
@@ -2288,7 +2364,7 @@
                                 <option value="5">5+ Bedrooms</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-group__label" for="bathrooms">Bathrooms</label>
                             <select id="bathrooms" class="form-group__input">
@@ -2300,7 +2376,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-group__label" for="description">Property Description</label>
                         <textarea id="description" class="form-group__input" rows="4" placeholder="Describe your property..."></textarea>
@@ -2313,13 +2389,13 @@
                         <label class="form-group__label" for="address">Address *</label>
                         <input type="text" id="address" class="form-group__input" placeholder="Full address" required>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-group__label" for="city">City *</label>
                             <input type="text" id="city" class="form-group__input" placeholder="City" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-group__label" for="state">Province *</label>
                             <select id="state" class="form-group__input" required>
@@ -2332,21 +2408,37 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-group__label">Amenities</label>
-                        <div class="form-row">
-                            <label>
-                                <input type="checkbox" name="amenities" value="parking"> Parking
+                        <div class="amenity-chips">
+                            <label class="amenity-chip">
+                                <input type="checkbox" name="amenities" value="parking" class="amenity-chip__input">
+                                <span class="amenity-chip__label">
+                                    <svg class="amenity-chip__check" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    Parking
+                                </span>
                             </label>
-                            <label>
-                                <input type="checkbox" name="amenities" value="gym"> Gym
+                            <label class="amenity-chip">
+                                <input type="checkbox" name="amenities" value="gym" class="amenity-chip__input">
+                                <span class="amenity-chip__label">
+                                    <svg class="amenity-chip__check" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    Gym
+                                </span>
                             </label>
-                            <label>
-                                <input type="checkbox" name="amenities" value="pool"> Swimming Pool
+                            <label class="amenity-chip">
+                                <input type="checkbox" name="amenities" value="pool" class="amenity-chip__input">
+                                <span class="amenity-chip__label">
+                                    <svg class="amenity-chip__check" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    Swimming Pool
+                                </span>
                             </label>
-                            <label>
-                                <input type="checkbox" name="amenities" value="security"> 24/7 Security
+                            <label class="amenity-chip">
+                                <input type="checkbox" name="amenities" value="security" class="amenity-chip__input">
+                                <span class="amenity-chip__label">
+                                    <svg class="amenity-chip__check" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    24/7 Security
+                                </span>
                             </label>
                         </div>
                     </div>
@@ -2356,22 +2448,31 @@
                 <div class="add-listing-modal__form-step" data-step="3">
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-group__label" for="rent-amount">Monthly Rent (₦) *</label>
+                            <label class="form-group__label" for="rent-amount">Monthly Rent (*) *</label>
                             <input type="number" id="rent-amount" class="form-group__input" placeholder="0.00" required>
                         </div>
-                        
+
                         <div class="form-group">
-                            <label class="form-group__label" for="security-deposit">Security Deposit (₦)</label>
+                            <label class="form-group__label" for="security-deposit">Security Deposit (*)</label>
                             <input type="number" id="security-deposit" class="form-group__input" placeholder="0.00">
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="form-group__label" for="property-images">Property Images</label>
-                        <input type="file" id="property-images" class="form-group__input" multiple accept="image/*">
-                        <div class="form-group__hint">Upload up to 10 high-quality images of your property</div>
+                        <label class="form-group__label">Property Images</label>
+                        <div class="upload-dropzone" id="upload-dropzone">
+                            <input type="file" id="property-images" class="upload-dropzone__input" multiple accept="image/*">
+                            <svg class="upload-dropzone__icon" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="17,8 12,3 7,8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="12" y1="3" x2="12" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            <p class="upload-dropzone__text">Drag and drop images here, or click to browse</p>
+                            <span class="upload-dropzone__hint">Upload up to 10 high-quality images</span>
+                        </div>
+                        <div class="upload-preview" id="upload-preview"></div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-group__label">Listing Status</label>
                         <div class="radio-group">
@@ -2383,7 +2484,7 @@
                                     <div class="description">Save listing privately for review before publishing</div>
                                 </div>
                             </label>
-                            
+
                             <input type="radio" id="status-publish" name="status" value="published" class="radio-group__input">
                             <label for="status-publish" class="radio-group__option">
                                 <div class="radio-group__indicator"></div>
@@ -2397,11 +2498,11 @@
                 </div>
 
                 <div class="add-listing-modal__navigation">
-                    <button type="button" class="btn btn--secondary" id="prev-step" style="display: none;">Previous</button>
-                    <div style="display: flex; gap: var(--space-3);">
+                    <button type="button" class="btn btn--secondary add-listing-modal__btn-prev add-listing-modal__btn-prev--hidden" id="prev-step">Previous</button>
+                    <div class="add-listing-modal__nav-right">
                         <button type="button" class="btn btn--secondary" id="close-modal">Cancel</button>
                         <button type="button" class="btn btn--primary" id="next-step">Next</button>
-                        <button type="submit" class="btn btn--primary" id="submit-listing" style="display: none;">Create Listing</button>
+                        <button type="submit" class="btn btn--primary add-listing-modal__btn-submit add-listing-modal__btn-submit--hidden" id="submit-listing">Create Listing</button>
                     </div>
                 </div>
             </form>
@@ -2609,61 +2710,71 @@
                     </svg>
                 </button>
             </div>
-            
-            <div class="add-listing-modal__steps">
-                <div class="add-listing-modal__step add-listing-modal__step--active">
-                    1. Property Details
+
+            <div class="add-listing-modal__stepper">
+                <div class="add-listing-modal__step add-listing-modal__step--active" data-step-num="1">
+                    <div class="add-listing-modal__step-circle">1</div>
+                    <span class="add-listing-modal__step-label">Property Details</span>
                 </div>
-                <div class="add-listing-modal__step">
-                    2. Location & Amenities
+                <div class="add-listing-modal__step-line"></div>
+                <div class="add-listing-modal__step" data-step-num="2">
+                    <div class="add-listing-modal__step-circle">2</div>
+                    <span class="add-listing-modal__step-label">Location & Amenities</span>
                 </div>
-                <div class="add-listing-modal__step">
-                    3. Pricing & Media
+                <div class="add-listing-modal__step-line"></div>
+                <div class="add-listing-modal__step" data-step-num="3">
+                    <div class="add-listing-modal__step-circle">3</div>
+                    <span class="add-listing-modal__step-label">Pricing & Media</span>
                 </div>
             </div>
 
             <form class="edit-listing-form">
                 <input type="hidden" id="edit-listing-id" name="listing-id">
-                
+
                 <!-- Step 1: Property Details -->
                 <div class="add-listing-modal__form-step add-listing-modal__form-step--active" data-step="1">
                     <div class="form-group">
                         <label class="form-group__label" for="edit-property-name">Property Name *</label>
                         <input type="text" id="edit-property-name" class="form-group__input" placeholder="Enter property name" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-group__label">Property Type *</label>
-                        <div class="radio-group">
-                            <input type="radio" id="edit-luxury-apartments" name="edit-property-type" value="Luxury Apartments" class="radio-group__input" required>
-                            <label for="edit-luxury-apartments" class="radio-group__option">
-                                <div class="radio-group__indicator"></div>
-                                <div class="radio-group__content">
-                                    <div class="title">Luxury Apartments</div>
-                                    <div class="description">High-end residential apartments with premium amenities and services</div>
-                                </div>
+                        <div class="property-type-grid">
+                            <input type="radio" id="edit-luxury-apartments" name="edit-property-type" value="Luxury Apartments" class="property-type-grid__input" required>
+                            <label for="edit-luxury-apartments" class="property-type-grid__card">
+                                <svg class="property-type-grid__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 21V7l9-4 9 4v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 21V13h6v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 9h.01M15 9h.01M9 5h.01M15 5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <div class="property-type-grid__title">Luxury Apartments</div>
+                                <div class="property-type-grid__subtitle">Premium residential units</div>
                             </label>
-                            
-                            <input type="radio" id="edit-family-homes" name="edit-property-type" value="Family Homes" class="radio-group__input">
-                            <label for="edit-family-homes" class="radio-group__option">
-                                <div class="radio-group__indicator"></div>
-                                <div class="radio-group__content">
-                                    <div class="title">Family Homes</div>
-                                    <div class="description">Single-family houses and townhomes suitable for families</div>
-                                </div>
+
+                            <input type="radio" id="edit-family-homes" name="edit-property-type" value="Family Homes" class="property-type-grid__input">
+                            <label for="edit-family-homes" class="property-type-grid__card">
+                                <svg class="property-type-grid__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 10.182V22h18V10.182L12 2 3 10.182Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 22v-6h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <div class="property-type-grid__title">Family Homes</div>
+                                <div class="property-type-grid__subtitle">Houses and townhomes</div>
                             </label>
-                            
-                            <input type="radio" id="edit-studio-1br" name="edit-property-type" value="Studio & 1BR" class="radio-group__input">
-                            <label for="edit-studio-1br" class="radio-group__option">
-                                <div class="radio-group__indicator"></div>
-                                <div class="radio-group__content">
-                                    <div class="title">Studio & 1BR</div>
-                                    <div class="description">Compact residential units perfect for young professionals and students</div>
-                                </div>
+
+                            <input type="radio" id="edit-studio-1br" name="edit-property-type" value="Studio & 1BR" class="property-type-grid__input">
+                            <label for="edit-studio-1br" class="property-type-grid__card">
+                                <svg class="property-type-grid__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="8" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M7 8V6a5 5 0 0 1 10 0v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <circle cx="12" cy="15" r="2" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                                <div class="property-type-grid__title">Studio & 1BR</div>
+                                <div class="property-type-grid__subtitle">Compact units for professionals</div>
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-group__label" for="edit-bedrooms">Bedrooms</label>
@@ -2676,7 +2787,7 @@
                                 <option value="5">5+ Bedrooms</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-group__label" for="edit-bathrooms">Bathrooms</label>
                             <select id="edit-bathrooms" class="form-group__input">
@@ -2688,7 +2799,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-group__label" for="edit-description">Property Description</label>
                         <textarea id="edit-description" class="form-group__input" rows="4" placeholder="Describe your property..."></textarea>
@@ -2701,13 +2812,13 @@
                         <label class="form-group__label" for="edit-address">Address *</label>
                         <input type="text" id="edit-address" class="form-group__input" placeholder="Full address" required>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-group__label" for="edit-city">City *</label>
                             <input type="text" id="edit-city" class="form-group__input" placeholder="City" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-group__label" for="edit-state">Province *</label>
                             <select id="edit-state" class="form-group__input" required>
@@ -2720,21 +2831,37 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-group__label">Amenities</label>
-                        <div class="form-row">
-                            <label>
-                                <input type="checkbox" name="edit-amenities" value="parking"> Parking
+                        <div class="amenity-chips">
+                            <label class="amenity-chip">
+                                <input type="checkbox" name="edit-amenities" value="parking" class="amenity-chip__input">
+                                <span class="amenity-chip__label">
+                                    <svg class="amenity-chip__check" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    Parking
+                                </span>
                             </label>
-                            <label>
-                                <input type="checkbox" name="edit-amenities" value="gym"> Gym
+                            <label class="amenity-chip">
+                                <input type="checkbox" name="edit-amenities" value="gym" class="amenity-chip__input">
+                                <span class="amenity-chip__label">
+                                    <svg class="amenity-chip__check" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    Gym
+                                </span>
                             </label>
-                            <label>
-                                <input type="checkbox" name="edit-amenities" value="pool"> Swimming Pool
+                            <label class="amenity-chip">
+                                <input type="checkbox" name="edit-amenities" value="pool" class="amenity-chip__input">
+                                <span class="amenity-chip__label">
+                                    <svg class="amenity-chip__check" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    Swimming Pool
+                                </span>
                             </label>
-                            <label>
-                                <input type="checkbox" name="edit-amenities" value="security"> 24/7 Security
+                            <label class="amenity-chip">
+                                <input type="checkbox" name="edit-amenities" value="security" class="amenity-chip__input">
+                                <span class="amenity-chip__label">
+                                    <svg class="amenity-chip__check" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    24/7 Security
+                                </span>
                             </label>
                         </div>
                     </div>
@@ -2744,22 +2871,31 @@
                 <div class="add-listing-modal__form-step" data-step="3">
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-group__label" for="edit-rent-amount">Monthly Rent (₦) *</label>
+                            <label class="form-group__label" for="edit-rent-amount">Monthly Rent (*) *</label>
                             <input type="number" id="edit-rent-amount" class="form-group__input" placeholder="0.00" required>
                         </div>
-                        
+
                         <div class="form-group">
-                            <label class="form-group__label" for="edit-security-deposit">Security Deposit (₦)</label>
+                            <label class="form-group__label" for="edit-security-deposit">Security Deposit (*)</label>
                             <input type="number" id="edit-security-deposit" class="form-group__input" placeholder="0.00">
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="form-group__label" for="edit-property-images">Property Images</label>
-                        <input type="file" id="edit-property-images" class="form-group__input" multiple accept="image/*">
-                        <div class="form-group__hint">Upload up to 10 high-quality images of your property</div>
+                        <label class="form-group__label">Property Images</label>
+                        <div class="upload-dropzone" id="edit-upload-dropzone">
+                            <input type="file" id="edit-property-images" class="upload-dropzone__input" multiple accept="image/*">
+                            <svg class="upload-dropzone__icon" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="17,8 12,3 7,8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="12" y1="3" x2="12" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            <p class="upload-dropzone__text">Drag and drop images here, or click to browse</p>
+                            <span class="upload-dropzone__hint">Upload up to 10 high-quality images</span>
+                        </div>
+                        <div class="upload-preview" id="edit-upload-preview"></div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-group__label">Listing Status</label>
                         <div class="radio-group">
@@ -2771,7 +2907,7 @@
                                     <div class="description">Save listing privately for review before publishing</div>
                                 </div>
                             </label>
-                            
+
                             <input type="radio" id="edit-status-publish" name="edit-status" value="published" class="radio-group__input">
                             <label for="edit-status-publish" class="radio-group__option">
                                 <div class="radio-group__indicator"></div>
@@ -2785,11 +2921,11 @@
                 </div>
 
                 <div class="add-listing-modal__navigation">
-                    <button type="button" class="btn btn--secondary" id="edit-prev-step" style="display: none;">Previous</button>
-                    <div style="display: flex; gap: var(--space-3);">
+                    <button type="button" class="btn btn--secondary add-listing-modal__btn-prev add-listing-modal__btn-prev--hidden" id="edit-prev-step">Previous</button>
+                    <div class="add-listing-modal__nav-right">
                         <button type="button" class="btn btn--secondary" id="edit-close-modal">Cancel</button>
                         <button type="button" class="btn btn--primary" id="edit-next-step">Next</button>
-                        <button type="submit" class="btn btn--primary" id="edit-submit-listing" style="display: none;">Update Listing</button>
+                        <button type="submit" class="btn btn--primary add-listing-modal__btn-submit add-listing-modal__btn-submit--hidden" id="edit-submit-listing">Update Listing</button>
                     </div>
                 </div>
             </form>

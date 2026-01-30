@@ -342,38 +342,23 @@ img {
   height: 100%;
   min-height: 0;
   position: relative;
-  background: var(--color-gray-50);
+  background:
+    radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.12) 0%, transparent 55%),
+    radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.10) 0%, transparent 52%),
+    radial-gradient(circle at 40% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 48%),
+    radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.09) 0%, transparent 50%),
+    radial-gradient(circle at 15% 85%, rgba(168, 85, 247, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 70% 10%, rgba(34, 197, 94, 0.07) 0%, transparent 52%),
+    linear-gradient(180deg, rgba(37, 99, 235, 0.06) 0%, rgba(255, 255, 255, 0) 40%),
+    var(--color-gray-50);
+  background-attachment: fixed;
   transition: padding var(--transition-base), max-width var(--transition-base);
-  
+
   // Better centering when sidebar is collapsed
   .dashboard--sidebar-collapsed & {
     // max-width: 1400px;
     // margin: 0 auto;
     padding: var(--space-10) var(--space-16);
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 300%;
-    height: 100% !important;
-    bottom: 0;
-    z-index: 0;
-    background:
-      radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.12) 0%, transparent 55%),
-      radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.10) 0%, transparent 52%),
-      radial-gradient(circle at 40% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 48%),
-      radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.09) 0%, transparent 50%),
-      radial-gradient(circle at 15% 85%, rgba(168, 85, 247, 0.06) 0%, transparent 45%),
-      radial-gradient(circle at 70% 10%, rgba(34, 197, 94, 0.07) 0%, transparent 52%),
-      linear-gradient(180deg, rgba(37, 99, 235, 0.06) 0%, rgba(255, 255, 255, 0) 40%);
-  }
-  
-  > * {
-    position: relative;
-    z-index: 1;
   }
 
   @include respond-below($breakpoint-lg) {
@@ -1662,6 +1647,9 @@ img {
   color: var(--color-primary);
 }
 
+// Profile section - no min-height to avoid scroll trapping
+
+
 // Profile container - single column layout
 .profile__container {
   max-width: 1200px;
@@ -1717,6 +1705,145 @@ img {
   background: rgba(37, 99, 235, 0.1);
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
+}
+
+// Overall profile progress bar
+.profile-progress {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--color-gray-200);
+  @include card-base;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+  }
+
+  &__label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-700);
+  }
+
+  &__percentage {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+
+  &__bar {
+    height: 8px;
+    background: var(--color-gray-200);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+    transition: width 0.4s ease;
+  }
+}
+
+// Profile accordion
+.profile-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+
+  &__item {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    @include card-base;
+  }
+
+  &__header {
+    padding: var(--space-5) var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    gap: var(--space-4);
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--color-gray-50);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -2px;
+    }
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+
+    h3 {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-gray-900);
+      margin: 0;
+    }
+  }
+
+  &__description {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-shrink: 0;
+  }
+
+  &__status-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--complete {
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--color-success);
+    }
+
+    &--incomplete {
+      background: var(--color-gray-100);
+      color: var(--color-gray-400);
+    }
+  }
+
+  &__chevron {
+    transition: transform 0.3s ease;
+    color: var(--color-gray-400);
+    flex-shrink: 0;
+  }
+
+  &__item[data-accordion-open="true"] &__chevron {
+    transform: rotate(180deg);
+  }
+
+  &__panel {
+    display: none;
+  }
+
+  &__item[data-accordion-open="true"] &__panel {
+    display: block;
+    border-top: 1px solid var(--color-gray-200);
+  }
 }
 
 // Profile card content
@@ -2099,17 +2226,27 @@ img {
 }
 
 @media (max-width: 768px) {
-  
-
   .topbar {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3);
+  }
 
+  .topbar__left {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .topbar__subtitle {
+    display: none;
   }
 
   .topbar__right {
-    width: 100%;
-    justify-content: space-between;
+    flex-shrink: 0;
+
+    .btn--secondary {
+      display: none;
+    }
   }
 
   .conversation__actions {
@@ -2798,36 +2935,45 @@ img {
 @include respond-below($breakpoint-md) {
   .main {
     padding: var(--space-4);
+    padding-top: 0;
 
     .dashboard--sidebar-collapsed & {
       padding: var(--space-4);
+      padding-top: 0;
     }
   }
 
   .topbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-4);
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3);
   }
 
   .topbar__left {
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    flex: 1;
+    min-width: 0;
   }
 
   .topbar__title {
     font-size: var(--font-size-xl);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .topbar__subtitle {
-    font-size: var(--font-size-sm);
     display: none;
   }
 
   .topbar__right {
-    width: 100%;
-    justify-content: space-between;
+    flex-shrink: 0;
+
+    .btn--secondary {
+      display: none;
+    }
   }
 }
 
@@ -2843,20 +2989,30 @@ img {
   }
 }
 
-// Mobile user menu
+// Mobile user menu — avatar only
 @include respond-below($breakpoint-md) {
   .user-menu__trigger {
-    padding: var(--space-1) var(--space-2);
+    padding: var(--space-1);
+    gap: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
 
-    .user-menu__info {
+    .user-menu__details,
+    .user-menu__chevron {
       display: none;
     }
+  }
+
+  .user-menu__avatar {
+    width: 36px;
+    height: 36px;
   }
 
   .user-menu__dropdown {
     right: 0;
     left: auto;
-    min-width: 180px;
+    min-width: 200px;
     max-width: calc(100vw - var(--space-4));
   }
 }
@@ -3254,6 +3410,22 @@ img {
     gap: var(--space-2);
   }
 
+  .profile-progress {
+    padding: var(--space-4);
+  }
+
+  .profile-accordion__header {
+    padding: var(--space-4);
+  }
+
+  .profile-accordion__panel .profile-card__content {
+    padding: var(--space-4);
+  }
+
+  .profile-accordion__description {
+    display: none;
+  }
+
   #profile {
     padding: var(--space-3) !important;
   }
@@ -3418,61 +3590,23 @@ img {
 // ============================================
 
 // 1. Hamburger menu with visible "Menu" label
+// Clean mobile menu toggle — icon only, no label
 .mobile-menu-toggle {
-  flex-direction: column;
-  gap: var(--space-1);
-  width: auto;
-  height: auto;
-  padding: var(--space-2) var(--space-3);
-
   .mobile-menu-label {
     display: none;
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-gray-700);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
 
-  @include respond-below($breakpoint-lg) {
-    .mobile-menu-label {
-      display: block;
-    }
-  }
-
-  // Active state for touch feedback
   &:active {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
+    background: var(--color-gray-100);
     transform: scale(0.95);
-
-    .hamburger-icon span {
-      background: var(--color-white);
-    }
-
-    .mobile-menu-label {
-      color: var(--color-white);
-    }
   }
 }
 
-// 2. Show subtitle on mobile (shortened version)
+// 2. Topbar left layout on mobile
 @include respond-below($breakpoint-md) {
-  .topbar__subtitle {
-    display: block !important;
-    font-size: var(--font-size-xs);
-    color: var(--color-gray-600);
-    margin-top: var(--space-1);
-    line-height: var(--line-height-tight);
-    // Truncate long text
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
-
   .topbar__left {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    min-width: 0;
   }
 }
 
@@ -3908,7 +4042,7 @@ img {
     z-index: 100;
     background: var(--color-white);
     padding: var(--space-4);
-    margin: calc(var(--space-4) * -1);
+    margin: 0 calc(var(--space-4) * -1);
     margin-bottom: var(--space-4);
     border-bottom: 1px solid var(--color-gray-200);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -3923,8 +4057,8 @@ img {
 
 @include respond-below($breakpoint-md) {
   .topbar {
-    padding: var(--space-3);
-    margin: calc(var(--space-3) * -1);
+    padding: var(--space-3) var(--space-4);
+    margin: 0 calc(var(--space-4) * -1);
     margin-bottom: var(--space-3);
   }
 }
